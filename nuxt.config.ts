@@ -12,7 +12,7 @@ export default defineNuxtConfig({
         { name: "sign", content: "880f27e6d0c4daf6c6143beb568a73075f02b75d53e690e6bb79297435d7cf5a8404a4c84ba35416556b92628987d76b9067a4a4ef5d30f63b2b7d0f89b0a26b" },
       ],
       "link": [
-        { rel: "icon", href: "/favicon.png" },
+        { rel: "icon", href: "/site-icon.png" },
       ],
       "style": [],
       "script": [],
