@@ -1,7 +1,17 @@
 <template>
   <div class="footer_wrap">
     <footer>
-
+      <ul class="links">
+        <li>
+          <NuxtLink to="/privacy">Privacy Policy</NuxtLink>
+        </li>
+        <li>
+          <NuxtLink to="/contact">Contact</NuxtLink>
+        </li>
+      </ul>
+      <div class="copyright">
+        © {{ new Date().getFullYear() }} mirumi.tech
+      </div>
     </footer>
   </div>
 </template>
@@ -11,7 +21,26 @@
 
 <style scoped lang="scss">
 .footer_wrap {
+  margin-top: 3em;
+  padding: 1em 1em 9px;
   footer {
+    color: #a1a1a1;
+    .links {
+      text-align: center;
+      font-size: 0.95em;
+      li {
+        display: inline-block;
+        margin: auto 1.3em;
+        a {
+          color: #a1a1a1;
+        }
+      }
+    }
+    .copyright {
+      margin-top: 1.5em;
+      font-size: 0.9em;
+      text-align: center;
+    }
   }
 }
 </style>
