@@ -39,7 +39,7 @@ export default defineNuxtConfig({
   },
   autoImports: {
     dirs: [
-      "@/composable",
+      "@/composables",
     ],
   },
   components: {
@@ -68,5 +68,12 @@ export default defineNuxtConfig({
   ssr: true,
   typescript: {
     strict: true,
+  },
+  vite:{  // maybe only in WSL2
+    server: {
+      watch: {
+        usePolling: true,
+      },
+    },
   },
 })
