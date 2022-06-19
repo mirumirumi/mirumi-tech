@@ -2,18 +2,18 @@
   <div class="modal_base" id="modal_base" @click="clickedToCloseModal($event)">
     <div class="modal_body" id="modal_body" :class="className">
       <slot></slot>
-      <SvgIcon icon="close" color="#b8b8b8" @click="closeModal" />
+      <PartsSvgIcon icon="close" color="#b8b8b8" @click="closeModal" />
     </div>
-    <teleport to="body">
-      <ModalBack />
-    </teleport>
+    <Teleport to="body">
+      <Transition name="fade" appear>
+        <PartsModalBack v-if="isOpenModalBack" />
+      </Transition>
+    </Teleport>
   </div>
 </template>
 
 <script setup lang="ts">
-import { onUnmounted } from "vue"
-import SvgIcon from "../parts/SvgIcon.vue"
-import ModalBack from "../parts/ModalBack.vue"
+import { delay } from "@/lib/utils"
 
 defineProps<{
   className: string,
@@ -22,6 +22,8 @@ defineProps<{
 const emit = defineEmits<{
   (e: "closeModal"): void,
 }>()
+
+const isOpenModalBack = ref(true)
 
 const clickedToCloseModal = (e: any = null) => {
   if (e.target.id === "modal_body")
@@ -43,7 +45,11 @@ const clickedToCloseModal = (e: any = null) => {
   closeModal()
 }
 
-const closeModal = () => {
+const closeModal = async () => {
+  isOpenModalBack.value = false
+
+  await delay(1)
+
   emit("closeModal")
 }
 
@@ -72,10 +78,9 @@ onUnmounted(() => {
     position: relative;
     width: 95%;
     max-width: 555px;
-    padding-top: 2.3em;
-    padding-bottom: 2.3em;
-    color: $text;
-    background-color: $background;
+    padding: 1.5em 1.9em 1.9em;
+    color: #4e4e4e;  // $text
+    background-color: #fffcf9;  // $background
     box-shadow: 1px 3px 5px rgba(#636363, 0.666);
     border-radius: 7px;
     svg {
@@ -83,6 +88,20 @@ onUnmounted(() => {
       right: 19px;
       bottom: auto;
       cursor: pointer;
+    }
+  }
+}
+</style>
+<style lang="scss">
+.modal_base {
+  .modal_body {
+    .title {
+      font-size: 1.17em;
+      font-weight: bold;
+      text-align: center;
+    }
+    & > div {
+      margin: 19px auto;
     }
   }
 }

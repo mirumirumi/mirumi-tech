@@ -19,7 +19,7 @@
 <script setup lang="ts">
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .footer_wrap {
   margin-top: 3em;
   padding: 1em 1em 9px;
@@ -27,7 +27,7 @@
     color: #a1a1a1;
     .links {
       text-align: center;
-      font-size: 0.95em;
+      font-size: 0.87em;
       li {
         display: inline-block;
         margin: auto 1.3em;
@@ -38,7 +38,7 @@
     }
     .copyright {
       margin-top: 1.5em;
-      font-size: 0.9em;
+      font-size: 0.83em;
       text-align: center;
     }
   }
