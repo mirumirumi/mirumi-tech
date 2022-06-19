@@ -54,11 +54,8 @@
       </Transition>
       <Transition name="fadedown">
         <ModulesModalBase :className="'search'" v-if="isOpenSearchModal" @closeModal="isOpenSearchModal = false">
-          <div class="title">
-            
-          </div>
           <div class="form">
-
+            <ModulesSearchBox @closeSearchBox="isOpenSearchModal = false" />
           </div>
         </ModulesModalBase>
       </Transition>
@@ -168,8 +165,13 @@ const closeContactModal = () => {
     }
   }
   .search {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 222.222px;
     .form {
-
+      width: 100%;
+      max-width: 444.444px;
     }
   }
 }
