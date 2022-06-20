@@ -9,9 +9,6 @@
 </template>
 
 <script setup lang="ts">
-import { } from "@/lib/defines"
-import { } from "@/lib/utils"
-
 const router = useRouter()
 const query = ref("")
 const search = ref()

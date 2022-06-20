@@ -5,9 +5,6 @@
         <li>
           <NuxtLink to="/privacy">Privacy Policy</NuxtLink>
         </li>
-        <li>
-          <NuxtLink to="/contact">Contact</NuxtLink>
-        </li>
       </ul>
       <div class="copyright">
         © {{ new Date().getFullYear() }} mirumi.tech
@@ -33,6 +30,7 @@
         margin: auto 1.3em;
         a {
           color: #a1a1a1;
+          text-decoration: none;
         }
       }
     }
