@@ -1,5 +1,5 @@
 <template>
-  <div class="root">
+  <div class="tag_name_view">
 
   </div>
 </template>
@@ -17,7 +17,7 @@ const router = useRouter()
 </script>
 
 <style lang="scss" scoped>
-.root {
+.tag_name_view {
   
 }
 </style>

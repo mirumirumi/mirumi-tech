@@ -1,5 +1,5 @@
 <template>
-  <div class="root">
+  <div class="privacy_view">
 
   </div>
 </template>
@@ -17,7 +17,7 @@ const router = useRouter()
 </script>
 
 <style lang="scss" scoped>
-.root {
+.privacy_view {
   
 }
 </style>

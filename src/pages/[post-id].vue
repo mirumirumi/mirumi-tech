@@ -1,6 +1,5 @@
 <template>
-  <div class="root">
-    
+  <div class="post_id_view">
   </div>
 </template>
 
@@ -17,7 +16,7 @@ const router = useRouter()
 </script>
 
 <style lang="scss" scoped>
-.root {
+.post_id_view {
 
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="root">
+  <div class="index_view">
     <ul class="posts">
       <li class="post" v-for="post in postLinks" :key="post.slag">
         <NuxtLink :to="`/${post.slag}`">
@@ -60,7 +60,7 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-.root {
+.index_view {
   .posts {
     width: 728px;
     margin: auto;
