@@ -9,6 +9,8 @@ $primary                    : #ec6839;
 $primary_hover              : #e26234;
 $link                       : #bb0000;
 $form-feedback-invalid-color: #dc3545;
+$scrollbar_width            : 16px;
+$max_screen_width           : calc(1188px - $scrollbar_width);
 
 
 /**
@@ -161,7 +163,7 @@ label {
   border-bottom-color: transparent;
 }
 ::-webkit-scrollbar {
-  width: 16px;
+  width: $scrollbar_width;
 }
 ::-webkit-scrollbar-thumb {
   border: 3.5px solid rgba(0, 0, 0, 0);
@@ -233,7 +235,7 @@ label {
  */
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.03s ease-out;
+  transition: opacity 0.07s ease-out;
 }
 .fade-enter-from,
 .fade-leave-to {

@@ -18,8 +18,8 @@
 
 <style lang="scss" scoped>
 .footer_wrap {
-  margin-top: 3em;
-  padding: 1em 1em 9px;
+  margin-top: 0;
+  padding: 4em 1em 9.15px;
   footer {
     color: #a1a1a1;
     .links {
