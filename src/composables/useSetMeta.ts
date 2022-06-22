@@ -1,54 +1,6 @@
 import { PageMeta } from "@/lib/defines"
 
-export default ({ type, pageMeta }: { type?: "slag" | "tag", pageMeta?: PageMeta }) => {
-  switch (type) {
-    case "slag":
-      slag()
-      break
-    case "tag":
-      tag()
-      break
-    case undefined:
-      direct(pageMeta!)
-      break
-  }
-}
-
-async function slag(): Promise<void> {
-  // const res = $fetch()
-
-  const pageMeta: PageMeta = {
-    title: "title",
-    description: "description",
-    keywords: "keywords",
-    url: "url",
-    createdAt: "createdAt",
-    updatedAt: "updatedAt",
-  }
-
-  set(pageMeta)
-}
-
-async function tag(): Promise<void> {
-
-
-  const pageMeta: PageMeta = {
-    title: "title",
-    description: "description",
-    keywords: "keywords",
-    url: "url",
-    createdAt: "createdAt",
-    updatedAt: "updatedAt",
-  }
-
-  set(pageMeta)
-}
-
-function direct(pageMeta: PageMeta): void {
-  set(pageMeta)
-}
-
-function set(pageMeta: PageMeta): void {
+export default (pageMeta: PageMeta) => {
   useHead({
     title: "mirumi.tech",
     titleTemplate: (title) => {

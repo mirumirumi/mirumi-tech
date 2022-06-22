@@ -30,6 +30,11 @@ import { today } from "@/lib/utils"
 
 const postLinks = ref<Array<PostLink>>()
 
+
+
+
+
+
 postLinks.value = [{
   slag: "slag1",
   title: "Python で TypeScript の interface のように辞書オブジェクトの型定義を手軽に行う",
@@ -41,6 +46,9 @@ postLinks.value = [{
   createdAt: SITE_CREATED_AT,
   updatedAt: today(),
 }]
+
+
+
 
 
 
