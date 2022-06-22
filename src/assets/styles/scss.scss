@@ -12,7 +12,6 @@ $form-feedback-invalid-color: #dc3545;
 $scrollbar_width            : 16px;
 $max_screen_width           : calc(1188px - $scrollbar_width);
 
-
 /**
  * mixin
  */
@@ -21,7 +20,6 @@ $max_screen_width           : calc(1188px - $scrollbar_width);
     @content;
   }
 }
-
 
 /**
  * globals

@@ -113,8 +113,7 @@
     border-radius: 11px;
     &::before {
       position: absolute;
-      font-family: "Font Awesome 5 Free";
-      font-weight: 900;
+      display: inline-block;
       top: 0.777em;
       left: 0;
       right: 0;
@@ -123,6 +122,7 @@
       width: 27px;
       height: 27px;
       font-size: 27px;
+      font-weight: 900;
       line-height: 27px;
       border-right: none;
     }
@@ -149,22 +149,28 @@
   .box-info {
     background-color: #fffaf0;
     &::before {
-      content: "\f05a";
-      color: #e5d187;
+      content: "";
+      mask: url("@/assets/svgs/info.svg");
+      mask-size: cover;
+      background-color: #e5d187;
     }  
   }
   .box-alert {
     background-color: #fff7f6;
     &::before {
-      content: "\f06a";
-      color: #f6a2a2;
+      content: "";
+      mask: url("@/assets/svgs/alert.svg");
+      mask-size: cover;
+      background-color: #f6a2a2;
     }
   }
   .box-rewrite {
     background-color: #fafff6;
     &::before {
-      content: "\f304";
-      color: #9bbc7e;
+      content: "";
+      mask: url("@/assets/svgs/edit.svg");
+      mask-size: cover;
+      background-color: #9bbc7e;
       top: 1em;
       width: 23px;
       height: 23px;
