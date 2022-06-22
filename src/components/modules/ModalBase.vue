@@ -79,8 +79,8 @@ onUnmounted(() => {
     width: 95%;
     max-width: 555px;
     padding: 1.5em 1.9em 1.9em;
-    color: #4e4e4e;  // $text
-    background-color: #fffcf9;  // $background
+    color: $text;
+    background-color: $background;
     box-shadow: 1px 3px 5px rgba(#636363, 0.666);
     border-radius: 7px;
     svg {

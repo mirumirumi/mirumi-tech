@@ -19,7 +19,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   #container {
-    width: 1172px;  // $max_screen_width
+    width: $max_screen_width;
     margin: 0 auto;
     padding: 0.7em 0.5em 1em;
   }

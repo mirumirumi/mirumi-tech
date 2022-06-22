@@ -41,7 +41,7 @@ const isAutoWidth = computed(() => {
   width: auto;
   margin: auto;
   line-height: 1.5;
-  color: #4e4e4e;  // $text
+  color: $text;
   font-size: 0.85em;
   font-weight: bold;
   text-align: center;
@@ -65,18 +65,18 @@ const isAutoWidth = computed(() => {
 }
 .btn-primary {
   color: #ffffff;
-  border-color: #ec6839;  // $primary
-  background-color: #ec6839;  // $primary
+  border-color: $primary;
+  background-color: $primary;
   &:hover {
     filter: saturate(0.85);
   }
 }
 .btn-outline-primary {
-  color: #ec6839;  // $primary
-  border-color: #ec6839;  // $primary
+  color: $primary;
+  border-color: $primary;
   background-color: #ffffff;
   &:hover {
-    color: #ec6839;  // $primary
+    color: $primary;
     background-color: #f6f2f3;
   }
 }

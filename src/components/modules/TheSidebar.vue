@@ -25,9 +25,8 @@ defineProps<{
   width: 331px;
   height: calc(100vh - 13px * 2);
   padding: 13px 13px;
-  // .ad {
-  //   height: 250px !important;
-  //   background-color: azure;
-  // }
+  .ad {
+    height: 250px !important;
+  }
 }
 </style>

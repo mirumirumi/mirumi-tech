@@ -104,8 +104,9 @@ const closeContactModal = () => {
     height: 100px;
     max-width: 1188px;
     margin: auto;
-    padding: 19px 29px 30px;
+    padding: 23px 29px 30px;
     .site_logo {
+      margin-left: 0.5em;
       img {
         width: 47px;
         height: 47px;
