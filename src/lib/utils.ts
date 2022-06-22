@@ -18,6 +18,10 @@ export const toBool = (data: string): boolean => {
   return data.toLowerCase() === "true"
 }
 
+export const zeroPadding = (input: number, precision: number): string => {
+	return (Array(precision).join("0") + input).slice(-precision)
+}
+
 // こっから下はたぶんlodashに全部あるので置き換えるようにする
 
 export const deepCopy = (data: Record<string, unknown>): Record<string, unknown> => {
