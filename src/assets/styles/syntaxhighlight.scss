@@ -3,8 +3,6 @@ pre[class*="language-"] {
   padding: 1.3em 1.7em 1.5em;
   overflow-x: auto;
   background: #2c2d3a;
-  color: #f3f3f3;
-  font-size: 0.85em;
   line-height: 1.6 !important;
   border-radius: 11px;
   white-space: pre-wrap;
@@ -12,12 +10,20 @@ pre[class*="language-"] {
     white-space: pre;
   }
   code {
+    color: #f3f3f3 !important;
+    font-size: 0.85em;
+    line-height: 1.6;
     font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
   }
   .token.keyword,
   .token.annotation {
     color: #66d9ef;
   }
+  .token.builtin {
+    color: #66d9ef;
+    font-style: italic;
+  }
+  .token.class-name,
   .token.decorator,
   .token.function {
     color: #a6e22e;
