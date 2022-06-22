@@ -1,5 +1,6 @@
 // constants and typings
 
+export const SITE_FULL_PATH = "https://mirumi.tech"
 export const SITE_CREATED_AT = "2022/7/1"
 
 export interface PageMeta {
