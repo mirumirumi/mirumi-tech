@@ -50,9 +50,6 @@ export default defineNuxtConfig({
       "@/components",
     ],
   },
-  css: [
-    "@/assets/styles/scss.scss",
-  ],
   nitro: {
     srcDir: "src/",
   },
@@ -72,10 +69,17 @@ export default defineNuxtConfig({
   typescript: {
     strict: true,
   },
-  vite:{  // maybe only in WSL2
+  vite: {
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: '@import "@/assets/styles/scss.scss"; @import "@/assets/styles/content.scss";',
+        },
+      },
+    },
     server: {
       watch: {
-        usePolling: true,
+        usePolling: true,  // maybe only in WSL2
       },
     },
   },
