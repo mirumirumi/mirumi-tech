@@ -1,0 +1,59 @@
+pre[class*="language-"] {
+  display: block;
+  padding: 1.3em 1.7em 1.5em;
+  overflow-x: auto;
+  background: #2c2d3a;
+  color: #f3f3f3;
+  font-size: 0.85em;
+  line-height: 1.6 !important;
+  border-radius: 11px;
+  white-space: pre-wrap;
+  @include mobile {
+    white-space: pre;
+  }
+  code {
+    font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+  }
+  .token.keyword,
+  .token.annotation {
+    color: #66d9ef;
+  }
+  .token.decorator,
+  .token.function {
+    color: #a6e22e;
+  }
+  .token.punctuation {
+    color: #938e8c;
+    &.decorator {
+      color: #a6e22e;
+    }
+  }
+  .token.number,
+  .token.boolean {
+    color: #ae81ff;
+  }
+  .token.operator {
+    color: #e0a2b8;
+  }
+  .token.string {
+    color: #f0e57f;
+  }
+  .token.comment {
+    color: #7f888d;
+  }
+  .token.bold {
+    font-weight: bold;
+  }
+  .token.italic {
+    font-style: italic;
+  }
+  &::-webkit-scrollbar {
+    height: 15px;
+  }
+  &::-webkit-scrollbar-track {
+    border-radius: 0 0 10px 10px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 0 0 10px 10px;
+  }  
+}
