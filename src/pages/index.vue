@@ -25,37 +25,33 @@
 </template>
 
 <script setup lang="ts">
-import { SITE_CREATED_AT, PageMeta, PostLink } from "@/lib/defines"
+import { SITE_FULL_PATH, SITE_CREATED_AT, PostLink } from "@/lib/defines"
 import { today } from "@/lib/utils"
 
-const router = useRouter()
 const postLinks = ref<Array<PostLink>>()
 
-onMounted(() => {
-  useSetMeta({
-    pageMeta: {
-      title: "mirumi.tech",
-      description: "みるみの技術ブログ",
-      keywords: "みるめも,みるみ,blog,technology,programming",
-      url: "https://mirumi.tech",
-      createdAt: SITE_CREATED_AT,
-      updatedAt: today(),
-    }
-  })
-})
+postLinks.value = [{
+  slag: "slag1",
+  title: "Python で TypeScript の interface のように辞書オブジェクトの型定義を手軽に行う",
+  createdAt: SITE_CREATED_AT,
+  updatedAt: today(),
+}, {
+  slag: "slag1",
+  title: "Vue.js の状態管理ライブラリ Pinia の使い方まとめ",
+  createdAt: SITE_CREATED_AT,
+  updatedAt: today(),
+}]
 
-onMounted(() => {
-  postLinks.value = [{
-    slag: "slag1",
-    title: "Python で TypeScript の interface のように辞書オブジェクトの型定義を手軽に行う",
-    createdAt: SITE_CREATED_AT,
-    updatedAt: today(),
-  }, {
-    slag: "slag1",
-    title: "Vue.js の状態管理ライブラリ Pinia の使い方まとめ",
-    createdAt: SITE_CREATED_AT,
-    updatedAt: today(),
-  }]
+
+
+
+useSetMeta({
+  title: "mirumi.tech",
+  description: "みるみの技術ブログ",
+  keywords: "みるめも,みるみ,blog,technology,programming",
+  url: SITE_FULL_PATH,
+  createdAt: SITE_CREATED_AT,
+  updatedAt: today(),
 })
 </script>
 
@@ -70,7 +66,7 @@ onMounted(() => {
         margin-bottom: 0.99em;
         padding: 1.5% 0 calc(1.5% + 1.1em) 7px;
         border-bottom: dotted 2.3px #e3deda;
-        color: #4e4e4e;  // $text
+        color: $text;
         text-decoration: none;
         article {
           h2 {
