@@ -19,3 +19,11 @@ export interface PostLink {
   createdAt: string,
   updatedAt: string,
 }
+
+export interface PostData {
+  title: string,
+  createdAt: string,
+  updatedAt: string,
+  tags: string[],
+  html: string,
+}
