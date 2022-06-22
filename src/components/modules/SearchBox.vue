@@ -4,7 +4,7 @@
       v-model="query"
       @keydown.enter.prevent="move"
     >
-    <PartsSvgIcon :icon="'search'" :color="'#bbbbba'" />
+    <PartsSvgIcon :icon="'search'" :color="'#bbbbba'" @click="move" />
   </div>
 </template>
 
@@ -43,6 +43,7 @@ const move = () => {
   }
   svg {
     right: 1.7em;
+    cursor: pointer;
   }
 }
 </style>
