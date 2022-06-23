@@ -45,9 +45,6 @@ import m2h from "@/lib/markdown-to-html"
 
 const router = useRouter()
 
-onMounted(() => {
-  Prism.manual = true
-  Prism.highlightAll()
 })
 
 
@@ -71,9 +68,17 @@ const post: PostData = {
 
 
 
-const datetime = (datetime: string) => {
-  return `${datetime.slice(0, 4)}-${zeroPadding(Number(datetime.replace(/\d{4}\/(\d\d*)\/.*?$/gmi, "$1")), 2)}-${zeroPadding((Number(datetime.replace(/\d{4}\/\d\d*\/(.*?)$/gmi, "$1"))), 2)}`
-}
+
+onMounted(() => {
+  Prism.manual = true
+  Prism.highlightAll()
+})
+
+
+
+
+
+
 
 useSetMeta({
   title: post.title,
@@ -83,6 +88,10 @@ useSetMeta({
   createdAt: post.createdAt,
   updatedAt: post.updatedAt,
 })
+
+const datetime = (datetime: string) => {
+  return `${datetime.slice(0, 4)}-${zeroPadding(Number(datetime.replace(/\d{4}\/(\d\d*)\/.*?$/gmi, "$1")), 2)}-${zeroPadding((Number(datetime.replace(/\d{4}\/\d\d*\/(.*?)$/gmi, "$1"))), 2)}`
+}
 
 function generateMetaDescription(html: string): string {
   return html.replace(/(<.*?>|\n|^\n)/gmi, "").replace(/<h[234].*?>.*?<\/h[234]>/gmi, "").slice(0, 100)  // https://regex101.com/r/ke1Ymn/1
