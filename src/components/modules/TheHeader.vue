@@ -152,6 +152,7 @@ const closeContactModal = () => {
       }
     }
     .button {
+      margin-bottom: 2.1em;
       text-align: center;
     }
     .desc {
