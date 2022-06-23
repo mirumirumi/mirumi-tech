@@ -3,7 +3,10 @@
     <footer>
       <ul class="links">
         <li>
-          <NuxtLink to="/privacy">Privacy Policy</NuxtLink>
+          <NuxtLink to="/privacy">プライバシーポリシー</NuxtLink>
+        </li>
+        <li>
+          <NuxtLink to="/this">このサイトのつくり</NuxtLink>
         </li>
       </ul>
       <div class="copyright">
