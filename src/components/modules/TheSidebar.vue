@@ -10,9 +10,6 @@
 </template>
 
 <script setup lang="ts">
-import {  } from "@/lib/utils"
-import {  } from "@/lib/defines"
-
 defineProps<{
   html: string,
 }>()

@@ -38,9 +38,6 @@
 </template>
 
 <script setup lang="ts">
-import {  } from "@/lib/utils"
-import {  } from "@/lib/defines"
-
 const router = useRouter()
 
 const p = defineProps<{
