@@ -1,6 +1,6 @@
 <template>
   <div class="root">
-    <input type="text" ref="search" class="input" placeholder="Search for..." 
+    <input type="text" :ref="'search'" class="input" placeholder="Search for..." 
       v-model="query"
       @keydown.enter.prevent="move"
     >
