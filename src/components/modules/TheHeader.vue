@@ -8,29 +8,59 @@
       </div>
       <ul class="menu">
         <li>
-          <NuxtLink to="/all-entries">
+          <NuxtLink to="/all-entries" @mouseenter="isShownTtAe = true" @mouseleave="isShownTtAe = false">
             <PartsSvgIcon :icon="'entries'" :color="'#bbbbba'" />
           </NuxtLink>
+          <Transition name="tooltip">
+            <PartsTooltip :position="'below'" :shift="'45px'" v-if="isShownTtAe">
+              すべての記事
+            </PartsTooltip>
+          </Transition>
         </li>
         <li>
-          <NuxtLink to="/all-tags">
+          <NuxtLink to="/all-tags" @mouseenter="isShownTtAt = true" @mouseleave="isShownTtAt = false">
             <PartsSvgIcon :icon="'tags'" :color="'#bbbbba'" />
           </NuxtLink>
+          <Transition name="tooltip">
+            <PartsTooltip :position="'below'" :shift="'45px'" v-if="isShownTtAt">
+              すべてのタグ
+            </PartsTooltip>
+          </Transition>
         </li>
         <li>
-          <a href="https://github.com/mirumirumi">
+          <a :href="githubUrl" @mouseenter="isShownTtGh = true" @mouseleave="isShownTtGh = false">
             <PartsSvgIcon :icon="'github'" :color="'#bbbbba'" />
           </a>
+          <Transition name="tooltip">
+            <PartsTooltip :position="'below'" :shift="'45px'" v-if="isShownTtGh">
+              <template v-if="isPost()">
+                GitHubで編集を提案する
+              </template>
+              <template v-else>
+                GitHubプロフィール
+              </template>
+            </PartsTooltip>
+          </Transition>
         </li>
         <li>
-          <div class="contact_wrap" @click="isOpenContactModal = true">
+          <div class="contact_wrap" @click="isOpenContactModal = true" @mouseenter="isShownTtCt = true" @mouseleave="isShownTtCt = false">
             <PartsSvgIcon :icon="'mail'" :color="'#bbbbba'" />
           </div>
+          <Transition name="tooltip">
+            <PartsTooltip :position="'below'" :shift="'45px'" v-if="isShownTtCt">
+              お問い合わせ
+            </PartsTooltip>
+          </Transition>
         </li>
         <li>
-          <div class="search_wrap" @click="isOpenSearchModal = true">
+          <div class="search_wrap" @click="isOpenSearchModal = true" @mouseenter="isShownTtSr = true" @mouseleave="isShownTtSr = false">
             <PartsSvgIcon :icon="'search'" :color="'#bbbbba'" />
           </div>
+          <Transition name="tooltip">
+            <PartsTooltip :position="'below'" :shift="'45px'" v-if="isShownTtSr">
+              記事を検索
+            </PartsTooltip>
+          </Transition>
         </li>
       </ul>
     </header>
@@ -65,6 +95,30 @@
 
 <script setup lang="ts">
 import { delay } from "@/lib/utils"
+import { MAIL_ADDRESS } from "@/lib/defines"
+
+const router = useRouter()
+
+const isShownTtAe = ref(false)
+const isShownTtAt = ref(false)
+const isShownTtGh = ref(false)
+const isShownTtCt = ref(false)
+const isShownTtSr = ref(false)
+
+const githubUrl = computed(() => {
+  if (isPost()) {
+    const slag = router.currentRoute.value.path
+    return "https://github.com/mirumirumi/mirumi-tech-content/blob/main/posts" + slag
+  } else {
+    return "https://github.com/mirumirumi"
+  }
+})
+
+
+
+
+
+
 
 const isOpenContactModal = ref(false)
 const isOpenSearchModal = ref(false)
@@ -75,7 +129,7 @@ const buttonText = ref("メールアドレスを表示する")
 
 const showAddressOrCopy = async () => {
   if (!address.value) {
-    address.value = "mail@mirumi.tech"
+    address.value = MAIL_ADDRESS
     isShown.value = true
     buttonText.value = "コピーする"
   } else {
@@ -91,6 +145,10 @@ const closeContactModal = () => {
   isOpenContactModal.value = false
   isShown.value = false
   buttonText.value = "メールアドレスを表示する"
+}
+
+const isPost = (): boolean => {
+  return router.currentRoute.value.name === "postId"
 }
 </script>
 
@@ -118,6 +176,7 @@ const closeContactModal = () => {
       width: 300px;
       height: 100%;
       li {
+        position: relative;
         display: flex;
         justify-content: center;
         align-items: center;
