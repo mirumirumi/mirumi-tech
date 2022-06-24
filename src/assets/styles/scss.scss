@@ -22,7 +22,7 @@ $max_screen_width           : calc(1188px - $scrollbar_width);
 }
 
 /**
- * globals
+ * common
  */
 * {
   box-sizing: border-box;
@@ -168,6 +168,24 @@ label {
   background-clip: padding-box;
   border-radius: 9999px;
   background-color: #c7bfba;
+}
+
+/**
+ * globals
+ */
+.single_column {
+  width: 728px;
+  margin: auto;
+}
+main {
+  header {
+    h1 {
+      margin: 0.888rem 0 0.7rem;
+      font-size: 1.444em;
+      font-weight: bold;
+      line-height: 1.25;
+    }
+  }
 }
 
 /**
