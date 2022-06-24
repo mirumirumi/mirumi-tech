@@ -1,5 +1,5 @@
 <template>
-  <div class="root">
+  <div class="search_box">
     <input type="text" :ref="'search'" class="input" placeholder="Search for..." 
       v-model="query"
       @keydown.enter.prevent="move"
@@ -28,7 +28,7 @@ const move = () => {
 </script>
 
 <style lang="scss" scoped>
-.root {
+.search_box {
   position: relative;
   width: 100%;
   height: 100%;

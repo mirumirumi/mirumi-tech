@@ -278,6 +278,19 @@ label {
   opacity: 0.666;
 }
 
+.tooltip-enter-active,
+.tooltip-leave-active {
+  transition: opacity 0.11s ease-out;
+}
+.tooltip-enter-from,
+.tooltip-leave-to {
+  opacity: 0;
+}
+.tooltip-enter-to,
+.tooltip-leave-from {
+  opacity: 1;
+}
+
 .move-move {
   transition: transform 0.19s ease-out;
 }
