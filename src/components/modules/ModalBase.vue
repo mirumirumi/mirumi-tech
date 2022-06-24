@@ -25,6 +25,10 @@ const emit = defineEmits<{
 
 const isOpenModalBack = ref(true)
 
+onMounted(() => {
+  ; (document.getElementsByTagName("body")[0] as HTMLBodyElement).classList.add("modal")
+})
+
 const clickedToCloseModal = (e: any = null) => {
   if (e.target.id === "modal_body")
     return
@@ -51,6 +55,8 @@ const closeModal = async () => {
   await delay(1)
 
   emit("closeModal")
+
+  ; (document.getElementsByTagName("body")[0] as HTMLBodyElement).classList.remove("modal")
 }
 
 function keydownEscape(e: KeyboardEvent): void {
@@ -93,6 +99,10 @@ onUnmounted(() => {
 }
 </style>
 <style lang="scss">
+body.modal {
+  overflow: hidden;
+  padding-right: 17px;
+}
 .modal_base {
   .modal_body {
     .title {
