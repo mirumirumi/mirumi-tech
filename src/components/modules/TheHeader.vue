@@ -8,7 +8,7 @@
       </div>
       <ul class="menu">
         <li>
-          <NuxtLink to="/all-entries" @mouseenter="isShownTtAe = true" @mouseleave="isShownTtAe = false">
+          <NuxtLink to="/all-entries" data-tooltip="all_entries" @mouseenter="hover" @mouseleave="hoverInterrupt">
             <PartsSvgIcon :icon="'entries'" :color="'#bbbbba'" />
           </NuxtLink>
           <Transition name="tooltip">
@@ -18,7 +18,7 @@
           </Transition>
         </li>
         <li>
-          <NuxtLink to="/all-tags" @mouseenter="isShownTtAt = true" @mouseleave="isShownTtAt = false">
+          <NuxtLink to="/all-tags" data-tooltip="all_tags" @mouseenter="hover" @mouseleave="hoverInterrupt">
             <PartsSvgIcon :icon="'tags'" :color="'#bbbbba'" />
           </NuxtLink>
           <Transition name="tooltip">
@@ -28,7 +28,7 @@
           </Transition>
         </li>
         <li>
-          <a :href="githubUrl" @mouseenter="isShownTtGh = true" @mouseleave="isShownTtGh = false">
+          <a :href="githubUrl" data-tooltip="github" @mouseenter="hover" @mouseleave="hoverInterrupt">
             <PartsSvgIcon :icon="'github'" :color="'#bbbbba'" />
           </a>
           <Transition name="tooltip">
@@ -43,7 +43,7 @@
           </Transition>
         </li>
         <li>
-          <div class="contact_wrap" @click="isOpenContactModal = true" @mouseenter="isShownTtCt = true" @mouseleave="isShownTtCt = false">
+          <div class="contact_wrap" data-tooltip="contact_wrap" @click="isOpenContactModal = true" @mouseenter="hover" @mouseleave="hoverInterrupt">
             <PartsSvgIcon :icon="'mail'" :color="'#bbbbba'" />
           </div>
           <Transition name="tooltip">
@@ -53,7 +53,7 @@
           </Transition>
         </li>
         <li>
-          <div class="search_wrap" @click="isOpenSearchModal = true" @mouseenter="isShownTtSr = true" @mouseleave="isShownTtSr = false">
+          <div class="search_wrap" data-tooltip="search_wrap" @click="isOpenSearchModal = true" @mouseenter="hover" @mouseleave="hoverInterrupt">
             <PartsSvgIcon :icon="'search'" :color="'#bbbbba'" />
           </div>
           <Transition name="tooltip">
@@ -95,15 +95,9 @@
 
 <script setup lang="ts">
 import { delay } from "@/lib/utils"
-import { MAIL_ADDRESS } from "@/lib/defines"
+import { MAIL_ADDRESS, DEBOUNCE_MS } from "@/lib/defines"
 
 const router = useRouter()
-
-const isShownTtAe = ref(false)
-const isShownTtAt = ref(false)
-const isShownTtGh = ref(false)
-const isShownTtCt = ref(false)
-const isShownTtSr = ref(false)
 
 const githubUrl = computed(() => {
   if (isPost()) {
@@ -149,6 +143,49 @@ const closeContactModal = () => {
 
 const isPost = (): boolean => {
   return router.currentRoute.value.name === "postId"
+}
+
+
+
+const isShownTtAe = ref(false)
+const isShownTtAt = ref(false)
+const isShownTtGh = ref(false)
+const isShownTtCt = ref(false)
+const isShownTtSr = ref(false)
+
+let timer: number
+
+const hover = (e: Event): void => {
+  timer = window.setTimeout(() => {
+    // @ts-ignore
+    switch ((e.target as HTMLElement).dataset.tooltip) {
+      case "all_entries":
+        isShownTtAe.value = true
+        break
+      case "all_tags":
+        isShownTtAt.value = true
+        break
+      case "github":
+        isShownTtGh.value = true
+        break
+      case "contact_wrap":
+        isShownTtCt.value = true
+        break
+      case "search_wrap":
+        isShownTtSr.value = true
+        break
+    }
+  }, DEBOUNCE_MS);
+}
+
+const hoverInterrupt = () => {
+  clearTimeout(timer)
+
+  isShownTtAe.value = false
+  isShownTtAt.value = false
+  isShownTtGh.value = false
+  isShownTtCt.value = false
+  isShownTtSr.value = false
 }
 </script>
 
