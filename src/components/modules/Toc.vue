@@ -60,16 +60,16 @@ for (let i = 0; i < heads.length; i++) {
       tocItems.value.push(Array())
     }
 
-    tocItems.value.slice(-1)[0].push({
+    tocItems.value.at(-1).push({
       depth: _depth,
       innerText: heads[i][1],
     })
   } else if (_depth === "h4") {
     if (heads[i - 1][0].slice(1, 3) === "h3") {
-      tocItems.value.slice(-1)[0].push(Array())
+      tocItems.value.at(-1).push(Array())
     }
 
-    tocItems.value.slice(-1)[0].slice(-1)[0].push({
+    tocItems.value.at(-1).at(-1).push({
       depth: _depth,
       innerText: heads[i][1],
     })
