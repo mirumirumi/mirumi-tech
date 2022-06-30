@@ -1,11 +1,58 @@
 <template>
-  <div class="root">
-
+  <div class="search_view">
+    <Head>
+      <Meta name="robots" content="noindex" />
+    </Head>
+    <main class="single_column">
+      <header>
+        <h1>
+          <PartsSvgIcon :icon="'search'" :color="'#4e4e4e'" />
+          <span>{{ query }}</span>
+        </h1>
+      </header>
+      <ul class="posts">
+        <li class="post" v-for="post in postLinks" :key="post.slag">
+          <NuxtLink :to="`/${post.slag}`">
+            <article>
+              <h2>
+                {{ post.title }}
+              </h2>
+              <div class="meta">
+                <div class="created_at">
+                  <PartsSvgIcon :icon="'edit'" :color="'#9e9e9e'" />
+                  <span>{{ post.createdAt }}</span>
+                </div>
+                <div class="updated_at">
+                  <PartsSvgIcon :icon="'update'" :color="'#9e9e9e'" />
+                  <span>{{ post.updatedAt }}</span>
+                </div>
+              </div>
+            </article>
+          </NuxtLink>
+        </li>
+      </ul>    
+    </main>
   </div>
 </template>
 
 <script setup lang="ts">
+import { SITE_FULL_PATH, SITE_CREATED_AT, PostLink } from "@/lib/defines"
+import { today } from "@/lib/utils"
+
 const router = useRouter()
+const query = router.currentRoute.value.query.q
+
+const postLinks = ref<Array<PostLink>>()
+
+
+
+
+
+// おそらくこのページだけ SSR にするという設定が必要なはず
+
+
+
+// クエリがなにもないときようの表示をちゃんと作っておく必要がある
 
 
 
@@ -13,11 +60,50 @@ const router = useRouter()
 
 
 
+postLinks.value = [{
+  slag: "slag1",
+  title: "Python で TypeScript の interface のように辞書オブジェクトの型定義を手軽に行う",
+  createdAt: SITE_CREATED_AT,
+  updatedAt: today(),
+}, {
+  slag: "slag1",
+  title: "Vue.js の状態管理ライブラリ Pinia の使い方まとめ",
+  createdAt: SITE_CREATED_AT,
+  updatedAt: today(),
+}]
 
+
+
+
+
+
+
+useSetMeta({
+  title: query as string,
+  description: `${query} を含む記事一覧です。`,
+  keywords: "みるめも,みるみ,blog,technology,programming,search,",
+  url: SITE_FULL_PATH + "/search",
+  createdAt: SITE_CREATED_AT,
+  updatedAt: today(),
+})
 </script>
 
 <style lang="scss" scoped>
-.root {
-  
+.search_view {
+  main {
+    header {
+      h1 {
+        position: relative;
+        margin: 0 0 1.7em;
+        svg {
+          top: 5px;
+          width: 0.9em;
+        }
+        span {
+          margin-left: 1.5em;
+        }
+      }
+    }
+  }
 }
 </style>
