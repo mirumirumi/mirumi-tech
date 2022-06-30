@@ -5,26 +5,26 @@
     </h3>
     <div class="toc_body">
       <ul class="h2">
-        <li v-for="tocItem in tocItems" class="h2" :key="tocItem.innerText">
+        <li v-for="tocItem in tocItems" class="h2" :class="{ 'highlight': tocItem.isHighlight }" :key="tocItem.innerText">
           <template v-if="!Array.isArray(tocItem)">
-            <NuxtLink :to="`${router.currentRoute.value.fullPath}#${tocItem.innerText}`">
+            <a :href="`#${tocItem.link}`">
               {{ tocItem.innerText }}
-            </NuxtLink>
+            </a>
           </template>
           <template v-else>
             <ul class="h3">
-              <li v-for="h3s in tocItem" class="h3" :key="h3s.innerText">
+              <li v-for="h3s in tocItem" class="h3" :class="{ 'highlight': h3s.isHighlight }" :key="h3s.innerText">
                 <template v-if="!Array.isArray(h3s)">
-                  <NuxtLink :to="`${router.currentRoute.value.fullPath}#${h3s.innerText}`">
+                  <a :href="`#${h3s.link}`">
                     {{ h3s.innerText }}
-                  </NuxtLink>
+                  </a>
                 </template>
                 <template v-else>
                   <ul class="h4">
-                    <li v-for="h4s in h3s" class="h4" :key="h4s.innerText">
-                      <NuxtLink :to="`${router.currentRoute.value.fullPath}#${h4s.innerText}`">
+                    <li v-for="h4s in h3s" class="h4" :class="{ 'highlight': h4s.isHighlight }" :key="h4s.innerText">
+                      <a :href="`#${h4s.link}`">
                         {{ h4s.innerText }}
-                      </NuxtLink>
+                      </a>
                     </li>
                   </ul>
                 </template>
@@ -38,12 +38,15 @@
 </template>
 
 <script setup lang="ts">
-const router = useRouter()
+import _ from "lodash"
 
 const p = defineProps<{
   html: string,
 }>()
 
+/**
+ * generate toc
+ */
 const tocItems = ref<any>([])  // 😠
 const heads = [...p.html.matchAll(/<h[234].*?>(.*?)<\/h[234]>/gmi)]
 
@@ -54,6 +57,8 @@ for (let i = 0; i < heads.length; i++) {
     tocItems.value.push({
       depth: _depth,
       innerText: heads[i][1],
+      link: encodeURI(heads[i][1]),
+      isHighlight: false,
     })
   } else if (_depth === "h3") {
     if (heads[i - 1][0].slice(1, 3) === "h2") {  // it's safe to assume the first cant be `h3`
@@ -63,6 +68,8 @@ for (let i = 0; i < heads.length; i++) {
     tocItems.value.at(-1).push({
       depth: _depth,
       innerText: heads[i][1],
+      link: encodeURI(heads[i][1]),
+      isHighlight: false,
     })
   } else if (_depth === "h4") {
     if (heads[i - 1][0].slice(1, 3) === "h3") {
@@ -72,7 +79,89 @@ for (let i = 0; i < heads.length; i++) {
     tocItems.value.at(-1).at(-1).push({
       depth: _depth,
       innerText: heads[i][1],
+      link: encodeURI(heads[i][1]),
+      isHighlight: false,
     })
+  }
+}
+
+/**
+ * auto adulation highlight 
+ * (just highlight the `h` elem that comes to the center of the viewport (1/3~2/3), power equality whether it comes from the top or the bottom)
+ */
+
+onMounted(() => {
+  const headings = document.getElementsByClassName("toc_item")
+
+  // if the first heading is not caught by the trigger, highlight it first
+  const theFirst = headings[0]
+  if (theFirst.getBoundingClientRect().top < window.innerHeight / 3) {
+    tocItems.value[0].isHighlight = true
+  }
+
+  // in normal case
+  window.addEventListener("scroll", () => {
+    if (headings.length === 0)
+      return
+
+    for (const heading of headings) {
+      if (isSeenCenter(heading)) {
+        const index = Number((heading as HTMLElement).dataset.tocIndex)
+
+        highlight(index)
+      }
+    }
+  })
+})
+
+function isSeenCenter(elem: Element): boolean {
+  const { top, bottom } = elem.getBoundingClientRect()
+  const center = window.innerHeight / 3
+
+  return center <= top && bottom <= center * 2
+}
+
+function highlight(index: number): void {
+  let progres = 1
+  let i = 0
+  let j = 0
+  let k = 0
+
+  while (progres <= index) {
+    if (!_.isArray(tocItems.value[i])) {
+      if (progres === index) {
+        tocItems.value[i].isHighlight = true
+        return
+      }
+      progres++
+      i++
+    } else {
+      if (!tocItems.value[i][j]) {
+        i++
+        j = 0
+        continue
+      }
+      if (!_.isArray(tocItems.value[i][j])) {
+        if (progres === index) {
+          tocItems.value[i][j].isHighlight = true
+          return
+        }
+        progres++
+        j++
+      } else {
+        if (!tocItems.value[i][j][k]) {
+          j++
+          k = 0
+          continue
+        }
+        if (progres === index) {
+          tocItems.value[i][j][k].isHighlight = true
+          return
+        }
+        progres++
+        k++
+      }
+    }
   }
 }
 </script>
@@ -84,7 +173,7 @@ for (let i = 0; i < heads.length; i++) {
   }
   .toc_body {
     max-height: calc(100vh - 380px) !important;
-    padding-right: 17px;
+    padding: 0 17px 17px 0;
     font-size: 0.8em;
     overflow-y: auto;
     a {
@@ -123,6 +212,9 @@ for (let i = 0; i < heads.length; i++) {
           }
         }
       }
+    }
+    li.highlight {
+      background-color: #6d6a65;
     }
   }
 }
