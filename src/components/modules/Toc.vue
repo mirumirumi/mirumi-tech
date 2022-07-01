@@ -115,6 +115,7 @@ onMounted(() => {
 
 function isSeenCenter(elem: Element): boolean {
   const { top, bottom } = elem.getBoundingClientRect()
+  return CENTER_START <= top && bottom <= CENTER_END
 }
 
 function highlight(index: number): void {
@@ -126,36 +127,44 @@ function highlight(index: number): void {
   while (progres <= index) {
     if (!_.isArray(tocItems.value[i])) {
       if (progres === index) {
-        tocItems.value[i].isHighlight = true
-        return
+        disableHighlightAll(); tocItems.value[i].isHighlight = true; return
       }
-      progres++
-      i++
+      progres++; i++
     } else {
       if (!tocItems.value[i][j]) {
-        i++
-        j = 0
-        continue
+        i++; j = 0; continue
       }
       if (!_.isArray(tocItems.value[i][j])) {
         if (progres === index) {
-          tocItems.value[i][j].isHighlight = true
-          return
+          disableHighlightAll(); tocItems.value[i][j].isHighlight = true; return
         }
-        progres++
-        j++
+        progres++; j++
       } else {
         if (!tocItems.value[i][j][k]) {
-          j++
-          k = 0
-          continue
+          j++; k = 0; continue
         }
         if (progres === index) {
-          tocItems.value[i][j][k].isHighlight = true
-          return
+          disableHighlightAll(); tocItems.value[i][j][k].isHighlight = true; return
         }
-        progres++
-        k++
+        progres++; k++
+      }
+    }
+  }
+}
+
+function disableHighlightAll(): void {
+  for (const i of tocItems.value) {
+    if (!_.isArray(i)) {
+      i.isHighlight = false
+    } else {
+      for (const j of i) {
+        if (!_.isArray(j)) {
+          j.isHighlight = false
+        } else {
+          for (const k of j) {
+            k.isHighlight = false
+          }
+        }
       }
     }
   }
