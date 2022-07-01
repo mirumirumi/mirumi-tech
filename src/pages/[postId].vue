@@ -534,6 +534,10 @@ function generateMetaDescription(html: string): string {
             &:hover {
               color: #c27c3e;
               text-decoration: underline;
+              &::after {
+                color: #9e9e9e;
+                text-decoration: none;
+              }
             }
             &::after {
               content: ",";
