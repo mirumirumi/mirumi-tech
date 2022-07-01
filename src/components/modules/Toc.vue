@@ -124,7 +124,15 @@ onMounted(() => {
   }
 
   // on page loaded (in normal case)
-  let centerElem = document.elementFromPoint(theContentWidthCenter(), window.innerHeight / 2)
+  let centerElem
+  try {
+    centerElem = pickElemInTheContent()
+  }
+  catch (e) {
+    console.error(e)
+    return
+  }
+  
   if (centerElem) {
     if (/h\d/gmi.test(centerElem?.tagName)) {
       const index = Number((centerElem as HTMLElement).dataset.tocIndex)
@@ -169,6 +177,27 @@ onMounted(() => {
     }
   })
 })
+
+function pickElemInTheContent(): Element | void {
+  if (!document.getElementById("content")) {
+    throw Error("no found `#content` in this page")
+  }
+
+  let initialY = window.innerHeight / 2
+  while (1) {
+    const picked = (document.elementFromPoint(theContentWidthCenter(), initialY) as Element)
+
+    if (!picked.closest("#content")) {
+      throw Error("picked element has no `#content` as parent")
+    }
+
+    if (picked.id === "content") {
+      initialY = initialY - 3
+    } else {
+      return picked
+    }
+  }
+}
 
 function isSeenCenter(elem: Element, center: Record<string, number>): boolean {
   const { top, bottom } = elem.getBoundingClientRect()
