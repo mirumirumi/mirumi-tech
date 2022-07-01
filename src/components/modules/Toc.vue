@@ -86,24 +86,23 @@ for (let i = 0; i < heads.length; i++) {
 }
 
 /**
- * auto adulation highlight 
+ * auto adulation highlight
  * (just highlight the `h` elem that comes to the center of the viewport (1/3~2/3), power equality whether it comes from the top or the bottom)
  */
+const CENTER_START = window.innerHeight / 3
+const CENTER_END = CENTER_START * 2
 
 onMounted(() => {
   const headings = document.getElementsByClassName("toc_item")
 
   // if the first heading is not caught by the trigger, highlight it first
   const theFirst = headings[0]
-  if (theFirst.getBoundingClientRect().top < window.innerHeight / 3) {
+  if (theFirst.getBoundingClientRect().top < CENTER_START) {
     tocItems.value[0].isHighlight = true
   }
 
   // in normal case
   window.addEventListener("scroll", () => {
-    if (headings.length === 0)
-      return
-
     for (const heading of headings) {
       if (isSeenCenter(heading)) {
         const index = Number((heading as HTMLElement).dataset.tocIndex)
@@ -116,9 +115,6 @@ onMounted(() => {
 
 function isSeenCenter(elem: Element): boolean {
   const { top, bottom } = elem.getBoundingClientRect()
-  const center = window.innerHeight / 3
-
-  return center <= top && bottom <= center * 2
 }
 
 function highlight(index: number): void {
