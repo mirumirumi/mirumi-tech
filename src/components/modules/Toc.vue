@@ -343,7 +343,9 @@ function searchHasLinkHash(linkHash: string): number {
       }
     }
     li.highlight {
-      background-color: #6d6a65;
+      padding: 0.01em 0.37em 0.08em;
+      background-color: #f1ede7;
+      border-radius: 5px;
     }
   }
 }
