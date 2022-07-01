@@ -99,11 +99,14 @@ const jump = (elem: Event | undefined, linkHash: string = "") => {
   if (elem) {
     // for clicking toc links manually
     const target = (elem.target as HTMLElement)?.closest("li")
+    const index = Number(target?.dataset.index)
 
-    highlight(Number(target?.dataset.index))
+    highlight(index)
   } else {
     // for on page loaded automatically
-    highlight(searchHasLinkHash(linkHash))
+    const index = searchHasLinkHash(linkHash)
+
+    highlight(index)
   }
 }
 
@@ -213,7 +216,10 @@ function highlight(index: number): void {
   while (progres <= index) {
     if (!_.isArray(tocItems.value[i])) {
       if (progres === index) {
-        disableHighlightAll(); tocItems.value[i].isHighlight = true; return
+        disableHighlightAll(); tocItems.value[i].isHighlight = true
+        // @ts-ignore
+        document.querySelector(`[data-index^="${index}"][data-index$="${index}"]`)?.scrollIntoViewIfNeeded()
+        return
       }
       progres++; i++
     } else {
@@ -222,7 +228,10 @@ function highlight(index: number): void {
       }
       if (!_.isArray(tocItems.value[i][j])) {
         if (progres === index) {
-          disableHighlightAll(); tocItems.value[i][j].isHighlight = true; return
+          disableHighlightAll(); tocItems.value[i][j].isHighlight = true
+          // @ts-ignore
+          document.querySelector(`[data-index^="${index}"][data-index$="${index}"]`)?.scrollIntoViewIfNeeded()
+          return
         }
         progres++; j++
       } else {
@@ -230,7 +239,10 @@ function highlight(index: number): void {
           j++; k = 0; continue
         }
         if (progres === index) {
-          disableHighlightAll(); tocItems.value[i][j][k].isHighlight = true; return
+          disableHighlightAll(); tocItems.value[i][j][k].isHighlight = true
+          // @ts-ignore
+          document.querySelector(`[data-index^="${index}"][data-index$="${index}"]`)?.scrollIntoViewIfNeeded()
+          return
         }
         progres++; k++
       }
