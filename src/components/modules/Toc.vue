@@ -5,24 +5,24 @@
     </h3>
     <div class="toc_body">
       <ul class="h2">
-        <li v-for="tocItem in tocItems" class="h2" :class="{ 'highlight': tocItem.isHighlight }" :key="tocItem.innerText">
+        <li v-for="tocItem in tocItems" class="h2" :class="{ 'highlight': tocItem.isHighlight }" :data-index="tocItem.index" :key="tocItem.innerText">
           <template v-if="!Array.isArray(tocItem)">
-            <a :href="`#${tocItem.link}`">
+            <a :href="`#${tocItem.link}`" @click="jump">
               {{ tocItem.innerText }}
             </a>
           </template>
           <template v-else>
             <ul class="h3">
-              <li v-for="h3s in tocItem" class="h3" :class="{ 'highlight': h3s.isHighlight }" :key="h3s.innerText">
+              <li v-for="h3s in tocItem" class="h3" :class="{ 'highlight': h3s.isHighlight }" :data-index="h3s.index" :key="h3s.innerText">
                 <template v-if="!Array.isArray(h3s)">
-                  <a :href="`#${h3s.link}`">
+                  <a :href="`#${h3s.link}`" @click="jump">
                     {{ h3s.innerText }}
                   </a>
                 </template>
                 <template v-else>
                   <ul class="h4">
-                    <li v-for="h4s in h3s" class="h4" :class="{ 'highlight': h4s.isHighlight }" :key="h4s.innerText">
-                      <a :href="`#${h4s.link}`">
+                    <li v-for="h4s in h3s" class="h4" :class="{ 'highlight': h4s.isHighlight }" :data-index="h4s.index" :key="h4s.innerText">
+                      <a :href="`#${h4s.link}`" @click="jump">
                         {{ h4s.innerText }}
                       </a>
                     </li>
@@ -39,6 +39,8 @@
 
 <script setup lang="ts">
 import _ from "lodash"
+
+const router = useRouter()
 
 const p = defineProps<{
   html: string,
@@ -59,6 +61,7 @@ for (let i = 0; i < heads.length; i++) {
       innerText: heads[i][1],
       link: encodeURI(heads[i][1]),
       isHighlight: false,
+      index: i + 1,
     })
   } else if (_depth === "h3") {
     if (heads[i - 1][0].slice(1, 3) === "h2") {  // it's safe to assume the first cant be `h3`
@@ -70,6 +73,7 @@ for (let i = 0; i < heads.length; i++) {
       innerText: heads[i][1],
       link: encodeURI(heads[i][1]),
       isHighlight: false,
+      index: i + 1,
     })
   } else if (_depth === "h4") {
     if (heads[i - 1][0].slice(1, 3) === "h3") {
@@ -81,7 +85,25 @@ for (let i = 0; i < heads.length; i++) {
       innerText: heads[i][1],
       link: encodeURI(heads[i][1]),
       isHighlight: false,
+      index: i + 1,
     })
+  }
+}
+
+/**
+ * jump to the anchor
+ */
+const jump = (elem: Event | undefined, linkHash: string = "") => {
+  disableHighlightAll()
+
+  if (elem) {
+    // for clicking toc links manually
+    const target = (elem.target as HTMLElement)?.closest("li")
+
+    highlight(Number(target?.dataset.index))
+  } else {
+    // for on page loaded automatically
+    highlight(searchHasLinkHash(linkHash))
   }
 }
 
@@ -89,22 +111,57 @@ for (let i = 0; i < heads.length; i++) {
  * auto adulation highlight
  * (just highlight the `h` elem that comes to the center of the viewport (1/3~2/3), power equality whether it comes from the top or the bottom)
  */
-const CENTER_START = window.innerHeight / 3
-const CENTER_END = CENTER_START * 2
-
 onMounted(() => {
+  const CENTER_START = window.innerHeight / 3
+  const CENTER_END = CENTER_START * 2
+
   const headings = document.getElementsByClassName("toc_item")
 
-  // if the first heading is not caught by the trigger, highlight it first
-  const theFirst = headings[0]
-  if (theFirst.getBoundingClientRect().top < CENTER_START) {
-    tocItems.value[0].isHighlight = true
+  // on page loaded (with hash link)
+  const hash = router.currentRoute.value.hash
+  if (hash) {
+    jump(undefined, hash)
   }
 
-  // in normal case
+  // on page loaded (in normal case)
+  let centerElem = document.elementFromPoint(theContentWidthCenter(), window.innerHeight / 2)
+  if (centerElem) {
+    if (/h\d/gmi.test(centerElem?.tagName)) {
+      const index = Number((centerElem as HTMLElement).dataset.tocIndex)
+  
+      highlight(index)
+    } else {
+      // if center elem is not directly under of `#content`
+      for (let i = 1; i < 111; i++) {  // 😠
+        const parent: HTMLElement = centerElem.parentElement ?? document.getElementById("content") as HTMLElement
+
+        if (parent.id !== "content")
+          centerElem = parent
+        else
+          break
+      }
+
+      // search the closest `h` elem (above direction)
+      for (let i = 0; i < (document.getElementById("content") as HTMLElement).childElementCount; i++) {
+        if (!centerElem?.previousElementSibling)
+          break
+
+        centerElem = centerElem?.previousElementSibling
+
+        if (/h\d/gmi.test(centerElem?.tagName))
+          break
+      }
+
+      const index = Number((centerElem as HTMLElement).dataset.tocIndex)
+
+      highlight(index)
+    }
+  }
+
+  // register the scroll event
   window.addEventListener("scroll", () => {
     for (const heading of headings) {
-      if (isSeenCenter(heading)) {
+      if (isSeenCenter(heading, { CENTER_START, CENTER_END })) {
         const index = Number((heading as HTMLElement).dataset.tocIndex)
 
         highlight(index)
@@ -113,9 +170,9 @@ onMounted(() => {
   })
 })
 
-function isSeenCenter(elem: Element): boolean {
+function isSeenCenter(elem: Element, center: Record<string, number>): boolean {
   const { top, bottom } = elem.getBoundingClientRect()
-  return CENTER_START <= top && bottom <= CENTER_END
+  return center.CENTER_START <= top && bottom <= center.CENTER_END
 }
 
 function highlight(index: number): void {
@@ -168,6 +225,32 @@ function disableHighlightAll(): void {
       }
     }
   }
+}
+
+function theContentWidthCenter(): number {
+  // there was no opinion on position is better among left and right, so put it in the middle (if hit `#content`, there is another workaround after this)
+  return ((document.getElementById("content") as HTMLElement).getBoundingClientRect().left + (document.getElementById("content") as HTMLElement).getBoundingClientRect().right) / 2 
+}
+
+function searchHasLinkHash(linkHash: string): number {
+  linkHash = encodeURI(linkHash).replace("#", "")
+
+  for (const i of tocItems.value) {
+    if (!_.isArray(i)) {
+      if (i.link === linkHash) return i.index
+    } else {
+      for (const j of i) {
+        if (!_.isArray(j)) {
+          if (j.link === linkHash) return j.index
+        } else {
+          for (const k of j) {
+            if (k.link === linkHash) return k.index
+          }
+        }
+      }
+    }
+  }
+  return 0
 }
 </script>
 
