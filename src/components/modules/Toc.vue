@@ -308,6 +308,9 @@ function searchHasLinkHash(linkHash: string): number {
     a {
       text-decoration: none;
     }
+    li {
+      padding: 0.01em 0.37em 0.08em;
+    }
     ul.h2 {
       li.h2 {
         line-height: 1.8;
@@ -343,7 +346,6 @@ function searchHasLinkHash(linkHash: string): number {
       }
     }
     li.highlight {
-      padding: 0.01em 0.37em 0.08em;
       background-color: #f1ede7;
       border-radius: 5px;
     }
