@@ -39,6 +39,7 @@
 
 <script setup lang="ts">
 import _ from "lodash"
+import { delay } from "@/lib/utils"
 
 const router = useRouter()
 
@@ -114,7 +115,11 @@ const jump = (elem: Event | undefined, linkHash: string = "") => {
  * auto adulation highlight
  * (just highlight the `h` elem that comes to the center of the viewport (1/3~2/3), power equality whether it comes from the top or the bottom)
  */
-onMounted(() => {
+onMounted(async () => {
+  do {
+    await delay(100)
+  } while (!document.getElementById("content"))
+
   const CENTER_START = window.innerHeight / 3
   const CENTER_END = CENTER_START * 2
 
