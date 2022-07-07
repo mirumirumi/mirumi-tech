@@ -41,7 +41,6 @@
 import { SITE_FULL_PATH, PostData } from "@/lib/defines"
 import { zeroPadding } from "@/lib/utils"
 import Prism from "prismjs"
-import m2h from "@/lib/markdown-to-html"
 
 const router = useRouter()
 const postId = router.currentRoute.value.params.postId
@@ -49,7 +48,7 @@ const postId = router.currentRoute.value.params.postId
 
 // const post: PostData = $fetch()
 
-const markdown = `
+const html = `
 <p>この記事は公式チュートリアルの内容、開発中に実際に困ったポイント、その解決方法などを中心にしつつ自分へのメモを主目的としてまとめていくものです。随時追記していきます。</p>
 <p>ちなみにもう僕は Pinia 最高派です 🍍</p>
 <p>[https://pinia.vuejs.org/]</p>
@@ -453,9 +452,8 @@ const post: PostData = {
   createdAt: "2022/4/15",
   updatedAt: "2022/12/9",
   tags: ["Vue.js", "TypeScript"],
-  html: m2h(markdown),
+  html: html,
 }
-
 
 
 
