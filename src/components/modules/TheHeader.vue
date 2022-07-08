@@ -12,7 +12,7 @@
             <PartsSvgIcon :icon="'entries'" :color="'#bbbbba'" />
           </NuxtLink>
           <Transition name="tooltip">
-            <PartsTooltip :position="'below'" :shift="'45px'" v-if="isShownTtAe">
+            <PartsTooltip :position="'below'" :shift="'47px'" v-if="isShownTtAe">
               すべての記事
             </PartsTooltip>
           </Transition>
@@ -22,7 +22,7 @@
             <PartsSvgIcon :icon="'tags'" :color="'#bbbbba'" />
           </NuxtLink>
           <Transition name="tooltip">
-            <PartsTooltip :position="'below'" :shift="'45px'" v-if="isShownTtAt">
+            <PartsTooltip :position="'below'" :shift="'47px'" v-if="isShownTtAt">
               すべてのタグ
             </PartsTooltip>
           </Transition>
@@ -32,9 +32,9 @@
             <PartsSvgIcon :icon="'github'" :color="'#bbbbba'" />
           </a>
           <Transition name="tooltip">
-            <PartsTooltip :position="'below'" :shift="'45px'" v-if="isShownTtGh">
+            <PartsTooltip :position="'below'" :shift="'47px'" v-if="isShownTtGh">
               <template v-if="isPost()">
-                GitHubで編集を提案する
+                GitHubで修正をリクエストする
               </template>
               <template v-else>
                 GitHubプロフィール
@@ -47,7 +47,7 @@
             <PartsSvgIcon :icon="'mail'" :color="'#bbbbba'" />
           </div>
           <Transition name="tooltip">
-            <PartsTooltip :position="'below'" :shift="'45px'" v-if="isShownTtCt">
+            <PartsTooltip :position="'below'" :shift="'47px'" v-if="isShownTtCt">
               お問い合わせ
             </PartsTooltip>
           </Transition>
@@ -57,7 +57,7 @@
             <PartsSvgIcon :icon="'search'" :color="'#bbbbba'" />
           </div>
           <Transition name="tooltip">
-            <PartsTooltip :position="'below'" :shift="'45px'" v-if="isShownTtSr">
+            <PartsTooltip :position="'below'" :shift="'47px'" v-if="isShownTtSr">
               記事を検索
             </PartsTooltip>
           </Transition>
