@@ -43,16 +43,49 @@ import { zeroPadding } from "@/lib/utils"
 import Prism from "prismjs"
 
 const router = useRouter()
-const postId = router.currentRoute.value.params.postId
+const slag = router.currentRoute.value.params.slag
 
 
-// const post: PostData = $fetch()
 
 const html = `
 <p>この記事は公式チュートリアルの内容、開発中に実際に困ったポイント、その解決方法などを中心にしつつ自分へのメモを主目的としてまとめていくものです。随時追記していきます。</p>
+<p>あたりです。</p>
+
+<div class="box-common box-info"><p>あなたは本当にアタナシオスですか？</p><p>に段落目です。</p></div>
+
+<div class="box-common box-alert"><p>これは注意喚起です。</p><p>真ん中の段落です。</p>
+<p>に段落目です。</p></div>
+
+<div class="box-common box-rewrite 2022/7/26"><p><span class="rewrite-date">追記 (2022/7/26) ：</span>これは追記です。</p><p>真ん中の段落です。</p>
+
+<p>さらに真ん中の段落です。</p>
+<p>に段落目です。</p></div>
+
 <p>ちなみにもう僕は Pinia 最高派です 🍍</p>
-<p>[https://pinia.vuejs.org/]</p>
-<h2 id="toc-1">Vuex と Pinia</h2>
+    <a href="https://github.com/mirumirumi/your-cat-vue" class="blogcard" rel="noopener" target="_top" title="GitHub - mirumirumi/your-cat-vue: Repo for Front-end of YourCat 🐾">
+            <div class="blogcard">
+                <div class="thumbnail">
+                    <img src="https://opengraph.githubassets.com/f2c9e4ef44876d496e1ef9ace8dfee92cee912832f3ccaa4df30613605bc4030/mirumirumi/your-cat-vue" alt="GitHub - mirumirumi/your-cat-vue: Repo for Front-end of YourCat 🐾" />
+                </div>
+                <div class="content">
+                    <div class="title">
+                        GitHub - mirumirumi/your-cat-vue: Repo for Front-end of YourCat 🐾
+                    </div>
+                    <div class="snippet">
+                        Repo for Front-end of YourCat 🐾. Contribute to mirumirumi/your-cat-vue development by creating an account on GitHub.
+                    </div>
+                    <div class="footer">
+                        <div class="favicon">
+                            <img src="https://www.google.com/s2/favicons?domain=github.com" alt="external-site-favicon" />
+                        </div>
+                        <div class="domain">
+                            github.com
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+<h2 class="toc_item" id="Vuex+%E3%81%A8+Pinia" data-toc-index="1">Vuex と Pinia</h2>
 <p style="margin-bottom: 2.3em;">2021 年終盤、これまで Vue 公式で推奨されていた状態管理ライブラリが <a href="https://vuex.vuejs.org/ja/">Vuex</a> から <a href="https://pinia.vuejs.org/">Pinia</a> に変わりました。</p>
 <blockquote class="twitter-tweet">
 <p dir="ltr" lang="en">🔥 Beware!<br /><br />The new <a href="https://twitter.com/vuejs?ref_src=twsrc%5Etfw">@vuejs</a> default recommendations!<br /><br />Vue CLI ➡️ create-vue (npm init vue@next)<br />Vetur ➡️ Volar<br />Vuex ➡️ Pinia <a href="https://t.co/dYcQpMvZ0R">pic.twitter.com/dYcQpMvZ0R</a></p>
@@ -70,7 +103,7 @@ const html = `
 </ul>
 <p>などでした。Pinia の特徴のほとんどはこれらの改善そのものであると思って差し支えありません。それと、この他の重要な変更点として<code class="inline">mutations</code>が廃止されたことが挙げられます（後述）。</p>
 <p>Composition API の利用が前提になっているため、Vue 2 でも Pinia の利用は可能なものの<code class="inline">@vue/composition-api</code>か<code class="inline">Vue ^3.2.0-0</code>が備わっている場合のみに限定されています。</p>
-<h2>個人的に Pinia が素晴らしいと感じているところ</h2>
+<h2 class="toc_item" id="%E5%80%8B%E4%BA%BA%E7%9A%84%E3%81%AB+Pinia+%E3%81%8C%E7%B4%A0%E6%99%B4%E3%82%89%E3%81%97%E3%81%84%E3%81%A8%E6%84%9F%E3%81%98%E3%81%A6%E3%81%84%E3%82%8B%E3%81%A8%E3%81%93%E3%82%8D" data-toc-index="2">個人的に Pinia が素晴らしいと感じているところ</h2>
 <p>細かい話に入る前に感想ベースの要約を書いておきます：</p>
 <ul>
 <li>記述が少ない
@@ -95,17 +128,17 @@ const html = `
 </ul>
 </li>
 </ul>
-<h2 id="toc-2">目的ごとの使い方まとめ</h2>
+<h2 class="toc_item" id="%E7%9B%AE%E7%9A%84%E3%81%94%E3%81%A8%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9%E3%81%BE%E3%81%A8%E3%82%81" data-toc-index="3">目的ごとの使い方まとめ</h2>
 <p><a href="https://pinia.vuejs.org/introduction.html">公式チュートリアル</a>（この記事執筆時点で日本語ページはなし）の内容をベースに自分の解釈がいくらか混ざっている感じでまとめています。</p>
 <p>頑張って読み込めばだいたいのことは書いてあるのだけど、「こういうときどうする？」といういわゆるクックブック的なドキュメントはまだ整備が浅いように思えます。今後に期待しましょう。</p>
 
-<pre><code class="lang-python">@patch("cake.has_strawberry")
+<pre><code class="python language-python">@patch("cake.has_strawberry")
 def test_make_cake(mock_func):
   mock_func.return_value = True
   result = make_cake()
   assert result == ["berry"]</code></pre>
 
-<h3 id="toc-3">ストアの定義</h3>
+<h3 class="toc_item" id="%E3%82%B9%E3%83%88%E3%82%A2%E3%81%AE%E5%AE%9A%E7%BE%A9" data-toc-index="4">ストアの定義</h3>
 <pre><code class="lang-js">// store/counter.ts
 
 import { defineStore } from "pinia"
@@ -142,7 +175,7 @@ export const useStore = defineStore("counter", {
   }),
 })</code></pre>
 <p>この場合は「useStore では初期値のセットをしている」と考えるとわかりやすいと思います。</p>
-<h3 id="toc-4">コンポーネントからストアを参照する</h3>
+<h3 class="toc_item" id="%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88%E3%81%8B%E3%82%89%E3%82%B9%E3%83%88%E3%82%A2%E3%82%92%E5%8F%82%E7%85%A7%E3%81%99%E3%82%8B" data-toc-index="5">コンポーネントからストアを参照する</h3>
 <p>コンポーネント側です。</p>
 <pre><code class="lang-js">&lt;script setup lang="ts"&gt;
 import { useStore } from "@/store/store"
@@ -177,7 +210,7 @@ console.log(store.tenfold) // 100</code></pre>
 <p>[https://github.com/vuejs/pinia/issues/58]</p>
 <p>冒頭で「少なくとも僕は賛成派です」と書いたのは、「mutation がほとんど形骸化した儀式のような状態になっていたことを鑑みると実質的な対応としてこれはよい判断だと思った」という感じです。</p>
 </div>
-<h3 id="toc-5">ストアの中で各変数を参照する</h3>
+<h3 class="toc_item" id="%E3%82%B9%E3%83%88%E3%82%A2%E3%81%AE%E4%B8%AD%E3%81%A7%E5%90%84%E5%A4%89%E6%95%B0%E3%82%92%E5%8F%82%E7%85%A7%E3%81%99%E3%82%8B" data-toc-index="6">ストアの中で各変数を参照する</h3>
 <p>getters の中で state を参照する：</p>
 <pre><code class="lang-js">export const useStore = defineStore("counter", {
   state: () =&gt; ({
@@ -217,7 +250,7 @@ console.log(store.tenfold) // 100</code></pre>
   },
 })
 </code></pre>
-<h3 id="toc-6">ストアを分割する（目的ごとにストアを作る）</h3>
+<h3 class="toc_item" id="%E3%82%B9%E3%83%88%E3%82%A2%E3%82%92%E5%88%86%E5%89%B2%E3%81%99%E3%82%8B%EF%BC%88%E7%9B%AE%E7%9A%84%E3%81%94%E3%81%A8%E3%81%AB%E3%82%B9%E3%83%88%E3%82%A2%E3%82%92%E4%BD%9C%E3%82%8B%EF%BC%89" data-toc-index="7">ストアを分割する（目的ごとにストアを作る）</h3>
 <p>Pinia ではストアを定義する段階でそもそも「かたまり」を分けられるので、これを呼び出す useStore もわけてエクスポートしておくだけで簡単にストアの分割が実現できます。</p>
 <pre><code class="lang-js">// カウンター用のストア
 export const useCounterStore = defineStore("counter", {
@@ -283,7 +316,7 @@ export const useStore = defineStore({
   },
 })
 </code></pre>
-<h3 id="toc-7">複数の state を一挙に変更する</h3>
+<h3 class="toc_item" id="%E8%A4%87%E6%95%B0%E3%81%AE+state+%E3%82%92%E4%B8%80%E6%8C%99%E3%81%AB%E5%A4%89%E6%9B%B4%E3%81%99%E3%82%8B" data-toc-index="8">複数の state を一挙に変更する</h3>
 <p>ある一定のまとまりを持った state 群を同時に書き換えたいとき、Vuex では mutations（commit）を使って処理を定義できましたが、Pinia では次のように書きます：</p>
 <pre><code class="lang-js">store.$patch({
   usesrId: undefined,
@@ -294,16 +327,16 @@ export const useStore = defineStore({
   state.items.push({ name: "book", quantity: 1 })
 })</code></pre>
 <p>これらユースケースの存在を思い出したとき初めて commit のちゃんとした(？)有用性に気づいた気がしましたが、安心してください。これは actions が適任なのです。後述します。</p>
-<h3>ストアをリセットする</h3>
+<h3 class="toc_item" id="%E3%82%B9%E3%83%88%E3%82%A2%E3%82%92%E3%83%AA%E3%82%BB%E3%83%83%E3%83%88%E3%81%99%E3%82%8B" data-toc-index="9">ストアをリセットする</h3>
 <p>ストアのすべての state を初期値に戻します：</p>
 <pre class="js">store.$reset()</pre>
-<h3>ストアごとまるまる置き換える</h3>
+<h3 class="toc_item" id="%E3%82%B9%E3%83%88%E3%82%A2%E3%81%94%E3%81%A8%E3%81%BE%E3%82%8B%E3%81%BE%E3%82%8B%E7%BD%AE%E3%81%8D%E6%8F%9B%E3%81%88%E3%82%8B" data-toc-index="10">ストアごとまるまる置き換える</h3>
 <p>リセットにプラスして次なる値セットの初期化まで行いたいときなどにまるごと置き換えが可能です：</p>
 <pre><code class="lang-js">store.$state = {
   name : "みるみ",
   site : "https://mirumi.me/tech",
 }</code></pre>
-<h3 id="toc-8">actions（ストア内で非同期処理を行う）</h3>
+<h3 class="toc_item" id="actions%EF%BC%88%E3%82%B9%E3%83%88%E3%82%A2%E5%86%85%E3%81%A7%E9%9D%9E%E5%90%8C%E6%9C%9F%E5%87%A6%E7%90%86%E3%82%92%E8%A1%8C%E3%81%86%EF%BC%89" data-toc-index="11">actions（ストア内で非同期処理を行う）</h3>
 <p>actions は「非同期処理専用のもの」と思ってしまいがちですが、位置づけ的にはコンポーネント内の methods に近く、つまりビジネスロジックを書くための場所であるということになっています。</p>
 <p>例えば先ほどの<code class="inline">$patch</code>による一括更新なども、毎回同じ形で使うものならば actions で定義しておくと安心感があります：</p>
 <pre><code class="lang-js">export const useStore = defineStore("session", {
@@ -336,7 +369,7 @@ export const useStore = defineStore({
   },
 },</code></pre>
 <p>なお、Promise が返却されるなら記法として async/await などに限定されることはありません。</p>
-<h3>ストアの状態を監視する</h3>
+<h3 class="toc_item" id="%E3%82%B9%E3%83%88%E3%82%A2%E3%81%AE%E7%8A%B6%E6%85%8B%E3%82%92%E7%9B%A3%E8%A6%96%E3%81%99%E3%82%8B" data-toc-index="12">ストアの状態を監視する</h3>
 <p>ストアの状態監視です。</p>
 <pre><code class="lang-js">store.$subscribe(() =&gt; {
   // you want to do after the store is updated
@@ -358,7 +391,7 @@ export const useStore = defineStore({
 </code></pre>
 <p>「<code class="inline">watch</code> よりも <code class="inline">$subscribe</code> を使う利点は、サブスクリプションがパッチの後に一度だけ起動することです」ということで、おそらくパフォーマンス上の理由から後者に優位性があるのではという浅い理解をしています。</p>
 <p>Vue コンポーネントのように変更前後の値をそれぞれ取得できたらとても嬉しいなと思うのですが、今のところそのような機能は両者ともないようです。</p>
-<h3>コンポーネントの外（main.tsなど）でストアを使う</h3>
+<h3 class="toc_item" id="%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88%E3%81%AE%E5%A4%96%EF%BC%88main.ts%E3%81%AA%E3%81%A9%EF%BC%89%E3%81%A7%E3%82%B9%E3%83%88%E3%82%A2%E3%82%92%E4%BD%BF%E3%81%86" data-toc-index="13">コンポーネントの外（main.tsなど）でストアを使う</h3>
 <p>ストアを使いたいシーンがすべて Vue コンポーネントの内側であるとは限りません。最もよくあるケースとしては<code class="inline">main.ts</code>や Vue Router で使う<code class="inline">router.ts</code>（<code class="inline">index.ts</code>）などでしょう。</p>
 <p>しかし何か面倒な手順が必要なわけではなく、基本的には今までと同じ通り useStore をインポートしてくるだけです。</p>
 <pre><code class="lang-js">import { useUserStore } from '@/stores/user'
@@ -390,22 +423,22 @@ router.beforeEach((to) =&gt; {
 </code></pre>
 <p>ルーターの中でロジックを書くというシーンの多くは「ページ遷移時にログイン状態を確認する」など beforeEach() が使われるときのはずなので、この関数内で定義するのが一番手っ取り早いと思います。</p>
 <p>サーバーサイドレンダリングを行う場合は諸々事情が変わります。詳しくは<a href="https://pinia.vuejs.org/ssr/">このページ</a>。</p>
-<h3>Vue.js devtools での使用</h3>
+<h3 class="toc_item" id="Vue.js+devtools+%E3%81%A7%E3%81%AE%E4%BD%BF%E7%94%A8" data-toc-index="14">Vue.js devtools での使用</h3>
 <p>具体的に書けることがあまりなく申し訳ないのですが、とりあえず今までの Vuex と同じ使用感で使えることは確認できています。</p>
 <p>目玉機能としてタイムトラベル（たぶん値の変更をあとから追跡できるみたいな機能だと思ってます）というのがあるのですが、まだサポートされていない部分が多かったりなど未知数です。</p>
 <p>分かり次第追記します。</p>
-<h2 id="toc-9">よくわかっていないところ</h2>
-<h3>状態監視するときの 2 つの記法</h3>
+<h2 class="toc_item" id="%E3%82%88%E3%81%8F%E3%82%8F%E3%81%8B%E3%81%A3%E3%81%A6%E3%81%84%E3%81%AA%E3%81%84%E3%81%A8%E3%81%93%E3%82%8D" data-toc-index="15">よくわかっていないところ</h2>
+<h3 class="toc_item" id="%E7%8A%B6%E6%85%8B%E7%9B%A3%E8%A6%96%E3%81%99%E3%82%8B%E3%81%A8%E3%81%8D%E3%81%AE+2+%E3%81%A4%E3%81%AE%E8%A8%98%E6%B3%95" data-toc-index="16">状態監視するときの 2 つの記法</h3>
 <p>上でも書いたように、<code class="inline">$subscribe</code>と<code class="inline">watch</code>の使い分け、および前者の詳しい挙動がよくわかっていません。</p>
 <p>ガイドを見る限り<code class="inline">watch</code>のほうはオプショナル的な位置づけに見えるのですが、そうなると deep オプションは…？とか色々疑問がわきます（ディープコピーまわりは危険度が高いのでそもそも使わないようにしていたゆえに必要性はあまり感じていないですが）。</p>
-<h3>特定の state のみを監視する方法</h3>
+<h3 class="toc_item" id="%E7%89%B9%E5%AE%9A%E3%81%AE+state+%E3%81%AE%E3%81%BF%E3%82%92%E7%9B%A3%E8%A6%96%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95" data-toc-index="17">特定の state のみを監視する方法</h3>
 <p>普通に考えたら「監視対象と全然関係ないときにも<code class="inline">$subscribe</code>メソッドが毎度動いてしまう」というのは危険極まりないです。</p>
 <pre class="js">store.$subscribe(() =&gt; {
   // ここに書く処理の副作用をとても気にしないといけない
 })</pre>
 <p>しかし、監視しているのは上記のようにストア全体ということになっています。</p>
 <p>あまりストアを多用した実装を行ったことがなかったのでつい最近気がついたのですが、「こんなはずなくない…？？」となっていてまだ自分が何かを知らないだけの可能性がかなりあります。そういえば Vuex 時代でも watch は雰囲気で使っていたなと…。</p>
-<h4>ストアのネスト</h4>
+<h4 class="toc_item" id="%E3%82%B9%E3%83%88%E3%82%A2%E3%81%AE%E3%83%8D%E3%82%B9%E3%83%88" data-toc-index="18">ストアのネスト</h4>
 <p>上でちらっと触れましたが、ストアをネストできる機能があります。</p>
 <pre><code class="lang-js">import { useUserStore } from './user'
 
@@ -430,10 +463,10 @@ export const cartStore = defineStore('cart', {
 </code></pre>
 <p>概念としても記法としてもわかりづらい上に、どうやら呼び出すたびに毎度<code class="inline">buildStoreToUse</code>がキックされるなどパフォーマンス的にもどうなのか、と言っておられる方もいました。</p>
 <p>僕は今のところ使うつもりはありません。</p>
-<h3>ストアの共有</h3>
+<h3 class="toc_item" id="%E3%82%B9%E3%83%88%E3%82%A2%E3%81%AE%E5%85%B1%E6%9C%89" data-toc-index="19">ストアの共有</h3>
 <p>ストアのネストと似た要領で、他のストアの getters や actions を使えたりする機能のようです。</p>
 <p>「そんなことするくらいならストアを分けるのがやめたほうがいいのでは…？」と僕がすぐ思ってしまうくらいレベルが低いものであるはずがないので、おそらくこれもメリットを理解できていないだけと思われます。</p>
-<h3>Composition API の外で使う mapXXX シリーズ</h3>
+<h3 class="toc_item" id="Composition+API+%E3%81%AE%E5%A4%96%E3%81%A7%E4%BD%BF%E3%81%86+mapXXX+%E3%82%B7%E3%83%AA%E3%83%BC%E3%82%BA" data-toc-index="20">Composition API の外で使う mapXXX シリーズ</h3>
 <p>今後これを使う可能性は一切ないと思っているので、よくわかっていないけど別に放置でいいかなーというもの。</p>
 <pre><code class="lang-js">export default {
   computed: {
@@ -442,11 +475,14 @@ export const cartStore = defineStore('cart', {
 }
 </code></pre>
 <p>おそらく Vuex 時代でコンポーネントにバインドするために使っていたヘルパー関数シリーズと同種の API と思われます。</p>
-<h2>おわりに</h2>
+<h2 class="toc_item" id="%E3%81%8A%E3%82%8F%E3%82%8A%E3%81%AB" data-toc-index="21">おわりに</h2>
 <p>あえて最後にこれを書くのですが、<strong>ストアは使わないに越したことはない</strong>です。ストアの使用リスクはグローバル変数を使うことの危険性と本質的に同じだからです。</p>
 <p>なぜ純正のフロントエンドフレームワーク単体では状態管理がサポートされていないのかをよく考える必要があるでしょう。これはあくまでも「プラスの付加価値」であり、「本当に困ったときにだけ手を伸ばすべきもの」と僕は思っています。</p>
 <p>とはいえ便利なライブラリを知っておくに越したことはないのも事実。もし Vue で状態管理をしたいなら、次からは Pinia はいかがでしょうか🍍</p>
+
+
 `
+
 const post: PostData = {
   title: "Vue.js の状態管理ライブラリ Pinia の使い方まとめ",
   createdAt: "2022/4/15",
@@ -455,7 +491,22 @@ const post: PostData = {
   html: html,
 }
 
+// console.log(process.env.NUXT_API_ENDPOINT_BASE_URL)
 
+// onMounted(async () => {
+
+// const { data: post } = await useFetch("get-post", {
+//   baseURL: process.env.NUXT_API_ENDPOINT_BASE_URL,
+//   params: {
+//     slag: slag,
+//   },
+// }
+// // ).catch((e) => {
+// //   console.error(e)
+// // }
+// )
+// console.log(post.value)
+// })
 
 
 
@@ -466,20 +517,14 @@ onMounted(() => {
   Prism.highlightAll()
 })
 
-
-
-
-
-
-
-useSetMeta({
-  title: post.title,
-  description: generateMetaDescription(post.html),
-  keywords: post.tags.join(","),
-  url: SITE_FULL_PATH + "/" + postId,
-  createdAt: post.createdAt,
-  updatedAt: post.updatedAt,
-})
+// useSetMeta({
+//   title: post.value.title,
+//   description: generateMetaDescription(post.value.html),
+//   keywords: post.value.tags.join(","),
+//   url: SITE_FULL_PATH + "/" + slag,
+//   createdAt: post.value.created_at,
+//   updatedAt: post.value.updated_at,
+// })
 
 const datetime = (datetime: string) => {
   return `${datetime.slice(0, 4)}-${zeroPadding(Number(datetime.replace(/\d{4}\/(\d\d*)\/.*?$/gmi, "$1")), 2)}-${zeroPadding((Number(datetime.replace(/\d{4}\/\d\d*\/(.*?)$/gmi, "$1"))), 2)}`

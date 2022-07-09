@@ -142,7 +142,7 @@ const closeContactModal = () => {
 }
 
 const isPost = (): boolean => {
-  return router.currentRoute.value.name === "postId"
+  return router.currentRoute.value.name === "slag"
 }
 
 
