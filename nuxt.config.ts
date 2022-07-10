@@ -58,7 +58,6 @@ export default defineNuxtConfig({
     process.env.NODE_ENV === "development"
       ? {
         baseURL: "https://ytztx20yia.execute-api.ap-northeast-1.amazonaws.com/mirumitech-dev-apis/",
-        key: "sIqiK5BmyT2w31tDAs0sL7tE0pCwslVSaEpHxp8C",
       }
       : {
         baseURL: "",
