@@ -46,8 +46,6 @@ const router = useRouter()
 const config = useRuntimeConfig()
 const slag = router.currentRoute.value.params.slag
 
-
-
 const html = `
 <p>この記事は公式チュートリアルの内容、開発中に実際に困ったポイント、その解決方法などを中心にしつつ自分へのメモを主目的としてまとめていくものです。随時追記していきます。</p>
 <p>あたりです。</p>
@@ -484,34 +482,21 @@ export const cartStore = defineStore('cart', {
 
 `
 
-const post: PostData = {
-  title: "Vue.js の状態管理ライブラリ Pinia の使い方まとめ",
-  createdAt: "2022/4/15",
-  updatedAt: "2022/12/9",
-  tags: ["Vue.js", "TypeScript"],
-  html: html,
-}
-
-// console.log(process.env.NUXT_API_ENDPOINT_BASE_URL)
-
-// onMounted(async () => {
-
-// const { data: post } = await useFetch("get-post", {
-//   baseURL: process.env.NUXT_API_ENDPOINT_BASE_URL,
-//   params: {
-//     slag: slag,
-//   },
-// }
-// // ).catch((e) => {
-// //   console.error(e)
-// // }
-// )
-// console.log(post.value)
-// })
-
-
-
-
+const { data: post } = await useFetch<PostData>(`get-post?slag=${ slag }`, {
+  key: "get-post",  // to silence error
+  baseURL: config.baseURL,
+  headers: {
+    "x-api-key": config.key,
+  },
+  params: {},  // no cacheable
+  pick: [
+    "title",
+    "created_at",
+    "updated_at",
+    "tags",
+    "body",
+  ],
+})
 
 onMounted(() => {
   Prism.manual = true
