@@ -489,7 +489,18 @@ const { data: post } = await useFetch<PostData>(`get-post?slag=${ slag }`, {
     "x-api-key": config.key,
   },
   params: {},  // no cacheable
-  pick: [
+  transform: (post: PostData): PostData => {
+    const createdAt = new Date(post.created_at)
+    const updatedAt = new Date(post.updated_at)
+    return {
+      title: post.title,
+      created_at: `${ createdAt.getFullYear() }/${ createdAt.getMonth() + 1 }/${ createdAt.getDate() }`,
+      updated_at: `${ updatedAt.getFullYear() }/${ updatedAt.getMonth() + 1 }/${ updatedAt.getDate() }`,
+      tags: post.tags,
+      body: post.body, 
+    }
+  },
+  pick: [  // after transform
     "title",
     "created_at",
     "updated_at",
