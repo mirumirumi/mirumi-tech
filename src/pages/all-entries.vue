@@ -27,27 +27,16 @@ import { SITE_FULL_PATH, SITE_CREATED_AT, PostLink } from "@/lib/defines"
 import { today } from "@/lib/utils"
 
 const router = useRouter()
+const config = useRuntimeConfig()
 
-const postLinks = ref<Array<PostLink>>()
-
-
-
-
-postLinks.value = [{
-  slag: "slag1",
-  title: "Python で TypeScript の interface のように辞書オブジェクトの型定義を手軽に行う",
-  createdAt: SITE_CREATED_AT,
-  updatedAt: today(),
-}, {
-  slag: "slag1",
-  title: "Vue.js の状態管理ライブラリ Pinia の使い方まとめ",
-  createdAt: SITE_CREATED_AT,
-  updatedAt: today(),
-}]
-
-
-
-
+const { data: postLinks } = await useFetch<PostLink[]>(`get-top-indexes`, {
+  key: "get-top-indexes",  // to silence error
+  baseURL: config.baseURL,
+  headers: {
+    "x-api-key": config.key,
+  },
+  params: {},  // no cacheable
+})
 
 useSetMeta({
   title: "すべての記事",
@@ -69,6 +58,7 @@ useSetMeta({
           line-height: 1.5;
           a {
             font-size: 0.88em;
+            text-decoration: none;
           }
         }
       }
