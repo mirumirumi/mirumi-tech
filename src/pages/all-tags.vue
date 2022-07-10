@@ -27,16 +27,16 @@ import { SITE_FULL_PATH, SITE_CREATED_AT } from "@/lib/defines"
 import { today } from "@/lib/utils"
 
 const router = useRouter()
+const config = useRuntimeConfig()
 
-const tags = ref<Array<string>>()
-
-tags.value = ["JavaScript", "Python"]
-
-
-
-
-
-
+const { data: tags } = await useFetch(`get-all-tags`, {
+  key: "get-all-tags",  // to silence error
+  baseURL: config.baseURL,
+  headers: {
+    "x-api-key": config.key,
+  },
+  params: {},  // no cacheable
+})
 
 useSetMeta({
   title: "すべてのタグ",
