@@ -25,8 +25,8 @@ export interface PostLink {
 
 export interface PostData {
   title: string,
-  createdAt: string,
-  updatedAt: string,
+  created_at: string,
+  updated_at: string,
   tags: string[],
-  html: string,
+  body: string,
 }

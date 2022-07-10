@@ -9,11 +9,11 @@
           <div class="meta">
             <div class="created_at">
               <PartsSvgIcon :icon="'edit'" :color="'#9e9e9e'" />
-              <time :datetime="datetime(post.createdAt)">{{ post.createdAt }}</time>
+              <time :datetime="datetime(post.created_at)">{{ post.created_at }}</time>
             </div>
             <div class="updated_at">
               <PartsSvgIcon :icon="'update'" :color="'#9e9e9e'" />
-              <time :datetime="datetime(post.updatedAt)">{{ post.updatedAt }}</time>
+              <time :datetime="datetime(post.updated_at)">{{ post.updated_at }}</time>
             </div>
           </div>
           <div class="tags">
@@ -22,14 +22,14 @@
             </NuxtLink>
           </div>
         </header>
-        <div id="content" v-html="post.html">
+        <div id="content" v-html="post.body">
         </div>
         <footer>
           <!-- (｡･ڡ･｡) -->
         </footer>
       </article>
     </main>
-    <ModulesTheSidebar :html="post.html" />
+    <ModulesTheSidebar :html="post.body" />
     <Body>
       <Script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-core.min.js"></Script>
       <Script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/plugins/autoloader/prism-autoloader.min.js"></Script>
@@ -43,6 +43,7 @@ import { zeroPadding } from "@/lib/utils"
 import Prism from "prismjs"
 
 const router = useRouter()
+const config = useRuntimeConfig()
 const slag = router.currentRoute.value.params.slag
 
 
@@ -517,14 +518,14 @@ onMounted(() => {
   Prism.highlightAll()
 })
 
-// useSetMeta({
-//   title: post.value.title,
-//   description: generateMetaDescription(post.value.html),
-//   keywords: post.value.tags.join(","),
-//   url: SITE_FULL_PATH + "/" + slag,
-//   createdAt: post.value.created_at,
-//   updatedAt: post.value.updated_at,
-// })
+useSetMeta({
+  title: post.value.title,
+  description: generateMetaDescription(post.value.body),
+  keywords: post.value.tags.join(","),
+  url: SITE_FULL_PATH + "/" + slag,
+  createdAt: post.value.created_at,
+  updatedAt: post.value.updated_at,
+})
 
 const datetime = (datetime: string) => {
   return `${datetime.slice(0, 4)}-${zeroPadding(Number(datetime.replace(/\d{4}\/(\d\d*)\/.*?$/gmi, "$1")), 2)}-${zeroPadding((Number(datetime.replace(/\d{4}\/\d\d*\/(.*?)$/gmi, "$1"))), 2)}`
