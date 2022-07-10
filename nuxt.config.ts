@@ -30,7 +30,7 @@ export default defineNuxtConfig({
         { name: "twitter:image", content: "/main-visual.png" },
       ],
       link: [
-        { rel: "icon", href: "/site-icon.png" },
+        { rel: "icon", href: "/favicon.ico" },
         { rel: "canonical", href: "https://mirumi.tech" },
       ],
       style: [],
@@ -54,16 +54,18 @@ export default defineNuxtConfig({
     srcDir: "src/",
   },
   pages: true,
-  runtimeConfig: {  // fallback defaults
-    api: {
-      endpointBaseUrl: "",
-      key: "",
-    },
-    externalApi: {
-      secret: "",  
-    },
+  runtimeConfig:   // fallback defaults
+    process.env.NODE_ENV === "development"
+      ? {
+        baseURL: "https://ytztx20yia.execute-api.ap-northeast-1.amazonaws.com/mirumitech-dev-apis/",
+        key: "sIqiK5BmyT2w31tDAs0sL7tE0pCwslVSaEpHxp8C",
+      }
+      : {
+        baseURL: "",
+        key: "",
+      }
     // anything under public and app will be exposed to the frontend
-  },
+  ,
   srcDir: "src/",
   ssr: true,
   typescript: {
