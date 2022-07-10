@@ -11,11 +11,11 @@
               <div class="meta">
                 <div class="created_at">
                   <PartsSvgIcon :icon="'edit'" :color="'#9e9e9e'" />
-                  <span>{{ post.createdAt }}</span>
+                  <span>{{ post.created_at }}</span>
                 </div>
                 <div class="updated_at">
                   <PartsSvgIcon :icon="'update'" :color="'#9e9e9e'" />
-                  <span>{{ post.updatedAt }}</span>
+                  <span>{{ post.updated_at }}</span>
                 </div>
               </div>
             </article>
@@ -40,13 +40,13 @@ const postLinks = ref<Array<PostLink>>()
 postLinks.value = [{
   slag: "slag1",
   title: "Python で TypeScript の interface のように辞書オブジェクトの型定義を手軽に行う",
-  createdAt: SITE_CREATED_AT,
-  updatedAt: today(),
+  created_at: SITE_CREATED_AT,
+  updated_at: today(),
 }, {
   slag: "slag1",
   title: "Vue.js の状態管理ライブラリ Pinia の使い方まとめ",
-  createdAt: SITE_CREATED_AT,
-  updatedAt: today(),
+  created_at: SITE_CREATED_AT,
+  updated_at: today(),
 }]
 
 
