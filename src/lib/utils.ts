@@ -22,6 +22,11 @@ export const zeroPadding = (input: number, precision: number): string => {
 	return (Array(precision).join("0") + input).slice(-precision)
 }
 
+export const friendlyDatetime = (isoformat: string): string => {
+  const date = new Date(isoformat)
+  return `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`
+}
+
 // こっから下はたぶんlodashに全部あるので置き換えるようにする
 
 export const deepCopy = (data: Record<string, unknown>): Record<string, unknown> => {
