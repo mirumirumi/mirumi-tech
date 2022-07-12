@@ -4,7 +4,7 @@ import { friendlyDatetime } from "@/lib/utils"
 const config = useRuntimeConfig()
 
 export default defineEventHandler(async (event) => {
-  const post = await $fetch<PostLink[]>(`get-top-indexes`, {
+  const posts = await $fetch<PostLink[]>(`get-top-indexes`, {
     baseURL: config.baseURL,
     headers: {
       "x-api-key": config.key,
@@ -14,7 +14,7 @@ export default defineEventHandler(async (event) => {
     },  // no cacheable ...?
   })
 
-  return transform(post)
+  return transform(posts)
 })
 
 function transform(posts: PostLink[]): PostLink[] {
