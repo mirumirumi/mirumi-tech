@@ -27,16 +27,8 @@ import { SITE_FULL_PATH, SITE_CREATED_AT, PostLink } from "@/lib/defines"
 import { today } from "@/lib/utils"
 
 const router = useRouter()
-const config = useRuntimeConfig()
 
-const { data: postLinks } = await useFetch<PostLink[]>(`get-top-indexes`, {
-  key: "get-top-indexes",  // to silence error
-  baseURL: config.baseURL,
-  headers: {
-    "x-api-key": config.key,
-  },
-  params: {},  // no cacheable
-})
+const { data: postLinks } = await useFetch<PostLink[]>(`/api/get-top-indexes/${"all"}`)
 
 useSetMeta({
   title: "すべての記事",
