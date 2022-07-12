@@ -176,7 +176,7 @@ onMounted(async () => {
 
   // register the scroll event
   window.addEventListener("scroll", () => {
-    for (const heading of headings) {
+    for (const heading of headings as unknown as Array<HTMLElement>) {  // ocurred after typescript@4.7.4 (2022/7/11) 
       if (isSeenCenter(heading, { CENTER_START, CENTER_END })) {
         const index = Number((heading as HTMLElement).dataset.tocIndex)
 
