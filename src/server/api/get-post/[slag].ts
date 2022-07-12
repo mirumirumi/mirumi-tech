@@ -1,13 +1,12 @@
+import secret from "@/secrets/export"
 import { PostData } from "@/lib/defines"
 import { friendlyDatetime } from "@/lib/utils"
 
-const config = useRuntimeConfig()
-
 export default defineEventHandler(async (event) => {
   const post = await $fetch<PostData>(`get-post`, {
-    baseURL: config.baseURL,
+    baseURL: secret.API_BASE_URL,
     headers: {
-      "x-api-key": config.key,
+      "x-api-key": secret.API_KEY,
     },
     params: {
       slag: event.context.params.slag,

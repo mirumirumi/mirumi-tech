@@ -1,13 +1,12 @@
+import secret from "@/secrets/export"
 import { PostLink } from "@/lib/defines"
 import { friendlyDatetime } from "@/lib/utils"
 
-const config = useRuntimeConfig()
-
 export default defineEventHandler(async (event) => {
   const posts = await $fetch<PostLink[]>(`get-top-indexes`, {
-    baseURL: config.baseURL,
+    baseURL: secret.API_BASE_URL,
     headers: {
-      "x-api-key": config.key,
+      "x-api-key": secret.API_KEY,
     },
     params: {
       page: event.context.params.page,

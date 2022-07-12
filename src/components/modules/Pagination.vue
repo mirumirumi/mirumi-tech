@@ -59,6 +59,8 @@
 </template>
 
 <script setup lang="ts">
+import secret from "@/secrets/export"
+
 defineProps<{
   page: number,
 }>()
@@ -73,7 +75,7 @@ const { data: postCount } = await useFetch<number>(`/api/get-post-count`)
 const pageCount = Math.ceil(postCount.value / PAGE_ITEMS)
 
 const originalLink = computed(() => {
-  return "http://localhost:53279" + (router.currentRoute.value.path === "/" ? "" : router.currentRoute.value.path.replace(/\/page\/\d+/gmi, ""))
+  return secret.ORIGIN + (router.currentRoute.value.path === "/" ? "" : router.currentRoute.value.path.replace(/\/page\/\d+/gmi, ""))
 })
 </script>
 

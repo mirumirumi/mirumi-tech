@@ -54,17 +54,20 @@ export default defineNuxtConfig({
     srcDir: "src/",
   },
   pages: true,
-  runtimeConfig:   // fallback defaults
-    process.env.NODE_ENV === "development"
-      ? {
-        baseURL: "https://ytztx20yia.execute-api.ap-northeast-1.amazonaws.com/mirumitech-dev-apis/",
-      }
-      : {
-        baseURL: "",
-        key: "",
-      }
-    // anything under public and app will be exposed to the frontend
-  ,
+  // runtimeConfig:   // fallback defaults
+  //   process.env.NODE_ENV === "development"
+  //     ? {
+  //       origin: "",
+  //       baseURL: "",
+  //       key: "",
+  //     }
+  //     : {
+  //       origin: "",
+  //       baseURL: "",
+  //       key: "",
+  //     }
+  //   // anything under public and app will be exposed to the frontend
+  // ,
   srcDir: "src/",
   ssr: true,
   telemetry: false,
