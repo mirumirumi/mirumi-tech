@@ -190,6 +190,7 @@
     font-weight: bold;
   }
   a.blogcard {
+    display: block;
     text-decoration: none;
     &:hover .blogcard {
       background-color: #f6f0eb;
