@@ -146,8 +146,6 @@ const isPost = (): boolean => {
   return router.currentRoute.value.name === "slag"
 }
 
-
-
 const isShownTtAe = ref(false)
 const isShownTtAt = ref(false)
 const isShownTtGh = ref(false)
@@ -246,6 +244,7 @@ const hoverInterrupt = () => {
     .form {
       .center {
         text-align: center;
+        cursor: text;
       }
     }
     .button {
