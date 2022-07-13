@@ -33,7 +33,11 @@ const p = defineProps<{
   page: number,
 }>()
 
-const { data: postLinks } = await useFetch<PostLink[]>(`/api/get-top-indexes/${p.page}`)
+const { data: postLinks } = await useFetch<PostLink[]>(`/get-top-indexes`, {
+  params: {
+    page: p.page,
+  },
+})
 
 useSetMeta({
   title: "mirumi.tech",

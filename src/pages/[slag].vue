@@ -43,9 +43,13 @@ import { zeroPadding } from "@/lib/utils"
 import Prism from "prismjs"
 
 const router = useRouter()
-const slag = router.currentRoute.value.params.slag
+const slag = ref(router.currentRoute.value.params.slag)
 
-const { data: post } = await useFetch<PostData>(`/api/get-post/${slag}`)
+const { data: post } = await useFetch<PostData>(`/get-post`, {
+  params: {
+    page: slag.value,
+  },
+})
 
 onMounted(() => {
   Prism.manual = true
