@@ -88,11 +88,13 @@
       border-radius: 8px !important;
     }
     ~ em {
-      margin: 3px;
+      display: block;
+      margin: 3px auto;
       padding: 0.79em 0 0;
-      color: #858280;
+      color: #908e8d;
       font-size: 0.8em;
       line-height: 1.5;
+      text-align: center;
     }
   }
   blockquote {
