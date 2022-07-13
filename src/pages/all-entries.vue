@@ -28,7 +28,11 @@ import { today } from "@/lib/utils"
 
 const router = useRouter()
 
-const { data: postLinks } = await useFetch<PostLink[]>(`/get-top-indexes/${"all"}`)
+const { data: postLinks } = await useFetch<PostLink[]>(`/get-top-indexes`, {
+  params: {
+    page: "all",
+  },
+})
 
 useSetMeta({
   title: "すべての記事",
