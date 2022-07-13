@@ -28,6 +28,7 @@
           </NuxtLink>
         </li>
       </ul>    
+    <ModulesPagination :page="page" />
     </main>
   </div>
 </template>
@@ -37,38 +38,21 @@ import { SITE_FULL_PATH, SITE_CREATED_AT, PostLink } from "@/lib/defines"
 import { today } from "@/lib/utils"
 
 const router = useRouter()
-const tagName = router.currentRoute.value.params.tagName
+const tagName = ref(router.currentRoute.value.params.tagName as string)
+const page = ref(Number(router.currentRoute.value.params.pageNumber ?? 1))
 
-const postLinks = ref<Array<PostLink>>()
-
-
-
-
-
-
-postLinks.value = [{
-  slag: "slag1",
-  title: "Python で TypeScript の interface のように辞書オブジェクトの型定義を手軽に行う",
-  created_at: SITE_CREATED_AT,
-  updated_at: today(),
-}, {
-  slag: "slag1",
-  title: "Vue.js の状態管理ライブラリ Pinia の使い方まとめ",
-  created_at: SITE_CREATED_AT,
-  updated_at: today(),
-}]
-
-
-
-
-
-
+const { data: postLinks } = await useFetch<PostLink[]>(`/get-tag-indexes`, {
+  params: {
+    tag: tagName.value,
+    page: page.value,
+  },
+})
 
 useSetMeta({
-  title: tagName as string,
-  description: `${tagName} のタグがついた記事一覧です。`,
-  keywords: "みるめも,みるみ,blog,technology,programming,tag," + tagName,
-  url: SITE_FULL_PATH + "/tags/" + tagName,
+  title: tagName.value,
+  description: `${tagName.value} のタグがついた記事一覧です。`,
+  keywords: "みるめも,みるみ,blog,technology,programming,tag," + tagName.value,
+  url: SITE_FULL_PATH + "/tags/" + tagName.value,
   createdAt: SITE_CREATED_AT,
   updatedAt: today(),
 })
