@@ -75,6 +75,12 @@
           </div>
           <div class="button">
             <PartsBaseButton type="fill" @click="showAddressOrCopy" v-html="buttonText" />
+            <Transition name="howan">
+              <div v-if="isCopied" class="copied">
+                <PartsSvgIcon :icon="'check'" :color="'#76ae65'" />
+                <span>Copied!</span>
+              </div>
+            </Transition>
           </div>
           <div class="desc">
             <span>・お問い合わせをご希望される方は、上のボタンを押して表示されるメールアドレス宛てにご連絡ください。頂いた内容は基本的にはすべて確認していますが、必ず返信をお約束するものではありません。</span>
@@ -120,6 +126,7 @@ const isOpenSearchModal = ref(false)
 
 const address = ref("")
 const isShown = ref(false)
+const isCopied = ref(false)
 const buttonText = ref("メールアドレスを表示する")
 
 const showAddressOrCopy = async () => {
@@ -129,9 +136,9 @@ const showAddressOrCopy = async () => {
     buttonText.value = "コピーする"
   } else {
     navigator.clipboard.writeText(address.value)
-    buttonText.value = "コピーしました！"
-    await delay(1799)
-    buttonText.value = "コピーする"
+    isCopied.value = true
+    await delay(1999)
+    isCopied.value = false
   }
 }
 
@@ -248,8 +255,25 @@ const hoverInterrupt = () => {
       }
     }
     .button {
+      position: relative;
       margin-bottom: 2.1em;
       text-align: center;
+      .copied {
+        position: absolute;
+        bottom: -1.6em;
+        left: 0;
+        right: 0;
+        color: #76ae65;
+        font-size: 0.777em;
+        svg {
+          top: 1px;
+          width: 0.95em;
+        }
+        span {
+          display: inline-block;
+          margin-left: 1.3em;
+        }
+      }
     }
     .desc {
       margin-top: 2.3em;
