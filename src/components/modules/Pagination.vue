@@ -1,14 +1,11 @@
 <template>
   <div class="pagination">
     <Head>
-      <template v-if="1 < page">
-        <Link rel="prev" v-if="page === 2" :href="`${originalLink}`" />
-        <Link rel="prev" v-else :href="`${originalLink}/page/${page - 1}`" />
-      </template>
-      <Link rel="next" v-if="page < pageCount" :href="`${originalLink}/page/${page + 1}`" />
+      <Link rel="prev" v-if="1 < page" :href="prevlLink" />
+      <Link rel="next" v-if="page < pageCount" :href="nextlLink" />
     </Head>
 
-    <NuxtLink v-if="1 < page" :to="`${originalLink}/page/${page - 1}`" class="arrow prev">
+    <NuxtLink v-if="1 < page" :to="{ query: { page: page - 1 } }" class="arrow prev">
       <PartsSvgIcon :icon="'arrow_left'" :color="'#727272'" />
     </NuxtLink>
     <template v-if="page === 1">
@@ -17,7 +14,7 @@
       </div>
     </template>
     <template v-else>
-      <NuxtLink :to="`${originalLink}/page/1`" class="page_latest">
+      <NuxtLink :to="{ query: { page: 1 } }" class="page_latest">
         {{ 1 }}
       </NuxtLink>
     </template>
@@ -26,7 +23,7 @@
     </div>
 
     <template v-for="x in BEFORE_AND_AFTER.slice().reverse()">
-      <NuxtLink v-if="1 < page - x" :to="`${originalLink}/page/${page - x}`">
+      <NuxtLink v-if="1 < page - x" :to="{ query: { page: page - x } }">
         {{ page - x }}
       </NuxtLink>
     </template>
@@ -34,7 +31,7 @@
       {{ page }}
     </div>      
     <template v-for="x in BEFORE_AND_AFTER">
-      <NuxtLink v-if="page + x < pageCount" :to="`${originalLink}/page/${page + x}`">
+      <NuxtLink v-if="page + x < pageCount" :to="{ query: { page: page + x } }">
         {{ page + x }}
       </NuxtLink>
     </template>
@@ -48,11 +45,11 @@
       </div>
     </template>
     <template v-else>
-      <NuxtLink :to="`${originalLink}/page/${pageCount}`" class="page_oldest">
+      <NuxtLink :to="{ query: { page: pageCount } }" class="page_oldest">
         {{ pageCount }}
       </NuxtLink>
     </template>
-    <NuxtLink v-if="page < pageCount" :to="`${originalLink}/page/${page + 1}`" class="arrow next">
+    <NuxtLink v-if="page < pageCount" :to="{ query: { page: page + 1 } }" class="arrow next">
       <PartsSvgIcon :icon="'arrow_right'" :color="'#727272'" />
     </NuxtLink>
   </div>
@@ -61,7 +58,7 @@
 <script setup lang="ts">
 import secret from "@/secrets"
 
-defineProps<{
+const p = defineProps<{
   page: number,
 }>()
 
@@ -74,8 +71,14 @@ const BEFORE_AND_AFTER = [...Array((LINKS_TO_SHOW - 1) / 2).keys()].map((x) => x
 const { data: postCount } = await useFetch<number>(`/get-post-count`)
 const pageCount = Math.ceil(postCount.value / PAGE_ITEMS)
 
-const originalLink = computed(() => {
-  return secret.ORIGIN + (router.currentRoute.value.path === "/" ? "" : router.currentRoute.value.path.replace(/\/page\/\d+/gmi, ""))
+const prevlLink = computed(() => {
+  if (p.page === 2)
+    return secret.ORIGIN + (router.currentRoute.value.path === "/" ? "" : router.currentRoute.value.path)
+  else
+    return secret.ORIGIN + (router.currentRoute.value.path === "/" ? "" : router.currentRoute.value.path) + `?page=${p.page - 1}`
+})
+const nextlLink = computed(() => {
+  return secret.ORIGIN + (router.currentRoute.value.path === "/" ? "" : router.currentRoute.value.path) + `?page=${p.page + 1}`
 })
 </script>
 
