@@ -28,7 +28,7 @@ import { today } from "@/lib/utils"
 
 const router = useRouter()
 
-const { data: tags } = await useFetch<string[]>(`/api/get-all-tags`)
+const { data: tags } = await useFetch<string[]>(`/get-all-tags`)
 
 useSetMeta({
   title: "すべてのタグ",

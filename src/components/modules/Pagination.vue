@@ -71,7 +71,7 @@ const PAGE_ITEMS = 13
 const LINKS_TO_SHOW = 5  // only odd
 const BEFORE_AND_AFTER = [...Array((LINKS_TO_SHOW - 1) / 2).keys()].map((x) => x + 1)
 
-const { data: postCount } = await useFetch<number>(`/api/get-post-count`)
+const { data: postCount } = await useFetch<number>(`/get-post-count`)
 const pageCount = Math.ceil(postCount.value / PAGE_ITEMS)
 
 const originalLink = computed(() => {
