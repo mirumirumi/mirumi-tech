@@ -2,9 +2,9 @@
   <div class="header_wrap">
     <header>
       <div class="site_logo">
-        <a href="/">
+        <NuxtLink to="/">
           <img src="/site-icon.png" alt="site-icon">
-        </a>
+        </NuxtLink>
       </div>
       <ul class="menu">
         <li>
@@ -98,6 +98,13 @@ import { delay } from "@/lib/utils"
 import { MAIL_ADDRESS, DEBOUNCE_MS } from "@/lib/defines"
 
 const router = useRouter()
+
+// force push from `?page=x` to `/`
+watch(router.currentRoute, (new_, old_) => {
+  if (old_.query.page && !new_.query.page) {
+    router.go(0)
+  }
+})
 
 const githubUrl = computed(() => {
   if (isPost()) {
