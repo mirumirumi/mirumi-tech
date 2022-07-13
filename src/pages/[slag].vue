@@ -47,7 +47,7 @@ const slag = ref(router.currentRoute.value.params.slag)
 
 const { data: post } = await useFetch<PostData>(`/get-post`, {
   params: {
-    page: slag.value,
+    slag: slag.value,
   },
 })
 
