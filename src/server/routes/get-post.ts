@@ -2,15 +2,12 @@ import secret from "@/secrets/export"
 import { PostData } from "@/lib/defines"
 import { friendlyDatetime } from "@/lib/utils"
 
-export default defineEventHandler(async (event) => {
-  const post = await $fetch<PostData>(`get-post`, {
+export default defineEventHandler(async (e) => {
+  const post = await $fetch<PostData>(e.req.url!, {
     baseURL: secret.API_BASE_URL,
     headers: {
       "x-api-key": secret.API_KEY,
     },
-    params: {
-      slag: event.context.params.slag,
-    },  // no cacheable ...?
   })
 
   return transform(post)
