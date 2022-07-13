@@ -7,9 +7,11 @@
       <header>
         <h1>
           <PartsSvgIcon :icon="'search'" :color="'#4e4e4e'" />
-          <span>{{ query }}</span>
+          <span v-if="!isNoQuery">{{ query }}</span>
+          <span v-else>検索キーワードを入力してください :)</span>
         </h1>
       </header>
+      <ModulesSearchBox :query="(query as string)" />
       <ul class="posts">
         <li class="post" v-for="post in postLinks" :key="post.slag">
           <NuxtLink :to="`/${post.slag}`">
@@ -40,47 +42,26 @@ import { SITE_FULL_PATH, SITE_CREATED_AT, PostLink } from "@/lib/defines"
 import { today } from "@/lib/utils"
 
 const router = useRouter()
-const query = router.currentRoute.value.query.q
+const query = ref(router.currentRoute.value.query.q ?? "")
 
-const postLinks = ref<Array<PostLink>>()
+const isNoQuery = ref(false)
+if (query.value === "") {
+  isNoQuery.value = true
+}
 
+const { data: postLinks } = await useFetch<PostLink[]>(`/search-post`, {
+  params: {
+    query: query.value
+  }
+})
 
-
-
-
-// おそらくこのページだけ SSR にするという設定が必要なはず
-
-
-
-// クエリがなにもないときようの表示をちゃんと作っておく必要がある
-
-
-
-
-
-
-
-postLinks.value = [{
-  slag: "slag1",
-  title: "Python で TypeScript の interface のように辞書オブジェクトの型定義を手軽に行う",
-  created_at: SITE_CREATED_AT,
-  updated_at: today(),
-}, {
-  slag: "slag1",
-  title: "Vue.js の状態管理ライブラリ Pinia の使い方まとめ",
-  created_at: SITE_CREATED_AT,
-  updated_at: today(),
-}]
-
-
-
-
-
-
+watch(router.currentRoute, () => {
+  router.go(0)
+})
 
 useSetMeta({
-  title: query as string,
-  description: `${query} を含む記事一覧です。`,
+  title: query.value as string,
+  description: `${query.value} を含む記事一覧です。`,
   keywords: "みるめも,みるみ,blog,technology,programming,search,",
   url: SITE_FULL_PATH + "/search",
   createdAt: SITE_CREATED_AT,
@@ -103,6 +84,9 @@ useSetMeta({
           margin-left: 1.5em;
         }
       }
+    }
+    .search_box {
+      margin: -0.9em auto 2.5em;
     }
   }
 }

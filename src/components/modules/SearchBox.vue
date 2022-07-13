@@ -9,20 +9,30 @@
 </template>
 
 <script setup lang="ts">
-const router = useRouter()
-const query = ref("")
-const search = ref()
+const p = defineProps<{
+  query?: string,
+}>()
 
 const emit = defineEmits<{
   (e: "closeSearchBox"): void,
 }>()
 
+const router = useRouter()
+const query = ref("")
+const search = ref()
+
 onMounted(() => {
-  search.value.focus()
+  if (router.currentRoute.value.path.includes("/search")) {
+    query.value = p.query ?? ""
+  }
+
+  if (!query.value) {
+    search.value.focus()
+  }
 })
 
 const move = () => {
-  router.push({ path: '/search', query: { q: query.value } })
+  router.push({ path: "/search", query: { q: query.value } })
   emit("closeSearchBox")
 }
 </script>
