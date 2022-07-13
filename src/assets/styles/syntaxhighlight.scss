@@ -5,10 +5,7 @@ pre[class*="language-"] {
   background: #2c2d3a;
   line-height: 1.6 !important;
   border-radius: 11px;
-  white-space: pre-wrap;
-  @include mobile {
-    white-space: pre;
-  }
+  white-space: pre;
   code {
     color: #f3f3f3 !important;
     font-size: 0.85em;
@@ -73,4 +70,9 @@ pre.language-no {
   border-radius: 7px !important;
   background-color: #fdfbf9 !important;
   box-shadow: none !important;
+}
+
+// for failed loading Prism.js
+pre {
+  overflow-x: auto;
 }
