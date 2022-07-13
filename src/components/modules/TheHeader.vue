@@ -2,9 +2,9 @@
   <div class="header_wrap">
     <header>
       <div class="site_logo">
-        <NuxtLink to="/">
+        <a href="/">
           <img src="/site-icon.png" alt="site-icon">
-        </NuxtLink>
+        </a>
       </div>
       <ul class="menu">
         <li>
@@ -108,16 +108,10 @@ const githubUrl = computed(() => {
   }
 })
 
-
-
-
-
-
-
 const isOpenContactModal = ref(false)
 const isOpenSearchModal = ref(false)
 
-const address = ref()
+const address = ref("")
 const isShown = ref(false)
 const buttonText = ref("メールアドレスを表示する")
 
@@ -135,7 +129,7 @@ const showAddressOrCopy = async () => {
 }
 
 const closeContactModal = () => {
-  address.value = undefined
+  address.value = ""
   isOpenContactModal.value = false
   isShown.value = false
   buttonText.value = "メールアドレスを表示する"
