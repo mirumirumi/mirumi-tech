@@ -289,6 +289,19 @@ main {
 /**
  * vue transition
  */
+.page-enter-from {  // `page` is reserved by nuxt3 for page transitions
+  opacity: 0;
+  transform: translateY(7px);
+}
+.page-enter-active,
+.page-leave-active {
+  transition: all 0.11s ease-out;
+}
+.page-enter,
+.page-leave-to {
+  opacity: 0;
+}
+
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.07s ease-out;
