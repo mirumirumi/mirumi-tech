@@ -12,7 +12,7 @@
       <PartsSvgIcon :icon="'arrow_left'" :color="'#727272'" />
     </NuxtLink>
     <template v-if="page === 1">
-      <div class="page_latest">
+      <div class="page_latest current">
         {{ 1 }}
       </div>
     </template>
@@ -43,7 +43,7 @@
       <PartsSvgIcon :icon="'tententen'" :color="'#727272'" />
     </div>
     <template v-if="page === pageCount">
-      <div class="page_oldest">
+      <div class="page_oldest current">
         {{ pageCount }}
       </div>
     </template>
