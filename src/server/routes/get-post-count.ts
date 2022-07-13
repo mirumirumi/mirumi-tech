@@ -1,4 +1,4 @@
-import secret from "@/secrets/export"
+import secret from "@/secrets"
 
 export default defineEventHandler(async (e) => {
   const postCount = await $fetch<number>(e.req.url!, {

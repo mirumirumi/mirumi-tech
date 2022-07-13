@@ -1,4 +1,4 @@
-import secret from "@/secrets/export"
+import secret from "@/secrets"
 import { PostData } from "@/lib/defines"
 import { friendlyDatetime } from "@/lib/utils"
 

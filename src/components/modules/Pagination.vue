@@ -59,7 +59,7 @@
 </template>
 
 <script setup lang="ts">
-import secret from "@/secrets/export"
+import secret from "@/secrets"
 
 defineProps<{
   page: number,
