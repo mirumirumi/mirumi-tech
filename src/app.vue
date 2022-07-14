@@ -2,6 +2,7 @@
   <div id="app">
     <ModulesTheHeader />
     <NuxtLayout>
+      <NuxtLoadingIndicator :height="2.9" :duration="1777" :color="'#bb7c1f'" :throttle="199" />
       <NuxtPage id="container" />
     </NuxtLayout>
     <ModulesTheFooter />
