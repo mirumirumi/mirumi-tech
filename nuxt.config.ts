@@ -42,9 +42,6 @@ export default defineNuxtConfig({
       "@/composables",
     ],
   },
-  buildModules: [
-    "@pinia/nuxt",  // what does it mean?
-  ],
   components: {
     dirs: [
       "@/components",
