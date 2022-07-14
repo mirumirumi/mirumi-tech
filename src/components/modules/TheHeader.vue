@@ -52,6 +52,9 @@
             </PartsTooltip>
           </Transition>
         </li>
+        <li class="theme">
+          <ModulesThemeSwitch />
+        </li>
       </ul>
     </header>
     <Teleport to="body">
@@ -151,7 +154,7 @@ const hoverInterrupt = () => {
     .menu {
       display: flex;
       align-items: center;
-      width: 240px;
+      width: 270px;
       height: 100%;
       li {
         position: relative;
@@ -175,6 +178,9 @@ const hoverInterrupt = () => {
         .contact_wrap, .search_wrap {
           cursor: pointer;
         }
+      }
+      .theme {
+        width: 90px;
       }
     }
   }
