@@ -43,16 +43,6 @@
           </Transition>
         </li>
         <li>
-          <div class="contact_wrap" data-tooltip="contact_wrap" @click="isOpenContactModal = true" @mouseenter="hover" @mouseleave="hoverInterrupt">
-            <PartsSvgIcon :icon="'mail'" :color="'#bbbbba'" />
-          </div>
-          <Transition name="tooltip">
-            <PartsTooltip :position="'below'" :shift="'47px'" v-if="isShownTtCt">
-              お問い合わせ
-            </PartsTooltip>
-          </Transition>
-        </li>
-        <li>
           <div class="search_wrap" data-tooltip="search_wrap" @click="isOpenSearchModal = true" @mouseenter="hover" @mouseleave="hoverInterrupt">
             <PartsSvgIcon :icon="'search'" :color="'#bbbbba'" />
           </div>
@@ -66,29 +56,6 @@
     </header>
     <Teleport to="body">
       <Transition name="fadedown">
-        <ModulesModalBase :className="'contact'" v-if="isOpenContactModal" @closeModal="closeContactModal">
-          <div class="title">
-            お問い合わせ
-          </div>
-          <div class="form">
-            <input type="text" class="input" :class="{ center: isShown }" placeholder="Press the button below to show our email address..." v-model="address" disabled>
-          </div>
-          <div class="button">
-            <PartsBaseButton type="fill" @click="showAddressOrCopy" v-html="buttonText" />
-            <Transition name="howan">
-              <div v-if="isCopied" class="copied">
-                <PartsSvgIcon :icon="'check'" :color="'#76ae65'" />
-                <span>Copied!</span>
-              </div>
-            </Transition>
-          </div>
-          <div class="desc">
-            <span>・お問い合わせをご希望される方は、上のボタンを押して表示されるメールアドレス宛てにご連絡ください。頂いた内容は基本的にはすべて確認していますが、必ず返信をお約束するものではありません。</span>
-            <span>・なんでこんな仕組みにしているの：メールアドレスは初期レンダリング時に一切描画されないため、「スパムを回避しつつ最低限の実装コストでお問い合わせシステムが実現できる…！」と思ってこうしています。「ユーザビリティ悪くない？」という考えに対しては「サイトのユーザー層がある程度限定されているなら実用的な運用である」と思うことにしています（一般ブログではお問い合わせ専用ページをちゃんと作る）。</span>
-          </div>
-        </ModulesModalBase>
-      </Transition>
-      <Transition name="fadedown">
         <ModulesModalBase :className="'search'" v-if="isOpenSearchModal" @closeModal="isOpenSearchModal = false">
           <div class="form">
             <ModulesSearchBox @closeSearchBox="isOpenSearchModal = false" />
@@ -100,8 +67,7 @@
 </template>
 
 <script setup lang="ts">
-import { delay } from "@/lib/utils"
-import { MAIL_ADDRESS, DEBOUNCE_MS } from "@/lib/defines"
+import { DEBOUNCE_MS } from "@/lib/defines"
 
 const router = useRouter()
 
@@ -121,33 +87,7 @@ const githubUrl = computed(() => {
   }
 })
 
-const isOpenContactModal = ref(false)
 const isOpenSearchModal = ref(false)
-
-const address = ref("")
-const isShown = ref(false)
-const isCopied = ref(false)
-const buttonText = ref("メールアドレスを表示する")
-
-const showAddressOrCopy = async () => {
-  if (!address.value) {
-    address.value = MAIL_ADDRESS
-    isShown.value = true
-    buttonText.value = "コピーする"
-  } else {
-    navigator.clipboard.writeText(address.value)
-    isCopied.value = true
-    await delay(1999)
-    isCopied.value = false
-  }
-}
-
-const closeContactModal = () => {
-  address.value = ""
-  isOpenContactModal.value = false
-  isShown.value = false
-  buttonText.value = "メールアドレスを表示する"
-}
 
 const isPost = (): boolean => {
   return router.currentRoute.value.name === "slag"
@@ -156,7 +96,6 @@ const isPost = (): boolean => {
 const isShownTtAe = ref(false)
 const isShownTtAt = ref(false)
 const isShownTtGh = ref(false)
-const isShownTtCt = ref(false)
 const isShownTtSr = ref(false)
 
 let timer: number
@@ -174,9 +113,6 @@ const hover = (e: Event): void => {
       case "github":
         isShownTtGh.value = true
         break
-      case "contact_wrap":
-        isShownTtCt.value = true
-        break
       case "search_wrap":
         isShownTtSr.value = true
         break
@@ -190,7 +126,6 @@ const hoverInterrupt = () => {
   isShownTtAe.value = false
   isShownTtAt.value = false
   isShownTtGh.value = false
-  isShownTtCt.value = false
   isShownTtSr.value = false
 }
 </script>
@@ -216,7 +151,7 @@ const hoverInterrupt = () => {
     .menu {
       display: flex;
       align-items: center;
-      width: 300px;
+      width: 240px;
       height: 100%;
       li {
         position: relative;
