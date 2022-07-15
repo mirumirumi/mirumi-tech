@@ -2,7 +2,7 @@
   <div v-if="PAGE_ITEMS < count" class="pagination">
     <Head>
       <Link rel="prev" v-if="1 < page" :href="prevlLink" />
-      <Link rel="next" v-if="page < pageCount" :href="movePage(page + 1)" />
+      <Link rel="next" v-if="page < pageCount" :href="nextLink" />
     </Head>
 
     <NuxtLink v-if="1 < page" :to="{ query: { page: page - 1 } }" class="arrow prev">
@@ -81,10 +81,6 @@ watch(p, () => {
  */
 const original = secret.ORIGIN + (router.currentRoute.value.path === "/" ? "" : router.currentRoute.value.path)
 
-const latestLink = computed(() => {
-  return original + `?page=1`
-})
-
 const prevlLink = computed(() => {
   if (p.page === 2)
     return original
@@ -92,9 +88,9 @@ const prevlLink = computed(() => {
     return original + `?page=${p.page - 1}`
 })
 
-const movePage = (page: number): string => {
-  return original + `?page=${page}`
-}
+const nextLink = computed(() => {
+  return original + `?page=${p.page + 1}`
+})
 </script>
 
 <style lang="scss" scoped>
