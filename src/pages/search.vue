@@ -13,7 +13,7 @@
       </header>
       <ModulesSearchBox :query="(query as string)" />
       <TransitionGroup name="fade">
-        <div v-if="isLoading" class="loading">
+        <div v-if="isLoading" class="csr_loading">
           <PartsLoadSpinner :kind="'long'" />
         </div>
         <ul v-else class="posts">
@@ -26,11 +26,11 @@
                 <div class="meta">
                   <div class="created_at">
                     <PartsSvgIcon :icon="'edit'" :color="'#9e9e9e'" />
-                    <span>{{ post.created_at }}</span>
+                    <span>{{ friendlyDatetime(post.created_at) }}</span>
                   </div>
                   <div class="updated_at">
                     <PartsSvgIcon :icon="'update'" :color="'#9e9e9e'" />
-                    <span>{{ post.updated_at }}</span>
+                    <span>{{ friendlyDatetime(post.updated_at) }}</span>
                   </div>
                 </div>
               </article>
@@ -43,8 +43,10 @@
 </template>
 
 <script setup lang="ts">
+// only one page, no pagination, no more load
+
 import { SITE_FULL_PATH, SITE_CREATED_AT, PostLink } from "@/lib/defines"
-import { today } from "@/lib/utils"
+import { friendlyDatetime, today } from "@/lib/utils"
 import secret from "@/secrets"
 
 const router = useRouter()
@@ -61,6 +63,9 @@ const { data: postLinks } = await useFetch<PostLink[]>(`/search-post`, {
   }
 })
 
+/**
+ * CSR
+ */
 const isLoading = ref(false)
 
 watch(router.currentRoute, async (new_, old_) => {
@@ -108,12 +113,6 @@ useSetMeta({
     }
     .search_box {
       margin: -0.9em auto 2.5em;
-    }
-    .loading {
-      width: 37px;
-      height: 37px;
-      margin: auto auto 100vh;
-      text-align: center;
     }
   }
 }

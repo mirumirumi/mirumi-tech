@@ -30,3 +30,8 @@ export interface PostData {
   tags: string[],
   body: string,
 }
+
+export interface ResIndexesAPI {
+  items: PostLink[],
+  count: number,
+}

@@ -2,7 +2,7 @@
   <div class="header_wrap">
     <header>
       <div class="site_logo">
-        <NuxtLink to="/">
+        <NuxtLink :to="{ path: '/', force: true, replace: true }">
           <img src="/site-icon.png" alt="site-icon">
         </NuxtLink>
       </div>
@@ -73,13 +73,6 @@
 import { DEBOUNCE_MS } from "@/lib/defines"
 
 const router = useRouter()
-
-// force push from `?page=x` to `/`
-watch(router.currentRoute, (new_, old_) => {
-  if (old_.query.page && new_.path === "/") {
-    router.go(0)
-  }
-})
 
 const githubUrl = computed(() => {
   if (isPost()) {

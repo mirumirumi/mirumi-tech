@@ -1,43 +1,78 @@
 <template>
   <div class="index_view">
     <main class="single_column">
-      <ul class="posts">
-        <li class="post" v-for="post in postLinks" :key="post.slag">
-          <NuxtLink :to="`/${post.slag}`">
-            <article>
-              <h2>
-                {{ post.title }}
-              </h2>
-              <div class="meta">
-                <div class="created_at">
-                  <PartsSvgIcon :icon="'edit'" :color="'#9e9e9e'" />
-                  <span>{{ post.created_at }}</span>
+      <TransitionGroup name="fade">
+        <div v-if="isLoading" class="csr_loading">
+          <PartsLoadSpinner :kind="'long'" />
+        </div>
+        <ul v-else class="posts">
+          <li class="post" v-for="post in postLinks" :key="post.slag">
+            <NuxtLink :to="`/${post.slag}`">
+              <article>
+                <h2>
+                  {{ post.title }}
+                </h2>
+                <div class="meta">
+                  <div class="created_at">
+                    <PartsSvgIcon :icon="'edit'" :color="'#9e9e9e'" />
+                    <span>{{ friendlyDatetime(post.created_at) }}</span>
+                  </div>
+                  <div class="updated_at">
+                    <PartsSvgIcon :icon="'update'" :color="'#9e9e9e'" />
+                    <span>{{ friendlyDatetime(post.updated_at) }}</span>
+                  </div>
                 </div>
-                <div class="updated_at">
-                  <PartsSvgIcon :icon="'update'" :color="'#9e9e9e'" />
-                  <span>{{ post.updated_at }}</span>
-                </div>
-              </div>
-            </article>
-          </NuxtLink>
-        </li>
-      </ul>
-      <ModulesPagination :page="page" />
+              </article>
+            </NuxtLink>
+          </li>
+        </ul>
+      </TransitionGroup>
+      <ModulesPagination :page="page" :count="count" />
     </main>
   </div>
 </template>
 
 <script setup lang="ts">
-import { SITE_FULL_PATH, SITE_CREATED_AT, PostLink } from "@/lib/defines"
-import { today } from "@/lib/utils"
+import { SITE_FULL_PATH, SITE_CREATED_AT, ResIndexesAPI } from "@/lib/defines"
+import { friendlyDatetime, today } from "@/lib/utils"
+import secret from "@/secrets"
 
 const router = useRouter()
 const page = ref(Number(router.currentRoute.value.query.page ?? 1))
 
-const { data: postLinks } = await useFetch<PostLink[]>(`/get-top-indexes`, {
+const { data } = await useFetch<ResIndexesAPI>(`/get-top-indexes`, {
   params: {
     page: page.value,
   },
+})
+
+const postLinks = ref(data.value.items)
+const count = ref(data.value.count)
+
+/**
+ * CSR
+ */
+const isLoading = ref(false)
+
+watch(router.currentRoute, async (new_, old_) => {
+  if (
+    new_.query.page !== old_.query.page 
+    || (!new_.query.page && old_.query.page)
+  ) {
+    isLoading.value = true
+
+    page.value = Number(new_.query.page ?? 1)
+
+    const res = await $fetch<ResIndexesAPI>(`/get-top-indexes-from-client`, {
+      baseURL: secret.API_BASE_URL,
+      params: {
+        page: page.value
+      },
+    })
+    postLinks.value = res.items
+
+    isLoading.value = false
+  }
 })
 
 useSetMeta({
