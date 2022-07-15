@@ -40,12 +40,12 @@ onMounted(() => {
 
 function toLight(): void {
   isDark.value = false
-  document.getElementsByTagName("html")[0].classList.remove("darkmode")
+  document.getElementsByTagName("html")[0].classList.remove("dark")
 }
 
 function toDark(): void {
   isDark.value = true
-  document.getElementsByTagName("html")[0].classList.add("darkmode")
+  document.getElementsByTagName("html")[0].classList.add("dark")
 }
 </script>
 
