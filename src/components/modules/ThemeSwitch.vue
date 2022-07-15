@@ -5,6 +5,8 @@
 </template>
 
 <script setup lang="ts">
+import Cookies from "js-cookie"
+
 const isDark = ref(false)
 const history = ref()
 
@@ -13,15 +15,15 @@ const onChange = (value: any) => {
 
   if (!isDark.value) {
     toLight()
-    localStorage.setItem("theme", "light")
+    Cookies.set("theme", "light", { expires: 30 })
   } else {
     toDark()
-    localStorage.setItem("theme", "dark")
+    Cookies.set("theme", "dark", { expires: 30 })
   }
 }
 
 onMounted(() => {
-  history.value = localStorage.getItem("theme")
+  history.value = Cookies.get("theme")
   if (history.value) {
     history.value === "light" ? toLight() : toDark()
     return
