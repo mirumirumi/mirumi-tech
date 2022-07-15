@@ -1,28 +1,55 @@
 <template>
   <div class="theme_switch">
-    <PartsToggleSwitchForTheme :value="false" :switchName="'theme'" @theme="onChange" />
+    <PartsToggleSwitchForTheme :value="isDark" :switchName="'theme'" @theme="onChange" />
   </div>
 </template>
 
 <script setup lang="ts">
-import {  } from "@/lib/utils"
-import {  } from "@/lib/defines"
+const isDark = ref(false)
+const history = ref()
 
-/* default value: light (= false) */
+const onChange = (value: any) => {
+  isDark.value = value
 
-
-
-const onChange = () => {
-
+  if (!isDark.value) {
+    toLight()
+    localStorage.setItem("theme", "light")
+  } else {
+    toDark()
+    localStorage.setItem("theme", "dark")
+  }
 }
 
+onMounted(() => {
+  history.value = localStorage.getItem("theme")
+  if (history.value) {
+    history.value === "light" ? toLight() : toDark()
+    return
+  }
 
+  const mqDark = ref(window.matchMedia("(prefers-color-scheme: dark)"))
+
+  if (!mqDark.value) {
+    toLight()
+  } else {
+    toDark()
+  }
+})
+
+function toLight(): void {
+  isDark.value = false
+  document.getElementsByTagName("html")[0].classList.remove("darkmode")
+}
+
+function toDark(): void {
+  isDark.value = true
+  document.getElementsByTagName("html")[0].classList.add("darkmode")
+}
 </script>
 
 <style lang="scss" scoped>
 .theme_switch {
   display: flex;
   align-items: center;
-  
 }
 </style>

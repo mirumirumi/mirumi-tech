@@ -79,6 +79,7 @@ export default defineNuxtConfig({
             @import "@/assets/styles/scss.scss";
             @import "@/assets/styles/content.scss";
             @import "@/assets/styles/syntaxhighlight.scss";
+            @import "@/assets/styles/dark.scss";
           `,
         },
       },

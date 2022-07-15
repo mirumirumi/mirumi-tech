@@ -76,7 +76,7 @@ const router = useRouter()
 
 // force push from `?page=x` to `/`
 watch(router.currentRoute, (new_, old_) => {
-  if (old_.query.page && !new_.query.page) {
+  if (old_.query.page && new_.path === "/") {
     router.go(0)
   }
 })

@@ -1,6 +1,6 @@
 <template>
   <div class="toggle_switch">
-    <input type="checkbox" :id="uuid" v-model="isOn" @click="$emit(switchName, isOn)">
+    <input type="checkbox" :id="uuid" v-model="isOn" @click="$emit(switchName, !isOn)">
     <label :for="uuid">
       <PartsSvgIcon :icon="icon" :color="color" class="light" :class="{ 'dark': isOn }" />
     </label>
@@ -18,12 +18,16 @@ const p = defineProps<{
 const isOn = ref(p.value)
 const uuid = uuidv4()
 
+watch(p, () => {
+  isOn.value = p.value
+})
+
 const icon = computed(() => {
   return isOn.value ? "moon" : "sun"
 })
 
 const color = computed(() => {
-  return isOn.value ? "#f1f1b4" : "#b7b0ac"
+  return isOn.value ? "#f1f1b4" : "#ebb79f"
 })
 </script>
 
