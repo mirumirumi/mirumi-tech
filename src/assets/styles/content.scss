@@ -90,7 +90,7 @@
     ~ em {
       display: block;
       margin: 3px auto;
-      padding: 0.79em 0 0;
+      padding: 0.1em 0 0;
       color: #908e8d;
       font-size: 0.8em;
       line-height: 1.5;
@@ -215,6 +215,17 @@
           flex-shrink: 0;
           border-radius: 8.8px 0 0 8.8px;
         }
+        @include mobile {
+          width: 90px;
+          min-width: 90px;
+          height: 90px
+        }
+        &.github {
+          @include mobile {
+            width: 180px;
+            min-width: 180px;
+          }              
+        }
       }
       .content {
         display: flex;
@@ -254,7 +265,13 @@
           .favicon img {
             height: 1em;
           }  
-        }  
+        }
+        @include mobile {
+          font-size: 0.84em;
+        }
+      }
+      @include mobile {
+        height: 90px;
       }
     }
   }

@@ -16,7 +16,12 @@ $max_screen_width           : calc(1188px - $scrollbar_width);
  * mixin
  */
 @mixin mobile {
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 428px) {  // iPhone 12 Pro Max
+    @content;
+  }
+}
+@mixin tablet {
+  @media screen and (max-width: 1024px) {
     @content;
   }
 }
@@ -26,6 +31,7 @@ $max_screen_width           : calc(1188px - $scrollbar_width);
  */
 * {
   box-sizing: border-box;
+  overflow-wrap: break-word;
 }
 html, body {
   margin: 0;
@@ -176,6 +182,9 @@ label {
 .single_column {
   width: 728px;
   margin: auto;
+  @include mobile {
+    width: 100%;
+  }
 }
 .posts {
   margin-top: 0.3em;
@@ -224,6 +233,9 @@ main {
       font-size: 1.444em;
       font-weight: bold;
       line-height: 1.25;
+      @include mobile {
+        font-size: 1.3em;
+      }
     }
   }
 }

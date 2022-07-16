@@ -90,6 +90,16 @@ const closeContactModal = () => {
           color: #a1a1a1;
           text-decoration: none;
         }
+        @include mobile {
+          display: block;
+          margin: 0.1em 1.3em;
+          &:first-child {
+            padding-left: 5px;
+          }
+          &:nth-child(2) {
+            padding-right: 2px;
+          }
+        }
       }
       .contact {
         cursor: pointer;
@@ -99,6 +109,52 @@ const closeContactModal = () => {
       margin-top: 1.5em;
       font-size: 0.83em;
       text-align: center;
+    }
+  }
+}
+</style>
+<style lang="scss">
+.modal_base {
+  .contact {
+    .form {
+      .center {
+        text-align: center;
+        cursor: text;
+      }
+    }
+    .button {
+      position: relative;
+      margin-bottom: 2.1em;
+      text-align: center;
+      .copied {
+        position: absolute;
+        bottom: -1.6em;
+        left: 0;
+        right: 0;
+        color: #76ae65;
+        font-size: 0.777em;
+        svg {
+          top: 1px;
+          width: 0.95em;
+          @include mobile {
+            top: 2.5px;
+          }
+        }
+        span {
+          display: inline-block;
+          margin-left: 1.3em;
+        }
+      }
+    }
+    .desc {
+      margin-top: 2.3em;
+      color: #b1b1b1;
+      font-size: 0.78em;
+      line-height: 1.2;
+      span {
+        display: block;
+        margin: 0.7em auto;
+      }
     }
   }
 }

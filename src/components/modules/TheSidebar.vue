@@ -25,5 +25,8 @@ defineProps<{
   .ad {
     height: 250px !important;
   }
+  @include mobile {
+    display: none;
+  }
 }
 </style>

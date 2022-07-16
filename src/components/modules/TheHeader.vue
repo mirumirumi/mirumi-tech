@@ -142,6 +142,11 @@ const hoverInterrupt = () => {
       img {
         width: 47px;
         height: 47px;
+        @include mobile {
+          --mobile-logo-size: 43px;
+          width: var(--mobile-logo-size);
+          height: var(--mobile-logo-size);
+        }
       }
     }
     .menu {
@@ -171,55 +176,30 @@ const hoverInterrupt = () => {
         .contact_wrap, .search_wrap {
           cursor: pointer;
         }
+        @include mobile {
+          width: 40px;
+        }
       }
       .theme {
         width: 90px;
+        @include mobile {
+          width: 60px;
+        }
       }
+      @include mobile {
+        width: 220px;
+      }
+    }
+    @include mobile {
+      --padding-top: 17px;
+      height: calc(var(--mobile-logo-size) + var(--padding-top));
+      padding: var(--padding-top) 13px 0;
     }
   }
 }
 </style>
 <style lang="scss">
 .modal_base {
-  .contact {
-    .form {
-      .center {
-        text-align: center;
-        cursor: text;
-      }
-    }
-    .button {
-      position: relative;
-      margin-bottom: 2.1em;
-      text-align: center;
-      .copied {
-        position: absolute;
-        bottom: -1.6em;
-        left: 0;
-        right: 0;
-        color: #76ae65;
-        font-size: 0.777em;
-        svg {
-          top: 1px;
-          width: 0.95em;
-        }
-        span {
-          display: inline-block;
-          margin-left: 1.3em;
-        }
-      }
-    }
-    .desc {
-      margin-top: 2.3em;
-      color: #b1b1b1;
-      font-size: 0.78em;
-      line-height: 1.2;
-      span {
-        display: block;
-        margin: 0.7em auto;
-      }
-    }
-  }
   .search {
     display: flex;
     flex-direction: column;

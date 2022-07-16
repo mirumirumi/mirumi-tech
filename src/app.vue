@@ -23,6 +23,10 @@
     width: $max_screen_width;
     margin: 0 auto;
     padding: 0.7em 0.5em 1em;
+    @include mobile {
+      width: 100%;
+      padding: 1.7em 0.87em 1em;
+    }
   }
 }
 </style>
