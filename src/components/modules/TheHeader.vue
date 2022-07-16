@@ -134,7 +134,7 @@ const hoverInterrupt = () => {
     align-items: center;
     width: 100%;
     height: 100px;
-    max-width: 1188px;
+    max-width: var(--width-max-screen);
     margin: auto;
     padding: 23px 29px 30px;
     .site_logo {

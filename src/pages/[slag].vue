@@ -144,7 +144,6 @@ function generateMetaDescription(html: string): string {
       }
     }
     @include tablet {
-      width: calc(100% - var(--width-sidebar-tablet));
       padding: 0 13px;
     }
     @include mobile {

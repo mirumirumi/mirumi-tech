@@ -26,7 +26,6 @@ defineProps<{
     height: 250px !important;
   }
   @include tablet {
-    width: var(--width-sidebar-tablet);
     padding: 13px 0 13px 26px;
   }
   @include mobile {

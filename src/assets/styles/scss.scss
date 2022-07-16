@@ -8,6 +8,7 @@
 }
 @mixin tablet {
   @media screen and (max-width: 1024px) {
+    --width-sidebar: 250px;
     @content;
   }
 }
@@ -24,10 +25,10 @@
   --color-primary-hover   : #e26234;
   --color-link            : #bb0000;
   --color-invalid         : #dc3545;
+  --width-max-base        : 1188px;
   --width-scrollbar       : 16px;
-  --width-max-screen      : calc(1188px - var(--width-scrollbar));
+  --width-max-screen      : calc(var(--width-max-base) - var(--width-scrollbar));
   --width-sidebar         : 331px;
-  --width-sidebar-tablet  : 250px;  // I really want to do something like overwrite variables in mixin, but I don't know how to do it
 }
 * {
   box-sizing: border-box;
