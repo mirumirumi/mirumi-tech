@@ -23,16 +23,18 @@
 </template>
 
 <script setup lang="ts">
-import { SITE_FULL_PATH, SITE_CREATED_AT, PostLink } from "@/lib/defines"
+import { SITE_FULL_PATH, SITE_CREATED_AT, ResIndexesAPI } from "@/lib/defines"
 import { today } from "@/lib/utils"
 
 const router = useRouter()
 
-const { data: postLinks } = await useFetch<PostLink[]>(`/get-top-indexes`, {
+const { data } = await useFetch<ResIndexesAPI>(`/get-top-indexes`, {
   params: {
     page: "all",
   },
 })
+
+const postLinks = ref(data.value.items)
 
 useSetMeta({
   title: "すべての記事",
