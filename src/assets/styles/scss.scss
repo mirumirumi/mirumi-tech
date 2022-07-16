@@ -11,6 +11,8 @@ $link                       : #bb0000;
 $form-feedback-invalid-color: #dc3545;
 $scrollbar_width            : 16px;
 $max_screen_width           : calc(1188px - $scrollbar_width);
+$sidebar_width              : 331px;
+$sidebar_width_tablet       : 250px;  // I really want to do something like overwrite variables in mixin, but I don't know how to do it
 
 /**
  * mixin

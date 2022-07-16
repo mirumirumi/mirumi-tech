@@ -112,6 +112,10 @@ body.modal {
     overflow-y: auto;
     padding-right: 0;
   }
+  @include tablet {
+    overflow-y: auto;
+    padding-right: 0;
+  }
 }
 .modal_base {
   .modal_body {

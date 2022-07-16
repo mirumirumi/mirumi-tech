@@ -19,7 +19,7 @@ defineProps<{
 .sidebar_wrap {
   position: sticky;
   top: 6px;
-  width: 331px;
+  width: $sidebar_width;
   height: calc(100vh - 13px * 2);
   padding: 13px 13px;
   .ad {
@@ -27,6 +27,10 @@ defineProps<{
   }
   @include mobile {
     display: none;
+  }
+  @include tablet {
+    width: $sidebar_width_tablet;
+    padding: 13px 0 13px 26px;
   }
 }
 </style>

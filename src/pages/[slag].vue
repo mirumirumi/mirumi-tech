@@ -87,8 +87,8 @@ function generateMetaDescription(html: string): string {
 .post_id_view {
   display: flex;
   main {
-    width: calc(100% - 331px);
-    padding: 0px 47.5px;
+    width: calc(100% - $sidebar_width);
+    padding: 0 47.5px;
     article {
       header {
         .meta {
@@ -146,6 +146,10 @@ function generateMetaDescription(html: string): string {
     @include mobile {
       width: 100%;
       padding: 0;
+    }
+    @include tablet {
+      width: calc(100% - $sidebar_width_tablet);
+      padding: 0 13px;
     }
   }
 }

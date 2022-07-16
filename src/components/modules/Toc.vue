@@ -345,7 +345,13 @@ function searchHasLinkHash(linkHash: string): number {
                   font-weight: normal;
                 }
               }
+              @include tablet {
+                padding-left: 0.5em;
+              }
             }
+          }
+          @include tablet {
+            padding-left: 0.5em;
           }
         }
       }

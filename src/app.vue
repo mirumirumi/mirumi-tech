@@ -27,6 +27,9 @@
       width: 100%;
       padding: 1.7em 0.87em 1em;
     }
+    @include tablet {
+      width: 100%;
+    }
   }
 }
 </style>
