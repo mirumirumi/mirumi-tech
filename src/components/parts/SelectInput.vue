@@ -110,7 +110,7 @@ function tabindexToId(to: number, maxlength: number): string {
   button {
     width: v-bind(width);
     padding: 0.375rem calc(0.75rem + 7px) 0.375rem 0.75em;
-    color: $text;
+    color: var(--color-text);
     font-size: 1em;
     line-height: 1.5;
     background-color: #fff;

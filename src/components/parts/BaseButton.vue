@@ -1,6 +1,6 @@
 <template>
   <button type="button" :id="_id" class="btn" :class="{ 'btn-primary': type === 'fill', 'btn-outline-primary': type === 'outline', 'btn-text-only': type === 'text', 'auto_width': isAutoWidth }" @click.prevent=";" :disabled="isSubmitting || disabled">
-    <PartsLoadSpinner v-if="isSubmitting" :color="spinnerColor ? spinnerColor : '#fff'" />
+    <PartsLoadSpinner v-if="isSubmitting" :kind="'short'" :color="spinnerColor ? spinnerColor : '#fff'" />
     <slot v-else></slot>
   </button>
 </template>
@@ -41,7 +41,7 @@ const isAutoWidth = computed(() => {
   width: auto;
   margin: auto;
   line-height: 1.5;
-  color: $text;
+  color: var(--color-text);
   font-size: 0.85em;
   font-weight: bold;
   text-align: center;
@@ -65,18 +65,18 @@ const isAutoWidth = computed(() => {
 }
 .btn-primary {
   color: #ffffff;
-  border-color: $primary;
-  background-color: $primary;
+  border-color: var(--color-primary);
+  background-color: var(--color-primary);
   &:hover {
     filter: saturate(0.85);
   }
 }
 .btn-outline-primary {
-  color: $primary;
-  border-color: $primary;
+  color: var(--color-primary);
+  border-color: var(--color-primary);
   background-color: #ffffff;
   &:hover {
-    color: $primary;
+    color: var(--color-primary);
     background-color: #f6f2f3;
   }
 }

@@ -19,18 +19,18 @@ defineProps<{
 .sidebar_wrap {
   position: sticky;
   top: 6px;
-  width: $sidebar_width;
+  width: var(--width-sidebar);
   height: calc(100vh - 13px * 2);
   padding: 13px 13px;
   .ad {
     height: 250px !important;
   }
+  @include tablet {
+    width: var(--width-sidebar-tablet);
+    padding: 13px 0 13px 26px;
+  }
   @include mobile {
     display: none;
-  }
-  @include tablet {
-    width: $sidebar_width_tablet;
-    padding: 13px 0 13px 26px;
   }
 }
 </style>

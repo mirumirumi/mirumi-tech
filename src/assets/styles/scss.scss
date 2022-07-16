@@ -1,20 +1,4 @@
 /**
- * vars
- */
-$text                       : #4e4e4e;
-$text_white                 : #f2f2f2;
-$text_white_hover           : #e3e3e3;
-$background                 : #fffcf9;
-$primary                    : #ec6839;
-$primary_hover              : #e26234;
-$link                       : #bb0000;
-$form-feedback-invalid-color: #dc3545;
-$scrollbar_width            : 16px;
-$max_screen_width           : calc(1188px - $scrollbar_width);
-$sidebar_width              : 331px;
-$sidebar_width_tablet       : 250px;  // I really want to do something like overwrite variables in mixin, but I don't know how to do it
-
-/**
  * mixin
  */
 @mixin mobile {
@@ -31,6 +15,20 @@ $sidebar_width_tablet       : 250px;  // I really want to do something like over
 /**
  * common
  */
+:root {
+  --color-text            : #4e4e4e;
+  --color-text-white      : #f2f2f2;
+  --color-text-white-hover: #e3e3e3;
+  --color-background      : #fffcf9;
+  --color-primary         : #ec6839;
+  --color-primary-hover   : #e26234;
+  --color-link            : #bb0000;
+  --color-invalid         : #dc3545;
+  --width-scrollbar       : 16px;
+  --width-max-screen      : calc(1188px - var(--width-scrollbar));
+  --width-sidebar         : 331px;
+  --width-sidebar-tablet  : 250px;  // I really want to do something like overwrite variables in mixin, but I don't know how to do it
+}
 * {
   box-sizing: border-box;
   overflow-wrap: break-word;
@@ -40,14 +38,14 @@ html, body {
   padding: 0;
   font-size: 18px;
   font-family: "Custom Noto Sans", "Open Sans", Helvetica, "Lucida Sans Unicode", "Lucida Grande", Arial, Verdana, sans-serif;
-  color: $text;
-  background-color: $background;
+  color: var(--color-text);
+  background-color: var(--color-background);
   @include mobile {
     font-size: 16px;
   }  
 }
 p a, span a, li a {
-  color: $link;
+  color: var(--color-link);
 }
 ul, li {
   margin: 0;
@@ -130,8 +128,8 @@ label {
     border-radius: 50%;
   }
   &:checked {
-    border-color: $primary;
-    background-color: $primary;
+    border-color: var(--color-primary);
+    background-color: var(--color-primary);
   }
   &:checked[type="radio"] {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23fff'/%3e%3c/svg%3e");
@@ -169,7 +167,7 @@ label {
   border-bottom-color: transparent;
 }
 ::-webkit-scrollbar {
-  width: $scrollbar_width;
+  width: var(--width-scrollbar);
 }
 ::-webkit-scrollbar-thumb {
   border: 3.5px solid rgba(0, 0, 0, 0);
@@ -196,7 +194,7 @@ label {
       margin-bottom: 0.99em;
       padding: 1.5% 0 calc(1.5% + 1.1em) 7px;
       border-bottom: 0.7px solid #e3deda;
-      color: $text;
+      color: var(--color-text);
       text-decoration: none;
       article {
         h2 {

@@ -238,7 +238,7 @@
           -webkit-line-clamp: 2;
           overflow: hidden;
           margin-bottom: -0.1em;
-          color: $text;
+          color: var(--color-text);
           font-size: 0.93em;
           font-weight: bold;
           line-height: 1.3;
