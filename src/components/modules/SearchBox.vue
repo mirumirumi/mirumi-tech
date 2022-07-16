@@ -31,6 +31,10 @@ onMounted(() => {
   }
 })
 
+watch(p, () => {
+  query.value = p.query ?? ""
+})
+
 const move = () => {
   router.push({ path: "/search", query: { q: query.value } })
   emit("closeSearchBox")
