@@ -14,9 +14,9 @@
 
 // to allow route transitions between pages, a page must have a single route element (HTML comments are also considered elements)
 
-import { createPinia } from "pinia"
+// import { createPinia } from "pinia"
 
-useNuxtApp().vueApp.use(createPinia())
+// useNuxtApp().vueApp.use(createPinia())
 </script>
 
 <style lang="scss">

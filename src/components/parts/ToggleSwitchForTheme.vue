@@ -2,7 +2,7 @@
   <div class="toggle_switch">
     <input type="checkbox" :id="uuid" v-model="isOn" @click="$emit(switchName, !isOn)">
     <label :for="uuid">
-      <PartsSvgIcon :icon="icon" :color="color" class="light" :class="{ 'dark': isOn }" />
+      <PartsSvgIcon :icon="icon" :color="'#ebb79f'" :dark="'#f1f1b4'" class="light" :class="{ 'dark': isOn }" />
     </label>
   </div>
 </template>
@@ -25,10 +25,6 @@ watch(value, () => {
 
 const icon = computed(() => {
   return isOn.value ? "moon" : "sun"
-})
-
-const color = computed(() => {
-  return isOn.value ? "#f1f1b4" : "#ebb79f"
 })
 </script>
 

@@ -148,14 +148,14 @@ const nextLink = computed(() => {
     > * {
       color: var(--color-text);
       &:hover {
-        background-color: #747270;
+        background-color: #62605f;
       }
     }
     a {
       color: var(--color-text);
     }
     .current {
-      background-color: #747270
+      background-color: #62605f;
     }
   }
 }

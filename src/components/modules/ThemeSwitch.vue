@@ -5,33 +5,29 @@
 </template>
 
 <script setup lang="ts">
-import { useStore } from "@/store/store"
-import { usePreferredDark  } from "@vueuse/core"
-import Cookies from "js-cookie"
-
-const store = useStore()
-
-const isDark = ref(usePreferredDark())
-const history = ref()
+const isDark = ref(false)
+const history = useCookie<string>("theme")
+const theme = useState<string>("theme", () => "")
 
 const onChange = (value: any) => {
   isDark.value = value
 
   if (!isDark.value) {
     toLight()
-    Cookies.set("theme", "light", { expires: 30 })
+    history.value = "light"
   } else {
     toDark()
-    Cookies.set("theme", "dark", { expires: 30 })
+    history.value = "dark"
   }
 }
 
 onMounted(() => {
-  history.value = Cookies.get("theme")
   if (history.value) {
     history.value === "light" ? toLight() : toDark()
     return
   }
+
+  isDark.value = window.matchMedia("(prefers-color-scheme: dark)").matches
 
   if (!isDark.value) {
     toLight()
@@ -50,13 +46,13 @@ watch(isDark, () => {
 
 function toLight(): void {
   isDark.value = false
-  store.theme = "light"
+  theme.value = "light"
   document.getElementsByTagName("html")[0].classList.remove("dark")
 }
 
 function toDark(): void {
   isDark.value = true
-  store.theme = "dark"
+  theme.value = "dark"
   document.getElementsByTagName("html")[0].classList.add("dark")
 }
 </script>
