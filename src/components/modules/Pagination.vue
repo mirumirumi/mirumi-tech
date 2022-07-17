@@ -1,45 +1,45 @@
 <template>
   <div v-if="PAGE_ITEMS < count" class="pagination">
     <Head>
-      <Link rel="prev" v-if="1 < page" :href="prevlLink" />
-      <Link rel="next" v-if="page < pageCount" :href="nextLink" />
+      <Link rel="prev" v-if="1 < _page" :href="prevlLink" />
+      <Link rel="next" v-if="_page < pageCount" :href="nextLink" />
     </Head>
 
-    <NuxtLink v-if="1 < page" :to="{ query: { page: page - 1 } }" class="arrow prev">
+    <NuxtLink v-if="1 < _page" :to="{ query: { page: _page - 1 } }" class="arrow prev">
       <PartsSvgIcon :icon="'arrow_left'" :color="'#727272'" :dark="'var(--color-text)'" />
     </NuxtLink>
-    <template v-if="page === 1">
+    <template v-if="_page === 1">
       <div class="page_latest current">
         {{ 1 }}
       </div>
     </template>
     <template v-else>
-      <NuxtLink :to="{ query: { page: 1 } }" class="page_latest">
+      <NuxtLink :to="{ query: { _page: 1 } }" class="page_latest">
         {{ 1 }}
       </NuxtLink>
     </template>
-    <div v-if="LINKS_TO_SHOW <= page" class="tententen">
+    <div v-if="LINKS_TO_SHOW <= _page" class="tententen">
       <PartsSvgIcon :icon="'tententen'" :color="'#727272'" :dark="'var(--color-text)'" />
     </div>
 
     <template v-for="x in BEFORE_AND_AFTER.slice().reverse()">
-      <NuxtLink v-if="1 < page - x" :to="{ query: { page: page - x } }">
-        {{ page - x }}
+      <NuxtLink v-if="1 < _page - x" :to="{ query: { page: _page - x } }">
+        {{ _page - x }}
       </NuxtLink>
     </template>
-    <div v-if="page !== 1 && page !== pageCount" class="current">
-      {{ page }}
+    <div v-if="_page !== 1 && _page !== pageCount" class="current">
+      {{ _page }}
     </div>      
     <template v-for="x in BEFORE_AND_AFTER">
-      <NuxtLink v-if="page + x < pageCount" :to="{ query: { page: page + x } }">
-        {{ page + x }}
+      <NuxtLink v-if="_page + x < pageCount" :to="{ query: { page: _page + x } }">
+        {{ _page + x }}
       </NuxtLink>
     </template>
 
-    <div v-if="page <= pageCount - (LINKS_TO_SHOW - 1)" class="tententen">
+    <div v-if="_page <= pageCount - (LINKS_TO_SHOW - 1)" class="tententen">
       <PartsSvgIcon :icon="'tententen'" :color="'#727272'" :dark="'var(--color-text)'" />
     </div>
-    <template v-if="page === pageCount">
+    <template v-if="_page === pageCount">
       <div class="page_oldest current">
         {{ pageCount }}
       </div>
@@ -49,7 +49,7 @@
         {{ pageCount }}
       </NuxtLink>
     </template>
-    <NuxtLink v-if="page < pageCount" :to="{ query: { page: page + 1 } }" class="arrow next">
+    <NuxtLink v-if="_page < pageCount" :to="{ query: { page: _page + 1 } }" class="arrow next">
       <PartsSvgIcon :icon="'arrow_right'" :color="'#727272'" :dark="'var(--color-text)'" />
     </NuxtLink>
   </div>
@@ -69,11 +69,12 @@ const PAGE_ITEMS = 13
 const LINKS_TO_SHOW = 5  // only odd
 const BEFORE_AND_AFTER = [...Array((LINKS_TO_SHOW - 1) / 2).keys()].map((x) => x + 1)
 
-const page = ref(p.page)
+const _page = ref(p.page)
+const { page } = toRefs(p)
 const pageCount = Math.ceil(p.count / PAGE_ITEMS)
 
-watch(p, () => {
-  page.value = p.page
+watch(page, () => {
+  _page.value = p.page
 })
 
 /**
