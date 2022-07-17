@@ -49,22 +49,11 @@ export default defineNuxtConfig({
   },
   nitro: {
     srcDir: "src/",
+    // prerender: {  // for SSR + SSG
+    //   routes: []
+    // },
   },
   pages: true,
-  // runtimeConfig:   // fallback defaults
-  //   process.env.NODE_ENV === "development"
-  //     ? {
-  //       origin: "",
-  //       baseURL: "",
-  //       key: "",
-  //     }
-  //     : {
-  //       origin: "",
-  //       baseURL: "",
-  //       key: "",
-  //     }
-  //   // anything under public and app will be exposed to the frontend
-  // ,
   srcDir: "src/",
   ssr: true,
   telemetry: false,
