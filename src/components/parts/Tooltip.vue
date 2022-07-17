@@ -46,6 +46,8 @@ const isAutoWidth = computed(() => {
 
 <style lang="scss" scoped>
 .tooltip {
+  --tooltip-bg-color: #434343;
+
   position: absolute;
   display: inline-block;
   width: auto;
@@ -55,7 +57,7 @@ const isAutoWidth = computed(() => {
   text-align: center;
   text-decoration: none;
   border-radius: 7px;
-  background-color: #434343;
+  background-color: var(--tooltip-bg-color);
   box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.17);
   white-space: nowrap;
   z-index: 1;
@@ -69,7 +71,7 @@ const isAutoWidth = computed(() => {
       left: 50%;
       transform: translateX(-50%);
       border: 8px solid transparent;
-      border-top-color: #434343;
+      border-top-color: var(--tooltip-bg-color);
     }
     &::after {
       content: "";
@@ -79,7 +81,7 @@ const isAutoWidth = computed(() => {
       left: 50%;
       transform: translateX(-50%);
       border: 7px solid transparent;
-      border-top-color: #434343;
+      border-top-color: var(--tooltip-bg-color);
     }
   }
   &.below {
@@ -92,7 +94,7 @@ const isAutoWidth = computed(() => {
       left: 50%;
       transform: translateX(-50%);
       border: 7px solid transparent;
-      border-bottom-color: #434343;
+      border-bottom-color: var(--tooltip-bg-color);
     }
     &::after {
       content: "";
@@ -102,7 +104,7 @@ const isAutoWidth = computed(() => {
       left: 50%;
       transform: translateX(-50%);
       border: 8px solid transparent;
-      border-bottom-color: #434343;
+      border-bottom-color: var(--tooltip-bg-color);
     }
   }
   &.auto_width {
@@ -110,6 +112,11 @@ const isAutoWidth = computed(() => {
   }
   &.ws_normal {
     white-space: normal;
+  }
+}
+.dark {
+  * {
+    --tooltip-bg-color: #e3e3e3;
   }
 }
 </style>

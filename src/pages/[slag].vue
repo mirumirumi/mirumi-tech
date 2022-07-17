@@ -152,4 +152,18 @@ function generateMetaDescription(html: string): string {
     }
   }
 }
+.dark {
+  .post_id_view {
+    main {
+      article {
+        header {
+          .meta,
+          .tags {
+            color: #a2a2a2;
+          }
+        }
+      }
+    }
+  }
+}
 </style>

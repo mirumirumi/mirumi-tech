@@ -5,7 +5,10 @@
 </template>
 
 <script setup lang="ts">
+import { useStore } from "@/store/store"
 import Cookies from "js-cookie"
+
+const store = useStore()
 
 const isDark = ref(false)
 const history = ref()
@@ -40,11 +43,13 @@ onMounted(() => {
 
 function toLight(): void {
   isDark.value = false
+  store.theme = "light"
   document.getElementsByTagName("html")[0].classList.remove("dark")
 }
 
 function toDark(): void {
   isDark.value = true
+  store.theme = "dark"
   document.getElementsByTagName("html")[0].classList.add("dark")
 }
 </script>

@@ -3,7 +3,7 @@
     <main class="single_column">
       <header>
         <h1>
-          <PartsSvgIcon :icon="'tag'" :color="'#4e4e4e'" />
+          <PartsSvgIcon :icon="'tag'" :color="'#4e4e4e'" :dark="'var(--color-text)'" />
           <span>{{ tagName }}</span>
         </h1>
       </header>

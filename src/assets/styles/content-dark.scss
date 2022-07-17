@@ -1,0 +1,61 @@
+.dark {
+  #content {
+    h2 {
+      border-bottom: solid 1.3px #6c6c6c;
+    }
+    code {
+      color: #f7f6f6;
+      background-color: #6b6865;
+    }
+    img {
+      ~ em {
+        color: #adadad;
+      }
+    }
+    blockquote {
+      color: #bababa;
+    }
+    hr {
+      border-color: #726f6b;
+    }
+    .box-common {
+      color: var(--color-text);
+      border: solid 2.7px #5d5d5d;
+    }
+    .box-info {
+      background-color: #4a4742;
+    }
+    .box-alert {
+      background-color: #554b4a;
+    }
+    .box-rewrite {
+      background-color: #4c5149;
+    }
+    a.blogcard {
+      &:hover .blogcard {
+        background-color: #646260;
+      }
+      .blogcard {
+        background-color: #53504e;
+        border: solid 1px #605d5c;
+      }
+      .content {
+        .title {
+          color: var(--color-text);
+        }
+        .snippet {
+          color: #aeaeae;
+        }
+        .footer {
+          color: #dadada;
+          .favicon {
+            img {
+              mix-blend-mode: multiply;  // nice!
+            }
+          }
+        }
+      }
+    }
+  }
+}
+

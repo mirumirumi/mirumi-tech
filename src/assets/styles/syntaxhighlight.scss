@@ -102,3 +102,12 @@ pre.language-no {
 pre {
   overflow-x: auto;
 }
+
+// dark mode
+.dark {
+  pre {
+    code {
+      background: #2c2d3a !important;
+    }
+  }
+}

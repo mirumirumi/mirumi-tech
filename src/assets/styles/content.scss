@@ -29,7 +29,6 @@
     padding-left: 0;
     padding-right: 0;
     padding-bottom: 0;
-    color: #484848;
     font-size: 1.14em;    
   }
   h5 {
@@ -49,15 +48,6 @@
   li {
     margin: 0.2em;
   }
-  // h2 code,
-  // h3 code,
-  // h4 code,
-  // h5 code,
-  // h6 code,
-  // p code,
-  // li code,
-  // blockquote code,
-  // .box-common code,
   code {
     margin: auto 0.37em;
     padding: 0.09em 0.5em 0.13em;
@@ -147,9 +137,6 @@
     & > ul,
     & > ol {
       padding-left: 1.3em;
-    }
-    strong {
-      color: #666666;
     }
     blockquote {
       margin: 1.5em auto;

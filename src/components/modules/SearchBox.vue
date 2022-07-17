@@ -51,9 +51,6 @@ const move = () => {
     line-height: 2.1;
     border: 1.9px solid #e5e5e5;
     border-radius: 31px;
-    &:focus {
-      border-color: #e9b18d !important;
-    }
   }
   svg {
     right: 1.7em;

@@ -1,0 +1,40 @@
+html.dark {
+  --color-background: #3f3e41;
+}
+
+.dark {
+  --color-text              : #f2f2f2;
+  --color-text-white        : #5b5b5b;
+  --color-text-white-hover  : #4e4e4e;
+  --color-background        : #3f3e41;
+  --color-primary           : #ec6839;
+  --color-link              : #e1ad46;
+  --color-input-focus-border: #f0c09f;
+  --color-input-focus-shadow: 0 0 0 0.19rem rgba(255, 162, 101, 0.37);
+
+  input::placeholder,
+  textarea::placeholder {
+    color: #b7b7b7;
+  }
+  .input {
+    &:disabled, &[readonly] {
+      background-color: #e1ddda;
+    }
+  }
+
+  /**
+  * globals
+  */
+  .posts {
+    .post {
+      a {
+        border-bottom: 0.7px solid #5e5c5a;
+        article {
+          .meta {
+            color: #a2a2a2;
+          }
+        }
+      }
+    }
+  }
+}

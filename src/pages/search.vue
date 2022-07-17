@@ -6,7 +6,7 @@
     <main class="single_column">
       <header>
         <h1>
-          <PartsSvgIcon :icon="'search'" :color="'#4e4e4e'" />
+          <PartsSvgIcon :icon="'search'" :color="'#4e4e4e'" :dark="'var(--color-text)'" />
           <span v-if="!isNoQuery">{{ query }}</span>
           <span v-else>検索キーワードを入力してください :)</span>
         </h1>

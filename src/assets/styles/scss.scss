@@ -17,18 +17,19 @@
  * common
  */
 :root {
-  --color-text            : #4e4e4e;
-  --color-text-white      : #f2f2f2;
-  --color-text-white-hover: #e3e3e3;
-  --color-background      : #fffcf9;
-  --color-primary         : #ec6839;
-  --color-primary-hover   : #e26234;
-  --color-link            : #bb0000;
-  --color-invalid         : #dc3545;
-  --width-max-base        : 1188px;
-  --width-scrollbar       : 16px;
-  --width-max-screen      : calc(var(--width-max-base) - var(--width-scrollbar));
-  --width-sidebar         : 331px;
+  --color-text              : #4e4e4e;
+  --color-text-white        : #f2f2f2;
+  --color-text-white-hover  : #e3e3e3;
+  --color-background        : #fffcf9;
+  --color-primary           : #ec6839;
+  --color-link              : #bb0000;
+  --color-invalid           : #dc3545;
+  --color-input-focus-border: #e9b18d;
+  --color-input-focus-shadow: 0 0 0 0.19rem rgba(237, 120, 45, 0.37);
+  --width-max-base          : 1188px;
+  --width-scrollbar         : 16px;
+  --width-max-screen        : calc(var(--width-max-base) - var(--width-scrollbar));
+  --width-sidebar           : 331px;
 }
 * {
   box-sizing: border-box;
@@ -85,8 +86,8 @@ textarea:focus-visible {
   &:focus {
     // border-color: #a3c0e1;
     // box-shadow: 0 0 0 .25rem rgba(13,110,253,.25);
-    border-color: #e9b18d;
-    box-shadow: 0 0 0 0.19rem rgba(237, 120, 45, 0.37);
+    border-color: var(--color-input-focus-border);
+    box-shadow: var(--color-input-focus-shadow);
   }
   &:disabled, &[readonly] {
     background-color: #e9ecef;

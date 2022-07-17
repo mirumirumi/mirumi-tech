@@ -6,7 +6,7 @@
     </Head>
 
     <NuxtLink v-if="1 < page" :to="{ query: { page: page - 1 } }" class="arrow prev">
-      <PartsSvgIcon :icon="'arrow_left'" :color="'#727272'" />
+      <PartsSvgIcon :icon="'arrow_left'" :color="'#727272'" :dark="'var(--color-text)'" />
     </NuxtLink>
     <template v-if="page === 1">
       <div class="page_latest current">
@@ -19,7 +19,7 @@
       </NuxtLink>
     </template>
     <div v-if="LINKS_TO_SHOW <= page" class="tententen">
-      <PartsSvgIcon :icon="'tententen'" :color="'#727272'" />
+      <PartsSvgIcon :icon="'tententen'" :color="'#727272'" :dark="'var(--color-text)'" />
     </div>
 
     <template v-for="x in BEFORE_AND_AFTER.slice().reverse()">
@@ -37,7 +37,7 @@
     </template>
 
     <div v-if="page <= pageCount - (LINKS_TO_SHOW - 1)" class="tententen">
-      <PartsSvgIcon :icon="'tententen'" :color="'#727272'" />
+      <PartsSvgIcon :icon="'tententen'" :color="'#727272'" :dark="'var(--color-text)'" />
     </div>
     <template v-if="page === pageCount">
       <div class="page_oldest current">
@@ -50,7 +50,7 @@
       </NuxtLink>
     </template>
     <NuxtLink v-if="page < pageCount" :to="{ query: { page: page + 1 } }" class="arrow next">
-      <PartsSvgIcon :icon="'arrow_right'" :color="'#727272'" />
+      <PartsSvgIcon :icon="'arrow_right'" :color="'#727272'" :dark="'var(--color-text)'" />
     </NuxtLink>
   </div>
 </template>
@@ -139,6 +139,22 @@ const nextLink = computed(() => {
     }
     &:hover {
       background-color: transparent;
+    }
+  }
+}
+.dark {
+  .pagination {
+    > * {
+      color: var(--color-text);
+      &:hover {
+        background-color: #747270;
+      }
+    }
+    a {
+      color: var(--color-text);
+    }
+    .current {
+      background-color: #747270
     }
   }
 }

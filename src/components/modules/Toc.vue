@@ -362,4 +362,37 @@ function searchHasLinkHash(linkHash: string): number {
     }
   }
 }
+.dark {
+  .toc {
+    .widget_title {
+      color: #d2d2d2;
+    }
+    .toc_body {
+      ul.h2 {
+        li.h2 {
+          a {
+            color: #e7e7e7;
+          }
+          ul.h3 {
+            li.h3 {
+              a {
+                color: #c6c6c6;
+              }
+              ul.h4 {
+                li.h4 {
+                  a {
+                    color: #9b9b9b;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      li.highlight {
+        background-color: #52514f;
+      }
+    }
+  }
+}
 </style>

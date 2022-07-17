@@ -16,7 +16,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from "vue"
 import { v4 as uuidv4 } from "uuid"
 
 const p = defineProps<{
