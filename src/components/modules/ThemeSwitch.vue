@@ -6,11 +6,12 @@
 
 <script setup lang="ts">
 import { useStore } from "@/store/store"
+import { usePreferredDark  } from "@vueuse/core"
 import Cookies from "js-cookie"
 
 const store = useStore()
 
-const isDark = ref(false)
+const isDark = ref(usePreferredDark())
 const history = ref()
 
 const onChange = (value: any) => {
@@ -32,9 +33,15 @@ onMounted(() => {
     return
   }
 
-  const mqDark = ref(window.matchMedia("(prefers-color-scheme: dark)"))
+  if (!isDark.value) {
+    toLight()
+  } else {
+    toDark()
+  }
+})
 
-  if (!mqDark.value) {
+watch(isDark, () => {
+  if (!isDark.value) {
     toLight()
   } else {
     toDark()
