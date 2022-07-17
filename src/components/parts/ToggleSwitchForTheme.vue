@@ -16,9 +16,10 @@ const p = defineProps<{
 }>()
 
 const isOn = ref(p.value)
+const { value } = toRefs(p)
 const uuid = uuidv4()
 
-watch(p, () => {
+watch(value, () => {
   isOn.value = p.value
 })
 
