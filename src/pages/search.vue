@@ -59,8 +59,8 @@ if (query.value === "") {
 
 const { data: postLinks } = await useFetch<PostLink[]>(`/search-post`, {
   params: {
-    query: query.value
-  }
+    query: query.value,
+  },
 })
 
 /**
