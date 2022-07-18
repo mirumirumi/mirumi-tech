@@ -42,12 +42,16 @@ const router = useRouter()
 const tagName = ref(router.currentRoute.value.params.tagName as string)
 const page = ref(Number(router.currentRoute.value.params.pageNumber ?? 1))
 
-const { data } = await useFetch<ResIndexesAPI>(`/get-tag-indexes`, {
+const data = ref(await $fetch<ResIndexesAPI>(`/get-tag-indexes`, {
+  baseURL: secret.API_BASE_URL,
+  headers: {
+    "x-api-key": secret.API_KEY,
+  },
   params: {
     tag: tagName.value,
     page: page.value,
   },
-})
+}))
 
 const postLinks = ref(data.value.items)
 const count = ref(data.value.count)
@@ -66,14 +70,17 @@ watch(router.currentRoute, async (new_, old_) => {
 
     page.value = Number(new_.query.page ?? 1)
 
-    const res = await $fetch<ResIndexesAPI>(`/get-tag-indexes-from-client`, {
+    const data = await $fetch<ResIndexesAPI>(`/get-tag-indexes`, {
       baseURL: secret.API_BASE_URL,
+      headers: {
+        "x-api-key": secret.API_KEY,
+      },
       params: {
         tag: tagName.value,
-        page: page.value
+        page: page.value,
       },
     })
-    postLinks.value = res.items
+    postLinks.value = data.items
 
     isLoading.value = false
   }

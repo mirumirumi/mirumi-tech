@@ -40,14 +40,18 @@ import secret from "@/secrets"
 const router = useRouter()
 const page = ref(Number(router.currentRoute.value.query.page ?? 1))
 
-const { data } = await useFetch<ResIndexesAPI>(`/get-top-indexes`, {
+const data = await $fetch<ResIndexesAPI>(`/get-top-indexes`, {
+  baseURL: secret.API_BASE_URL,
+  headers: {
+    "x-api-key": secret.API_KEY,
+  },
   params: {
     page: page.value,
   },
 })
 
-const postLinks = ref(data.value.items)
-const count = ref(data.value.count)
+const postLinks = ref(data.items)
+const count = ref(data.count)
 
 /**
  * CSR
@@ -63,13 +67,16 @@ watch(router.currentRoute, async (new_, old_) => {
 
     page.value = Number(new_.query.page ?? 1)
 
-    const res = await $fetch<ResIndexesAPI>(`/get-top-indexes-from-client`, {
+    const data = await $fetch<ResIndexesAPI>(`/get-top-indexes`, {
       baseURL: secret.API_BASE_URL,
+      headers: {
+        "x-api-key": secret.API_KEY,
+      },
       params: {
-        page: page.value
+        page: page.value,
       },
     })
-    postLinks.value = res.items
+    postLinks.value = data.items
 
     isLoading.value = false
   }

@@ -25,14 +25,19 @@
 <script setup lang="ts">
 import { SITE_FULL_PATH, SITE_CREATED_AT, ResIndexesAPI } from "@/lib/defines"
 import { today } from "@/lib/utils"
+import secret from "@/secrets"
 
 const router = useRouter()
 
-const { data } = await useFetch<ResIndexesAPI>(`/get-top-indexes`, {
+const data = ref(await $fetch<ResIndexesAPI>(`/get-top-indexes`, {
+  baseURL: secret.API_BASE_URL,
+  headers: {
+    "x-api-key": secret.API_KEY,
+  },
   params: {
     page: "all",
   },
-})
+}))
 
 const postLinks = ref(data.value.items)
 

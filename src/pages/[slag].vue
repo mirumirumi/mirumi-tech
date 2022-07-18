@@ -13,11 +13,11 @@
           <div class="meta">
             <div class="created_at">
               <PartsSvgIcon :icon="'edit'" :color="'#9e9e9e'" />
-              <time :datetime="datetime(post.created_at)">{{ post.created_at }}</time>
+              <time :datetime="datetime(post.created_at)">{{ friendlyDatetime(post.created_at) }}</time>
             </div>
             <div class="updated_at">
               <PartsSvgIcon :icon="'update'" :color="'#9e9e9e'" />
-              <time :datetime="datetime(post.updated_at)">{{ post.updated_at }}</time>
+              <time :datetime="datetime(post.updated_at)">{{ friendlyDatetime(post.updated_at) }}</time>
             </div>
           </div>
           <div class="tags">
@@ -38,17 +38,22 @@
 
 <script setup lang="ts">
 import { SITE_FULL_PATH, PostData } from "@/lib/defines"
-import { delay, zeroPadding } from "@/lib/utils"
+import { delay, friendlyDatetime, zeroPadding } from "@/lib/utils"
 import Prism from "prismjs"
+import secret from "@/secrets"
 
 const router = useRouter()
 const slag = ref(router.currentRoute.value.params.slag)
 
-const { data: post } = await useFetch<PostData>(`/get-post`, {
+const post = ref(await $fetch<PostData>(`/get-post`, {
+  baseURL: secret.API_BASE_URL,
+  headers: {
+    "x-api-key": secret.API_KEY,
+  },  
   params: {
     slag: slag.value,
   },
-})
+}))
 
 onMounted(async () => {
   do {

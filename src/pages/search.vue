@@ -57,11 +57,15 @@ if (query.value === "") {
   isNoQuery.value = true
 }
 
-const { data: postLinks } = await useFetch<PostLink[]>(`/search-post`, {
+const postLinks = ref(await $fetch<PostLink[]>(`/search-post`, {
+  baseURL: secret.API_BASE_URL,
+  headers: {
+    "x-api-key": secret.API_KEY,
+  },
   params: {
     query: query.value,
   },
-})
+}))
 
 /**
  * CSR
@@ -74,10 +78,13 @@ watch(router.currentRoute, async (new_, old_) => {
 
     query.value = new_.query.q as string
   
-    postLinks.value = await $fetch<PostLink[]>(`/search-post-from-client`, {
+    postLinks.value = await $fetch<PostLink[]>(`/search-post`, {
       baseURL: secret.API_BASE_URL,
+      headers: {
+        "x-api-key": secret.API_KEY,
+      },
       params: {
-        query: query.value
+        query: query.value,
       },
     })
 

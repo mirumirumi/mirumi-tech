@@ -25,10 +25,16 @@
 <script setup lang="ts">
 import { SITE_FULL_PATH, SITE_CREATED_AT } from "@/lib/defines"
 import { today } from "@/lib/utils"
+import secret from "@/secrets"
 
 const router = useRouter()
 
-const { data: tags } = await useFetch<string[]>(`/get-all-tags`)
+const tags = ref(await $fetch<string[]>(`/get-all-tags`, {
+  baseURL: secret.API_BASE_URL,
+  headers: {
+    "x-api-key": secret.API_KEY,
+  },
+}))
 
 useSetMeta({
   title: "すべてのタグ",
