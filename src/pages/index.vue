@@ -43,7 +43,7 @@ const page = ref(Number(router.currentRoute.value.query.page ?? 1))
 const data = await $fetch<ResIndexesAPI>(`/get-top-indexes`, {
   baseURL: secret.API_BASE_URL,
   headers: {
-    "x-api-key": secret.API_KEY,
+    Authorization: secret.API_KEY,
   },
   params: {
     page: page.value,
@@ -70,7 +70,7 @@ watch(router.currentRoute, async (new_, old_) => {
     const data = await $fetch<ResIndexesAPI>(`/get-top-indexes`, {
       baseURL: secret.API_BASE_URL,
       headers: {
-        "x-api-key": secret.API_KEY,
+        Authorization: secret.API_KEY,
       },
       params: {
         page: page.value,

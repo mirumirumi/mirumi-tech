@@ -32,7 +32,7 @@ const router = useRouter()
 const data = ref(await $fetch<ResIndexesAPI>(`/get-top-indexes`, {
   baseURL: secret.API_BASE_URL,
   headers: {
-    "x-api-key": secret.API_KEY,
+    Authorization: secret.API_KEY,
   },
   params: {
     page: "all",

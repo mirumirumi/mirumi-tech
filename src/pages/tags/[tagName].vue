@@ -45,7 +45,7 @@ const page = ref(Number(router.currentRoute.value.params.pageNumber ?? 1))
 const data = ref(await $fetch<ResIndexesAPI>(`/get-tag-indexes`, {
   baseURL: secret.API_BASE_URL,
   headers: {
-    "x-api-key": secret.API_KEY,
+    Authorization: secret.API_KEY,
   },
   params: {
     tag: tagName.value,
@@ -73,7 +73,7 @@ watch(router.currentRoute, async (new_, old_) => {
     const data = await $fetch<ResIndexesAPI>(`/get-tag-indexes`, {
       baseURL: secret.API_BASE_URL,
       headers: {
-        "x-api-key": secret.API_KEY,
+        Authorization: secret.API_KEY,
       },
       params: {
         tag: tagName.value,

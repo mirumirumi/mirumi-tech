@@ -48,7 +48,7 @@ const slag = ref(router.currentRoute.value.params.slag)
 const post = ref(await $fetch<PostData>(`/get-post`, {
   baseURL: secret.API_BASE_URL,
   headers: {
-    "x-api-key": secret.API_KEY,
+    Authorization: secret.API_KEY,
   },  
   params: {
     slag: slag.value,

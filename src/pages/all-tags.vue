@@ -32,7 +32,7 @@ const router = useRouter()
 const tags = ref(await $fetch<string[]>(`/get-all-tags`, {
   baseURL: secret.API_BASE_URL,
   headers: {
-    "x-api-key": secret.API_KEY,
+    Authorization: secret.API_KEY,
   },
 }))
 

@@ -60,7 +60,7 @@ if (query.value === "") {
 const postLinks = ref(await $fetch<PostLink[]>(`/search-post`, {
   baseURL: secret.API_BASE_URL,
   headers: {
-    "x-api-key": secret.API_KEY,
+    Authorization: secret.API_KEY,
   },
   params: {
     query: query.value,
@@ -81,7 +81,7 @@ watch(router.currentRoute, async (new_, old_) => {
     postLinks.value = await $fetch<PostLink[]>(`/search-post`, {
       baseURL: secret.API_BASE_URL,
       headers: {
-        "x-api-key": secret.API_KEY,
+        Authorization: secret.API_KEY,
       },
       params: {
         query: query.value,
