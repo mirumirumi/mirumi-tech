@@ -3,7 +3,6 @@ import { defineNuxtConfig } from "nuxt"
 export default defineNuxtConfig({
   app: {
     baseURL: "/",  // can override by NUXT_APP_BASE_URL
-    buildAssetsDir: "_nuxt",
     head: {
       charset: "utf-8",
       meta: [
