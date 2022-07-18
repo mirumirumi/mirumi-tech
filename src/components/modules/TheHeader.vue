@@ -77,7 +77,7 @@ const router = useRouter()
 const githubUrl = computed(() => {
   if (isPost()) {
     const slag = router.currentRoute.value.path
-    return "https://github.com/mirumirumi/mirumi-tech-content/blob/main/posts" + slag
+    return "https://github.com/mirumirumi/mirumi-tech-content/blob/main/posts" + slag + ".md"
   } else {
     return "https://github.com/mirumirumi"
   }
