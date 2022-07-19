@@ -7,7 +7,7 @@
         </h1>
       </header>
       <div>
-        <img src="/404.png" alt="404 not found">
+        <img src="/assets/404.png" alt="404 not found">
       </div>
     </main>
   </div>

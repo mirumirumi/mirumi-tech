@@ -3,7 +3,7 @@
     <header>
       <div class="site_logo">
         <NuxtLink :to="{ path: '/', force: true, replace: true }">
-          <img src="/site-icon.png" alt="site-icon">
+          <img src="/assets/site-icon.png" alt="site-icon">
         </NuxtLink>
       </div>
       <ul class="menu">
