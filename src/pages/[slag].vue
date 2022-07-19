@@ -1,9 +1,5 @@
 <template>
   <div class="post_id_view">
-    <Head>
-      <Script defer src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-core.min.js"></Script>
-      <Script defer src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/plugins/autoloader/prism-autoloader.min.js"></Script>
-    </Head>
     <main>
       <article>
         <header>
@@ -39,7 +35,6 @@
 <script setup lang="ts">
 import { SITE_FULL_PATH, PostData } from "@/lib/defines"
 import { delay, friendlyDatetime, zeroPadding } from "@/lib/utils"
-import Prism from "prismjs"
 import secret from "@/secrets"
 
 const router = useRouter()
@@ -60,9 +55,10 @@ onMounted(async () => {
     await delay(100)
   } while (!document.getElementById("content"))
 
-  Prism.manual = true
-  Prism.highlightAll()
+  useHead({ script: [{ src: "/assets/prism.js", defer: true },] })
 })
+
+useHead({ script: [{ src: "/assets/prism.js", defer: true },] })
 
 useSetMeta({
   title: post.value.title,
