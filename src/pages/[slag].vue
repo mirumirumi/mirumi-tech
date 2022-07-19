@@ -11,7 +11,7 @@
               <PartsSvgIcon :icon="'edit'" :color="'#9e9e9e'" />
               <time :datetime="datetime(post.created_at)">{{ friendlyDatetime(post.created_at) }}</time>
             </div>
-            <div class="updated_at">
+            <div class="updated_at" v-if="post.updated_at">
               <PartsSvgIcon :icon="'update'" :color="'#9e9e9e'" />
               <time :datetime="datetime(post.updated_at)">{{ friendlyDatetime(post.updated_at) }}</time>
             </div>
