@@ -1,6 +1,6 @@
 <template>
   <div class="search_box">
-    <input type="text" :ref="'search'" class="input" placeholder="Search for..." 
+    <input type="text" class="input" placeholder="Search for..."  :id="uuid" 
       v-model="query"
       @keydown.enter.prevent="move"
     >
@@ -9,6 +9,8 @@
 </template>
 
 <script setup lang="ts">
+import { v4 as uuidv4 } from "uuid"
+
 const p = defineProps<{
   query?: string,
 }>()
@@ -18,8 +20,9 @@ const emit = defineEmits<{
 }>()
 
 const router = useRouter()
+
+const uuid = uuidv4()
 const query = ref("")
-const search = ref()
 
 onMounted(() => {
   if (router.currentRoute.value.path.includes("/search")) {
@@ -27,7 +30,7 @@ onMounted(() => {
   }
 
   if (!query.value) {
-    search.value.focus()
+    (document.getElementById(uuid) as HTMLElement).focus()
   }
 })
 

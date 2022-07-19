@@ -1,10 +1,12 @@
 <template>
-  <div class="tooltip" :class="{ 'auto_width': isAutoWidth, 'ws_normal': isDecidedWidth, 'above': isAbove, 'below': isBelow }" :ref="'tooltip'">
+  <div class="tooltip" :class="{ 'auto_width': isAutoWidth, 'ws_normal': isDecidedWidth, 'above': isAbove, 'below': isBelow }" :id="uuid">
     <slot></slot>
   </div>
 </template>
 
 <script setup lang="ts">
+import { v4 as uuidv4 } from "uuid"
+
 const p = defineProps<{
   position: "above" | "below",
   shift: string,
@@ -12,7 +14,7 @@ const p = defineProps<{
 
 const MAX_WIDTH = 200
 
-const tooltip = ref()
+const uuid = uuidv4()
 const width = ref("")
 const height = ref("")
 const isAbove = ref(false)
@@ -20,7 +22,7 @@ const isBelow = ref(false)
 const isDecidedWidth = ref(false)
 
 onMounted(() => {
-  const renderedWidth = tooltip.value.offsetWidth + 1  // roundup
+  const renderedWidth = (document.getElementById(uuid) as HTMLElement).offsetWidth + 1  // roundup
 
   if (MAX_WIDTH <= renderedWidth) {
     width.value = MAX_WIDTH.toString() + "px"
