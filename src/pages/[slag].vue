@@ -92,6 +92,11 @@ function generateMetaDescription(html: string): string {
     padding: 0 47.5px;
     article {
       header {
+        h1 {
+          @include mobile {
+            padding-left: 0em;
+          }
+        }
         .meta {
           display: flex;
           justify-content: flex-start;

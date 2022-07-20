@@ -236,6 +236,7 @@ main {
       font-weight: bold;
       line-height: 1.25;
       @include mobile {
+        padding-left: 0.5em;
         font-size: 1.3em;
       }
     }
