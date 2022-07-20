@@ -13,19 +13,26 @@ jobs:
     
       - uses: actions/setup-node@v2.4.1
         with:
-          node-version: "14"
+          node-version: "16"
 
-      - name: Installing npm modules...
+      - name: install npm modules
         run: npm ci  # if some occured problems, try reverting to `npm install`
 
-      - name: Decrypting secrets with gpg...
+      - name: decrypt secrets with gpg
         run: |
           echo "${{ secrets.GPG_PASSPHRASE }}" | sudo gpg --batch --passphrase-fd 0 --output "src/secrets/secret.dev.js" --decrypt "src/secrets/secret.dev.js.gpg" 
           echo "${{ secrets.GPG_PASSPHRASE }}" | sudo gpg --batch --passphrase-fd 0 --output "src/secrets/secret.prd.js" --decrypt "src/secrets/secret.prd.js.gpg" 
 
-      - name: Generating...
-        run: npm run generate-prd
+      - name: generate static site
+        run: npm run generate
+
+      - name: setup aws account
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-region: ap-northeast-1
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
       - name: Deploying...
         run: |
-          echo ""
+          aws s3 cp .output/public/ s3://mirumitech-prd-static-hosting/ --recursive
