@@ -39,10 +39,19 @@
   }
   ul, ol {
     padding-left: 2.222em;
+    @include tablet {
+      padding-left: 1.3em;
+    }
   }
   ul {
     li {
       list-style: disc;
+    }
+  }
+  ol {
+    li {
+      list-style: decimal;
+      padding-left: 0.7em;
     }
   }
   li {
@@ -71,8 +80,11 @@
     }
   }
   img {
+    display: block;
     max-width: 100%;
     height: auto;
+    max-height: 400px;
+    margin: auto;
     border-radius: 3px;
     .win11_ss {
       border-radius: 8px !important;
@@ -85,6 +97,9 @@
       font-size: 0.8em;
       line-height: 1.5;
       text-align: center;
+    }
+    @include mobile {
+      max-height: none;
     }
   }
   blockquote {
