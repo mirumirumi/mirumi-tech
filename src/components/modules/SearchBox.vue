@@ -1,6 +1,6 @@
 <template>
   <div class="search_box">
-    <input type="text" class="input" placeholder="Search for..."  :id="uuid" 
+    <input type="text" class="input" placeholder="Search for..." :id="uuid" 
       v-model="query"
       @keydown.enter.prevent="move"
     >
@@ -27,10 +27,8 @@ const query = ref("")
 onMounted(() => {
   if (router.currentRoute.value.path.includes("/search")) {
     query.value = p.query ?? ""
-  }
-
-  if (!query.value) {
-    (document.getElementById(uuid) as HTMLElement).focus()
+  } else if (query.value === "") {
+    (document.getElementById(uuid) as HTMLElement).focus()  // 😠
   }
 })
 

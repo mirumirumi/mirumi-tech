@@ -16,6 +16,9 @@
         <div v-if="isLoading" class="csr_loading">
           <PartsLoadSpinner :kind="'long'" />
         </div>
+        <div v-else-if="postLinks.length === 0 && !isNoQuery" class="no_content">
+          お探しの記事はまだ存在しないみたいです！
+        </div>
         <ul v-else class="posts">
           <li class="post" v-for="post in postLinks" :key="post.slag">
             <NuxtLink :to="`/${post.slag}`">
@@ -52,10 +55,9 @@ import secret from "@/secrets"
 const router = useRouter()
 const query = ref(router.currentRoute.value.query.q ?? "")
 
-const isNoQuery = ref(false)
-if (query.value === "") {
-  isNoQuery.value = true
-}
+const isNoQuery = computed(() => {
+  return query.value === ""
+})
 
 const postLinks = ref(await $fetch<PostLink[]>(`/search-post`, {
   baseURL: secret.API_BASE_URL,
@@ -120,6 +122,10 @@ useSetMeta({
     }
     .search_box {
       margin: -0.9em auto 2.5em;
+    }
+    .no_content {
+      font-size: 0.9em;
+      text-align: center;
     }
   }
 }
