@@ -1,23 +1,39 @@
+<!DOCTYPE html>
 <html>
-
 <head>
+  <title>ちょっと惜しかったみたいです | mirumi.tech</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="みるみの技術ブログ">
+  <meta name="keywords" content="みるめも,みるみ,blog,technology,programming">
+  <meta name="thumbnail" content="/assets/main-visual.png">
+  <meta property="og:title" content="mirumi.tech">
+  <meta property="og:description" content="みるみの技術ブログ">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="/assets/">
+  <meta property="og:image" content="/assets/main-visual.png">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="twitter:title" content="mirumi.tech">
+  <meta property="twitter:url" content="https://mirumi.tech">
+  <meta property="twitter:description" content="みるみの技術ブログ">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="/assets/main-visual.png">
+  <meta name="twitter:domain" content="mirumi.tech">
+  <link rel="icon" href="/assets/favicon.ico">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
-
     h1 {
       font-family: "Noto Sans JP";
       text-align: center;
     }
-
     ._404_view main div {
       margin: 7em auto 3em;
       text-align: center;
     }
-
     ._404_view main div img {
       width: 222px;
     }
-
     :root {
       --color-text: #4e4e4e;
       --color-text-white: #f2f2f2;
@@ -33,12 +49,10 @@
       --width-max-screen: calc(var(--width-max-base) - var(--width-scrollbar));
       --width-sidebar: 331px;
     }
-
     * {
       box-sizing: border-box;
       overflow-wrap: break-word;
     }
-
     html,
     body {
       margin: 0;
@@ -48,61 +62,50 @@
       color: var(--color-text);
       background-color: var(--color-background);
     }
-
     @media screen and (max-width: 428px) {
-
       html,
       body {
         font-size: 16px;
       }
     }
-
     p a,
     span a,
     li a {
       color: var(--color-link);
     }
-
     img {
       vertical-align: middle;
     }
-
     ::-webkit-scrollbar {
       width: var(--width-scrollbar);
     }
-
     ::-webkit-scrollbar-thumb {
       border: 3.5px solid rgba(0, 0, 0, 0);
       background-clip: padding-box;
       border-radius: 9999px;
       background-color: #c7bfba;
     }
-
     .single_column {
       width: 728px;
       margin: auto;
     }
-
     @media screen and (max-width: 428px) {
       .single_column {
         width: 100%;
       }
     }
-
     main header h1 {
       margin: 0.888rem 0 0.7rem;
       font-size: 1.444em;
       font-weight: bold;
       line-height: 1.25;
     }
-
     @media screen and (max-width: 428px) {
       main header h1 {
         padding-left: 0.5em;
         font-size: 1.3em;
       }
     }
-
     .header_wrap header {
       display: flex;
       justify-content: space-between;
@@ -113,16 +116,13 @@
       margin: auto;
       padding: 23px 29px 30px;
     }
-
     .header_wrap header .site_logo {
       margin-left: 0.5em;
     }
-
     .header_wrap header .site_logo img {
       width: 47px;
       height: 47px;
     }
-
     @media screen and (max-width: 428px) {
       .header_wrap header .site_logo img {
         --mobile-logo-size: 43px;
@@ -130,14 +130,12 @@
         height: var(--mobile-logo-size);
       }
     }
-
     .header_wrap header .menu {
       display: flex;
       align-items: center;
       width: 270px;
       height: 100%;
     }
-
     .header_wrap header .menu li {
       position: relative;
       display: flex;
@@ -146,7 +144,6 @@
       width: 60px;
       height: 100%;
     }
-
     .header_wrap header .menu li a,
     .header_wrap header .menu li .contact_wrap,
     .header_wrap header .menu li .search_wrap {
@@ -157,41 +154,34 @@
       width: 20px;
       height: 20px;
     }
-
     .header_wrap header .menu li a svg,
     .header_wrap header .menu li .contact_wrap svg,
     .header_wrap header .menu li .search_wrap svg {
       left: 0;
       right: 0;
     }
-
     .header_wrap header .menu li .contact_wrap,
     .header_wrap header .menu li .search_wrap {
       cursor: pointer;
     }
-
     @media screen and (max-width: 428px) {
       .header_wrap header .menu li {
         width: 40px;
       }
     }
-
     .header_wrap header .menu .theme {
       width: 90px;
     }
-
     @media screen and (max-width: 428px) {
       .header_wrap header .menu .theme {
         width: 60px;
       }
     }
-
     @media screen and (max-width: 428px) {
       .header_wrap header .menu {
         width: 220px;
       }
     }
-
     @media screen and (max-width: 428px) {
       .header_wrap header {
         --padding-top: 17px;
@@ -199,65 +189,52 @@
         padding: var(--padding-top) 13px 0;
       }
     }
-
     .footer_wrap {
       margin-top: 0;
       padding: 4em 1em 9.15px;
     }
-
     .footer_wrap footer {
       color: #a1a1a1;
     }
-
     .footer_wrap footer .links {
       text-align: center;
       font-size: 0.87em;
     }
-
     .footer_wrap footer .links li {
       display: inline-block;
       margin: auto 1.3em;
     }
-
     .footer_wrap footer .links li a {
       color: #a1a1a1;
       text-decoration: none;
     }
-
     @media screen and (max-width: 428px) {
       .footer_wrap footer .links li {
         display: block;
         margin: 0.1em 1.3em;
       }
-
       .footer_wrap footer .links li:first-child {
         padding-left: 5px;
       }
-
       .footer_wrap footer .links li:nth-child(2) {
         padding-right: 2px;
       }
     }
-
     .footer_wrap footer .links .contact {
       cursor: pointer;
     }
-
     .footer_wrap footer .copyright {
       margin-top: 1.5em;
       font-size: 0.83em;
       text-align: center;
     }
-
   </style>
 </head>
-
 <body>
-
   <div id="app">
     <div class="header_wrap">
       <header>
-        <div class="site_logo"><a href="/" class=""><img src="site-icon.png" alt="site-icon"></a></div>
+        <div class="site_logo"><a href="/" class=""><img src="/assets/site-icon.png" alt="site-icon"></a></div>
         <ul class="menu">
           <li><a href="/all-entries" class="" data-tooltip="all_entries"><svg focusable="false" role="img"
                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
@@ -288,10 +265,9 @@
         <header>
           <h1> お探しのページを見つけられません (´｡･ڡ･｡`) </h1>
         </header>
-        <div><img src="404.png" alt="404 not found"></div>
+        <div><img src="/assets/404.png" alt="404 not found"></div>
       </main>
     </div>
-
     <div class="footer_wrap">
       <footer>
         <ul class="links">
@@ -302,7 +278,5 @@
       </footer>
     </div>
   </div>
-
 </body>
-
 </html>
