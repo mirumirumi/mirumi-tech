@@ -1,9 +1,10 @@
 name: deploy
 
 on:
-  push:
-    branches:
-      - release/prd
+  - push:
+      branches:
+        - release/prd
+  - workflow_dispatch:
 
 jobs:
   deploy:
