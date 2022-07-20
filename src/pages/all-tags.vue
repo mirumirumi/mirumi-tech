@@ -58,6 +58,9 @@ useSetMeta({
             font-size: 0.88em;
           }
         }
+        @include mobile {
+          padding-left: 3em !important;
+        }
       }
     }
   }
