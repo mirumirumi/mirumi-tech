@@ -116,4 +116,9 @@ pre {
       background: #2c2d3a !important;
     }
   }
+  pre.language-no {
+    color: var(--color-text) !important;
+    border: 2.3px solid #898683 !important;
+    background-color: #585858 !important;
+  }
 }
