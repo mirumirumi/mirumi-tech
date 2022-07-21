@@ -1,5 +1,5 @@
 <template>
-  <div class="toc">
+  <div v-if="1 <= tocItems.length" class="toc">
     <h3 class="widget_title">
       Contents
     </h3>
