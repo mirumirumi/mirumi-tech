@@ -107,7 +107,7 @@ onUnmounted(() => {
 <style lang="scss">
 body.modal {
   overflow-y: hidden;
-  padding-right: 17px;
+  padding-right: 16px;
   @include tablet {
     overflow-y: auto;
     padding-right: 0;
