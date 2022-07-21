@@ -6,56 +6,58 @@
           <img src="/assets/site-icon.png" alt="site-icon">
         </NuxtLink>
       </div>
-      <ul class="menu">
-        <li>
-          <NuxtLink to="/all-entries" data-tooltip="all_entries" @mouseenter="hover" @mouseleave="hoverInterrupt">
-            <PartsSvgIcon :icon="'entries'" :color="'#bbbbba'" />
-          </NuxtLink>
-          <Transition name="tooltip">
-            <PartsTooltip :position="'below'" :shift="'47px'" v-if="isShownTtAe">
-              すべての記事
-            </PartsTooltip>
-          </Transition>
-        </li>
-        <li>
-          <NuxtLink to="/all-tags" data-tooltip="all_tags" @mouseenter="hover" @mouseleave="hoverInterrupt">
-            <PartsSvgIcon :icon="'tags'" :color="'#bbbbba'" />
-          </NuxtLink>
-          <Transition name="tooltip">
-            <PartsTooltip :position="'below'" :shift="'47px'" v-if="isShownTtAt">
-              すべてのタグ
-            </PartsTooltip>
-          </Transition>
-        </li>
-        <li>
-          <a :href="githubUrl" data-tooltip="github" @mouseenter="hover" @mouseleave="hoverInterrupt">
-            <PartsSvgIcon :icon="'github'" :color="'#bbbbba'" />
-          </a>
-          <Transition name="tooltip">
-            <PartsTooltip :position="'below'" :shift="'47px'" v-if="isShownTtGh">
-              <template v-if="isPost()">
-                GitHubで修正をリクエストする
-              </template>
-              <template v-else>
-                GitHubプロフィール
-              </template>
-            </PartsTooltip>
-          </Transition>
-        </li>
-        <li>
-          <div class="search_wrap" data-tooltip="search_wrap" @click="isOpenSearchModal = true" @mouseenter="hover" @mouseleave="hoverInterrupt">
-            <PartsSvgIcon :icon="'search'" :color="'#bbbbba'" />
-          </div>
-          <Transition name="tooltip">
-            <PartsTooltip :position="'below'" :shift="'47px'" v-if="isShownTtSr">
-              記事を検索
-            </PartsTooltip>
-          </Transition>
-        </li>
-        <li class="theme">
-          <ModulesThemeSwitch />
-        </li>
-      </ul>
+      <nav aria-label="global-menu">
+        <ul class="menu">
+          <li>
+            <NuxtLink to="/all-entries" data-tooltip="all_entries" @mouseenter="hover" @mouseleave="hoverInterrupt">
+              <PartsSvgIcon :icon="'entries'" :color="'#bbbbba'" />
+            </NuxtLink>
+            <Transition name="tooltip">
+              <PartsTooltip :position="'below'" :shift="'47px'" v-if="isShownTtAe">
+                すべての記事
+              </PartsTooltip>
+            </Transition>
+          </li>
+          <li>
+            <NuxtLink to="/all-tags" data-tooltip="all_tags" @mouseenter="hover" @mouseleave="hoverInterrupt">
+              <PartsSvgIcon :icon="'tags'" :color="'#bbbbba'" />
+            </NuxtLink>
+            <Transition name="tooltip">
+              <PartsTooltip :position="'below'" :shift="'47px'" v-if="isShownTtAt">
+                すべてのタグ
+              </PartsTooltip>
+            </Transition>
+          </li>
+          <li>
+            <a :href="githubUrl" data-tooltip="github" @mouseenter="hover" @mouseleave="hoverInterrupt">
+              <PartsSvgIcon :icon="'github'" :color="'#bbbbba'" />
+            </a>
+            <Transition name="tooltip">
+              <PartsTooltip :position="'below'" :shift="'47px'" v-if="isShownTtGh">
+                <template v-if="isPost()">
+                  GitHubで修正をリクエストする
+                </template>
+                <template v-else>
+                  GitHubプロフィール
+                </template>
+              </PartsTooltip>
+            </Transition>
+          </li>
+          <li>
+            <div class="search_wrap" data-tooltip="search_wrap" @click="isOpenSearchModal = true" @mouseenter="hover" @mouseleave="hoverInterrupt">
+              <PartsSvgIcon :icon="'search'" :color="'#bbbbba'" />
+            </div>
+            <Transition name="tooltip">
+              <PartsTooltip :position="'below'" :shift="'47px'" v-if="isShownTtSr">
+                記事を検索
+              </PartsTooltip>
+            </Transition>
+          </li>
+          <li class="theme">
+            <ModulesThemeSwitch />
+          </li>
+        </ul>
+      </nav>
     </header>
     <Teleport to="body">
       <Transition name="fadedown">
