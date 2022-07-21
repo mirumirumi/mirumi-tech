@@ -27,7 +27,9 @@
           </li>
         </ul>
       </TransitionGroup>
-      <ModulesPagination :page="page" :count="count" />
+      <ClientOnly>
+        <ModulesPagination :page="page" :count="count" />
+      </ClientOnly>
     </main>
   </div>
 </template>
