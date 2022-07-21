@@ -86,7 +86,7 @@
     max-height: 400px;
     margin: auto;
     border-radius: 3px;
-    .win11_ss {
+    &.win11_ss {
       border-radius: 8px !important;
     }
     ~ em {

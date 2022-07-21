@@ -115,7 +115,8 @@ const isAutoWidth = computed(() => {
   &.ws_normal {
     white-space: normal;
   }
-  @include tablet {  // includes mobile
+  @include tablet {
+    /* includes mobile */
     display: none !important;
   }
 }

@@ -86,6 +86,12 @@ pre[class*="language-"] {
     border-radius: 0 0 10px 10px;
   }  
 }
+pre[class*="language-bash"],
+pre[class*="language-shell"] {
+  .token {
+    color: #f3f3f3 !important;
+  }
+}
 
 // original-nohighlight
 pre.language-no {
