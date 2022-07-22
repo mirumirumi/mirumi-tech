@@ -36,6 +36,6 @@ jobs:
 
       - name: copy files to s3...
         run: |
-          aws s3 rm s3://mirumitech-prd-static-hosting/ --recursive
+          aws s3 rm s3://mirumitech-prd-static-hosting/ --recursive --exclude "assets/components/*"
           aws s3 cp .output/public/ s3://mirumitech-prd-static-hosting/ --recursive
-          aws cloudfront create-invalidation --distribution-id E2QCFKU2S6S2EE --paths '/*'
+          aws cloudfront create-invalidation --distribution-id E2QCFKU2S6S2EE --paths "/*"
