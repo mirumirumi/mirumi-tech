@@ -10,7 +10,7 @@
         <ul>
           <li v-for="tag in tags" :key="tag">
             <NuxtLink :to="`/tags/${tag}`">
-              {{ tag }}
+              {{ urlUnescape(tag) }}
             </NuxtLink>
           </li>
         </ul>
@@ -24,7 +24,7 @@
 
 <script setup lang="ts">
 import { SITE_FULL_PATH, SITE_CREATED_AT } from "@/lib/defines"
-import { today } from "@/lib/utils"
+import { today, urlUnescape } from "@/lib/utils"
 import secret from "@/secrets"
 
 const router = useRouter()

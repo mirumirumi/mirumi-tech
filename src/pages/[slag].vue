@@ -18,7 +18,7 @@
           </div>
           <div class="tags">
             <NuxtLink :to="`/tags/${tag}`" v-for="tag in post.tags" :key="tag">
-              {{ tag }}
+              {{ urlUnescape(tag) }}
             </NuxtLink>
           </div>
         </header>
@@ -34,7 +34,7 @@
 
 <script setup lang="ts">
 import { SITE_FULL_PATH, PostData } from "@/lib/defines"
-import { delay, friendlyDatetime, zeroPadding } from "@/lib/utils"
+import { delay, friendlyDatetime, urlUnescape, zeroPadding } from "@/lib/utils"
 import secret from "@/secrets"
 
 const router = useRouter()
