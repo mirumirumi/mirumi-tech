@@ -223,12 +223,12 @@
         @include mobile {
           width: 90px;
           min-width: 90px;
-          height: 90px
+          height: auto;
         }
         &.github {
           @include mobile {
-            width: 180px;
-            min-width: 180px;
+            width: 174px;
+            min-width: 174px;
           }              
         }
       }
