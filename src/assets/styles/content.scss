@@ -251,7 +251,7 @@
         .snippet {
           display: -webkit-box;
           margin-top: 0.3em;
-          max-height: 1.5em;
+          max-height: 1.6em;
           -webkit-box-orient: vertical;
           -webkit-line-clamp: 1;
           overflow: hidden;
@@ -266,10 +266,12 @@
           .favicon {
             margin: 0 5px 0 0;
             line-height: 1.9;
+            img {
+              display: inline-block;
+              height: 1em;
+              margin-bottom: 1px;
+            }
           }
-          .favicon img {
-            height: 1em;
-          }  
         }
         @include mobile {
           font-size: 0.84em;
