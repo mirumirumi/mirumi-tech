@@ -28,7 +28,9 @@
           </NuxtLink>
         </li>
       </ul>    
-    <ModulesPagination :page="page" :count="count" />
+      <ClientOnly>
+        <ModulesPagination :page="page" :count="count" />
+      </ClientOnly>
     </main>
   </div>
 </template>
