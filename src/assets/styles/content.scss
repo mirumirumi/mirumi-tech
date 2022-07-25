@@ -118,6 +118,30 @@
     border-left: 0;
     border-right: 0;
   }
+  table {
+    width: 99%;
+    max-width: 100%;
+    font-size: 0.87em;
+    border: solid 2.3px #f0eae1;
+    border-spacing: 0;
+    border-collapse: collapse;
+    th,
+    td {
+      border: 1px solid #eeeeee;
+      padding: 6px;
+    }  
+  }
+  thead {
+    background-color: #fffaf5;
+    tr {
+      th {
+        border: solid 1.7px #f0eae1;
+      }
+    }
+  }
+  tbody tr td {
+    border: 1.3px dashed #bfbfbf;
+  }
   .color-red {
     color: #ff5151;
   }
