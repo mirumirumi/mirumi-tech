@@ -46,7 +46,10 @@ html, body {
     font-size: 16px;
   }  
 }
-p a, span a, li a {
+p a,
+span a,
+li a,
+a:visited {
   color: var(--color-link);
 }
 ul, li {

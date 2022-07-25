@@ -18,6 +18,24 @@
     hr {
       border-color: #726f6b;
     }
+    table {
+      border: solid 2.3px #7d7b77;
+      th,
+      td {
+        border: 1px solid #eeeeee;
+      }  
+    }
+    thead {
+      background-color: #4b4a4e;
+      tr {
+        th {
+          border: solid 1.7px #7d7b77;
+        }
+      }
+    }
+    tbody tr td {
+      border: 1.3px dashed #6e6e6e;
+    }
     .box-common {
       color: var(--color-text);
       border: solid 2.7px #5d5d5d;
