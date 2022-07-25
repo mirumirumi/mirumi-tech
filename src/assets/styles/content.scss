@@ -129,7 +129,7 @@
     td {
       border: 1px solid #eeeeee;
       padding: 6px;
-    }  
+    }
   }
   thead {
     background-color: #fffaf5;
@@ -141,6 +141,10 @@
   }
   tbody tr td {
     border: 1.3px dashed #bfbfbf;
+  }
+  th > code,
+  td > code {
+    word-break: break-all;
   }
   .color-red {
     color: #ff5151;
