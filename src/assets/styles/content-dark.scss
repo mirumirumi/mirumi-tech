@@ -66,10 +66,12 @@
         }
         .footer {
           color: #dadada;
-          .favicon {
-            img {
-              mix-blend-mode: multiply;  // nice!
-            }
+        }
+      }
+      .thumbnail.github + .content {
+        .favicon {
+          img {
+            mix-blend-mode: multiply;
           }
         }
       }
