@@ -1,8 +1,14 @@
+/* 
+  color: 1st line is My default color theme
+  color: 2nd line is New browny color theme inspired "Ayu" of Rust
+*/
+
 pre[class*="language-"] {
   display: block;
   padding: 1.3em 1.7em 1.5em;
   overflow-x: auto;
-  background: #2c2d3a;
+  // background: #2c2d3a;
+  background: #272c32;
   line-height: 1.6 !important;
   border-radius: 11px;
   white-space: pre;
@@ -10,43 +16,51 @@ pre[class*="language-"] {
     padding: 1.3em 1.1em 1.5em;
   }
   code {
-    color: #f3f3f3 !important;
+    // color: #f3f3f3 !important;
+    color: #efece1 !important;
     font-size: 0.85em;
     line-height: 1.6;
     font-family: Consolas, Monaco, Menlo, monospace;
   }
   .token.keyword,
   .token.annotation {
-    color: #66d9ef;
+    // color: #66d9ef;
+    color: #fa854a;
   }
   .token.builtin {
-    color: #66d9ef;
+    // color: #66d9ef;
+    color: #f2b18f;
     font-style: italic;
   }
   .token.attr-name,
   .token.class-name,
   .token.decorator,
   .token.function {
-    color: #b6e557;
+    // color: #b6e557;
+    color: #f0bb58;
   }
   .token.tag {
     color: #f2b18f;
     .token.punctuation {
-      color: #f3f3f3;
+      // color: #f3f3f3;
+      color: #efece1;
     }
   }
   .token.punctuation {
     color: #938e8c;
     &.decorator {
-      color: #b6e557;
+      // color: #b6e557;
+      color: #f0bb58;
     }
   }
   .token.number,
   .token.boolean {
-    color: #ae81ff;
+    // color: #ae81ff;
+    color: #ebd773;
   }
   .token.operator {
-    color: #dc8ba8;
+    // color: #dc8ba8;
+    color: #d8b755;
   }
   .token.parameter {
     color: #f2b18f;
@@ -54,21 +68,25 @@ pre[class*="language-"] {
   }
   .token.attr-value,
   .token.string {
-    color: #f0e57f;
+    // color: #f0e57f;
+    color: #b8cc52;
   }
   .token.attr-value {
     .token.punctuation {
-      color: #f0e57f;
+      // color: #f0e57f;
+      color: #b8cc52;
     }
     .token.attr-equals {
-      color: #f3f3f3;
+      // color: #f3f3f3;
+      color: #efece1;
     }
   }
   .token.comment {
     color: #7f888d;
   }
   .token.key.atrule {
-    color: #dc8ba8;
+    // color: #dc8ba8;
+    color: #d8b755;
   }
   .token.key.property {
     color: #f2b18f;
@@ -92,7 +110,8 @@ pre[class*="language-"] {
 pre[class*="language-bash"],
 pre[class*="language-shell"] {
   .token {
-    color: #f3f3f3 !important;
+    // color: #f3f3f3 !important;
+    color: #efece1 !important;
   }
 }
 
@@ -116,7 +135,8 @@ pre {
 .dark {
   pre {
     code {
-      background: #2c2d3a !important;
+      // background: #2c2d3a !important;
+      background: #272c32 !important;
     }
   }
   pre.language-no {
