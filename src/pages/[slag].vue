@@ -67,6 +67,9 @@ const clickHandle = (e: any) => {
   if (!to.startsWith("/"))
     return
 
+  if (e.ctrlKey || e.shiftKey || e.altKey || e.metaKey)  // open new tab
+    return
+
   e.preventDefault()
   navigateTo(to)
 }
