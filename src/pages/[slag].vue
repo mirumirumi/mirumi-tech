@@ -22,7 +22,7 @@
             </NuxtLink>
           </div>
         </header>
-        <div id="content" v-html="post.body"></div>
+        <div id="content" v-html="post.body" @click="clickHandle"></div>
         <footer>
           <!-- (｡･ڡ･｡) -->
         </footer>
@@ -58,6 +58,19 @@ onMounted(async () => {
   useHead({ script: [{ src: "/assets/prism.js", defer: true },] })
 })
 
+const clickHandle = (e: any) => {
+  const link = e.target.closest("a")
+  if (!link)
+    return
+
+  const to = link.getAttribute("href")
+  if (!to.startsWith("/"))
+    return
+
+  e.preventDefault()
+  navigateTo(to)
+}
+
 useHead({ script: [{ src: "/assets/prism.js", defer: true },] })
 
 useSetMeta({
@@ -68,6 +81,12 @@ useSetMeta({
   createdAt: post.value.created_at,
   updatedAt: post.value.updated_at,
 })
+
+function isInternalLink(url: string): boolean {
+  const fromDomain = window.location.hostname.replace(/^(https?:\/\/)?([^\/]+).*$/gmi, "$2")
+  const toDomain = url.replace(/^(https?:\/\/)?([^\/]+).*$/gmi, "$2")
+  return fromDomain === toDomain
+}
 
 const datetime = (datetime: string) => {
   return `${datetime.slice(0, 4)}-
