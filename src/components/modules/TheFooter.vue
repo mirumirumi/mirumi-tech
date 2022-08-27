@@ -26,7 +26,7 @@
         </div>
         <div class="button">
           <PartsBaseButton type="fill" @click="showAddressOrCopy" v-html="buttonText" />
-          <Transition name="howan">
+          <Transition name="fade">
             <div v-if="isCopied" class="copied">
               <PartsSvgIcon :icon="'check'" :color="'#76ae65'" />
               <span>Copied!</span>

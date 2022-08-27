@@ -62,6 +62,7 @@ const closeModal = async () => {
 
   emit("closeModal")
 
+  await delay(201)  // fadedown transition duration: 0.2s
   ; (document.getElementsByTagName("body")[0] as HTMLBodyElement).classList.remove("modal")
 }
 
@@ -102,6 +103,20 @@ onUnmounted(() => {
       cursor: pointer;
     }
   }
+}
+
+// for only ModalBack (for align with the length of the fadedown transition duration: 0.3s)
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+.fade-enter-to,
+.fade-leave-from {
+  opacity: 1;
 }
 </style>
 <style lang="scss">
