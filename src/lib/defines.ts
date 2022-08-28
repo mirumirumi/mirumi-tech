@@ -28,10 +28,16 @@ export interface PostData {
   created_at: string,
   updated_at: string,
   tags: string[],
+  search_tags: string[],
   body: string,
 }
 
 export interface ResIndexesAPI {
   items: PostLink[],
   count: number,
+}
+
+export interface Tag {
+  tag: string,
+  search_tag: string,
 }
