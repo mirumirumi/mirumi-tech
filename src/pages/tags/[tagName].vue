@@ -4,7 +4,7 @@
       <header>
         <h1>
           <PartsSvgIcon :icon="'tag'" :color="'#4e4e4e'" :dark="'var(--color-text)'" />
-          <span>{{ urlUnescape(tagName) }}</span>
+          <span>{{ tagName }}</span>
         </h1>
       </header>
       <ul class="posts">
@@ -37,7 +37,7 @@
 
 <script setup lang="ts">
 import { SITE_FULL_PATH, SITE_CREATED_AT, ResIndexesAPI } from "@/lib/defines"
-import { today, friendlyDatetime, urlUnescape } from "@/lib/utils"
+import { today, friendlyDatetime } from "@/lib/utils"
 import secret from "@/secrets"
 
 const router = useRouter()

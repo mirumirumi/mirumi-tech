@@ -8,9 +8,9 @@
       </header>
       <div id="content">
         <ul>
-          <li v-for="tag in tags" :key="tag">
-            <NuxtLink :to="`/tags/${tag}`">
-              {{ urlUnescape(tag) }}
+          <li v-for="tag in tags" :key="tag.tag">
+            <NuxtLink :to="`/tags/${tag.search_tag}`">
+              {{ tag.tag }}
             </NuxtLink>
           </li>
         </ul>
@@ -23,13 +23,13 @@
 </template>
 
 <script setup lang="ts">
-import { SITE_FULL_PATH, SITE_CREATED_AT } from "@/lib/defines"
-import { today, urlUnescape } from "@/lib/utils"
+import { SITE_FULL_PATH, SITE_CREATED_AT, Tag } from "@/lib/defines"
+import { today } from "@/lib/utils"
 import secret from "@/secrets"
 
 const router = useRouter()
 
-const tags = ref(await $fetch<string[]>(`/get-all-tags`, {
+const tags = ref(await $fetch<Tag[]>(`/get-all-tags`, {
   baseURL: secret.API_BASE_URL,
   headers: {
     Authorization: secret.API_KEY,

@@ -14,10 +14,6 @@ export const delay = (msec: number): Promise<void> => {
   })
 }
 
-export const urlUnescape = (tag: string) => {
-  return tag.replace("@slash@", "/").replace("@space@", " ")
-}
-
 export const toBool = (data: string): boolean => {
   return data.toLowerCase() === "true"
 }
