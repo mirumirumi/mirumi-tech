@@ -112,7 +112,7 @@ pre[class*="language-shell"] {
   .token {
     // color: #f3f3f3 !important;
     color: #efece1 !important;
-    .comment {
+    &.comment {
       color: #7f888d !important;
     }
   }
