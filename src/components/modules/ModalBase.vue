@@ -105,7 +105,7 @@ onUnmounted(() => {
   }
 }
 
-// for only ModalBack (for align with the length of the fadedown transition duration: 0.3s)
+// for only ModalBack (for align with the length of the fadedown transition duration: 0.2s)
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.2s ease;
