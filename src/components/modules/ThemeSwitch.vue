@@ -5,6 +5,8 @@
 </template>
 
 <script setup lang="ts">
+import { delay } from "@/lib/utils"
+
 const isDark = ref(false)
 const history = useCookie<string>("theme")
 const theme = useState<string>("theme", () => "")
@@ -12,11 +14,11 @@ const theme = useState<string>("theme", () => "")
 const onChange = (value: any) => {
   isDark.value = value
 
+  switchTheme(isDark.value)
+
   if (!isDark.value) {
-    toLight()
     history.value = "light"
   } else {
-    toDark()
     history.value = "dark"
   }
 }
@@ -29,18 +31,31 @@ onMounted(() => {
 
   isDark.value = window.matchMedia("(prefers-color-scheme: dark)").matches
 
-  if (!isDark.value) {
-    toLight()
-  } else {
-    toDark()
-  }
+  switchTheme(isDark.value)
 })
 
 watch(isDark, () => {
-  if (!isDark.value) {
+  switchTheme(isDark.value)
+})
+
+function switchTheme(isDark: boolean): void {
+  if (!isDark) {
     toLight()
   } else {
     toDark()
+  }  
+}
+
+onMounted(async () => {
+  while (true) {
+    if (history.value)
+      return
+
+    isDark.value = window.matchMedia("(prefers-color-scheme: dark)").matches
+  
+    switchTheme(isDark.value)
+    
+    await delay(5000)
   }
 })
 
