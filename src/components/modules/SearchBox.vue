@@ -28,7 +28,9 @@ onMounted(() => {
   if (router.currentRoute.value.path.includes("/search")) {
     query.value = p.query ?? ""
   } else if (query.value === "") {
-    (document.getElementById(uuid) as HTMLElement).focus()  // 😠
+    if (!isIOS()) {
+      ; (document.getElementById(uuid) as HTMLElement).focus()
+    }
   }
 })
 
@@ -39,6 +41,18 @@ watch(p, () => {
 const move = () => {
   router.push({ path: "/search", query: { q: query.value } })
   emit("closeSearchBox")
+}
+
+function isIOS(): boolean {
+  // https://bit.ly/2D2QKav
+  return [
+    "iPad Simulator",
+    "iPhone Simulator",
+    "iPod Simulator",
+    "iPad",
+    "iPhone",
+    "iPod"
+  ].includes(navigator.platform) || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
 }
 </script>
 
