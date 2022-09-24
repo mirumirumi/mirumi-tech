@@ -27,8 +27,8 @@ export default defineNuxtConfig({
         { name: "twitter:image", content: "https://mirumi.tech/assets/main-visual.png" },
       ],
       link: [
-        { rel: "icon", href: "https://mirumi.tech/assets/favicon.ico" },
         { rel: "canonical", href: "https://mirumi.tech" },
+        { rel: "icon", href: "https://mirumi.tech/assets/favicon.ico" },
       ],
       style: [],
       script: [],
