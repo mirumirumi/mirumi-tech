@@ -1,5 +1,3 @@
-import { defineNuxtConfig } from "nuxt"
-
 export default defineNuxtConfig({
   app: {
     baseURL: "/",  // can override by NUXT_APP_BASE_URL
@@ -36,18 +34,17 @@ export default defineNuxtConfig({
       script: [],
     },
   },
-  autoImports: {
-    dirs: [
-      "@/composables",
-    ],
-  },
   components: {
     dirs: [
       "@/components",
     ],
   },
+  imports: {
+    dirs: [
+      "@/composables",
+    ],
+  },
   nitro: {
-    srcDir: "src/",
     // prerender: {  // for SSR + SSG
     //   routes: []
     // },
