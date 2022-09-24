@@ -47,7 +47,6 @@ export default defineNuxtConfig({
     ],
   },
   nitro: {
-    srcDir: "src/",
     // prerender: {  // for SSR + SSG
     //   routes: []
     // },
