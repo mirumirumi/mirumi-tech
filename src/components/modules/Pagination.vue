@@ -14,7 +14,7 @@
       </div>
     </template>
     <template v-else>
-      <NuxtLink :to="{ query: { _page: 1 } }" class="page_latest">
+      <NuxtLink :to="{ query: { page: 1 } }" class="page_latest">
         {{ 1 }}
       </NuxtLink>
     </template>
