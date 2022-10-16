@@ -40,7 +40,7 @@ import secret from "@/secrets"
 const router = useRouter()
 const slag = ref(router.currentRoute.value.params.slag)
 
-const post = ref(await $fetch<PostData>(`/get-post`, {
+const post = ref<PostData>(await $fetch(`/get-post`, {
   baseURL: secret.API_BASE_URL,
   headers: {
     Authorization: secret.API_KEY,

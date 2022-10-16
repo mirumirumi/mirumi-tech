@@ -9,6 +9,7 @@
       <NuxtPage id="container" />
     </NuxtLayout>
     <ModulesTheFooter />
+    <div ref="ad"></div>
   </div>
 </template>
 
@@ -16,6 +17,16 @@
 // app.vue acts as the main component of your Nuxt application. Anything you add to it (JS and CSS) will be global and included in every page
 
 // to allow route transitions between pages, a page must have a single route element (HTML comments are also considered elements)
+
+const ad = ref()
+
+onMounted(() => {
+  const script = document.createElement("script")
+  script.type = "text/javascript"
+  script.text = "(adsbygoogle = window.adsbygoogle || []).push({});"
+
+  ad.value.appendChild(script)
+})
 </script>
 
 <style lang="scss">

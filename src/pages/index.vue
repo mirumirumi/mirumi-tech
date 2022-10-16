@@ -42,7 +42,7 @@ import secret from "@/secrets"
 const router = useRouter()
 const page = ref(Number(router.currentRoute.value.query.page ?? 1))
 
-const data = await $fetch<ResIndexesAPI>(`/get-top-indexes`, {
+const data: ResIndexesAPI = await $fetch(`/get-top-indexes`, {
   baseURL: secret.API_BASE_URL,
   headers: {
     Authorization: secret.API_KEY,
@@ -69,7 +69,7 @@ watch(router.currentRoute, async (new_, old_) => {
 
     page.value = Number(new_.query.page ?? 1)
 
-    const data = await $fetch<ResIndexesAPI>(`/get-top-indexes`, {
+    const data: ResIndexesAPI = await $fetch(`/get-top-indexes`, {
       baseURL: secret.API_BASE_URL,
       headers: {
         Authorization: secret.API_KEY,

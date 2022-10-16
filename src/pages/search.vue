@@ -59,7 +59,7 @@ const isNoQuery = computed(() => {
   return query.value === ""
 })
 
-const postLinks = ref(await $fetch<PostLink[]>(`/search-post`, {
+const postLinks = ref<PostLink[]>(await $fetch(`/search-post`, {
   baseURL: secret.API_BASE_URL,
   headers: {
     Authorization: secret.API_KEY,
@@ -80,7 +80,7 @@ watch(router.currentRoute, async (new_, old_) => {
 
     query.value = new_.query.q as string
   
-    postLinks.value = await $fetch<PostLink[]>(`/search-post`, {
+    postLinks.value = await $fetch(`/search-post`, {
       baseURL: secret.API_BASE_URL,
       headers: {
         Authorization: secret.API_KEY,

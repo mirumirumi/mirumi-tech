@@ -29,7 +29,7 @@ import secret from "@/secrets"
 
 const router = useRouter()
 
-const data = ref(await $fetch<ResIndexesAPI>(`/get-top-indexes`, {
+const data = ref<ResIndexesAPI>(await $fetch(`/get-top-indexes`, {
   baseURL: secret.API_BASE_URL,
   headers: {
     Authorization: secret.API_KEY,
