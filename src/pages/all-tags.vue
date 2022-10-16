@@ -29,7 +29,7 @@ import secret from "@/secrets"
 
 const router = useRouter()
 
-const tags = ref(await $fetch<Tag[]>(`/get-all-tags`, {
+const tags = ref<Tag[]>(await $fetch(`/get-all-tags`, {
   baseURL: secret.API_BASE_URL,
   headers: {
     Authorization: secret.API_KEY,
