@@ -1,8 +1,10 @@
 <template>
   <div id="app">
-    <Head>
-      <Script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2873410957106428" crossorigin="anonymous"></Script>
-    </Head>
+    <ClientOnly>
+      <Head>
+        <Script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2873410957106428" crossorigin="anonymous"></Script>
+      </Head>
+    </ClientOnly>
     <ModulesTheHeader />
     <NuxtLayout>
       <NuxtLoadingIndicator :height="2.9" :duration="1777" :color="'#bb7c1f'" :throttle="199" />
