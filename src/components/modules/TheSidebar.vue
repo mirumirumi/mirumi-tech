@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar_wrap">
+  <div class="sidebar_wrap" style="height: calc(100vh - 13px * 2) !important">
     <aside class="ad">
       <ClientOnly>
         <ins 
