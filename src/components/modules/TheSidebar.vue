@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar_wrap" style="height: calc(100vh - 13px * 2) !important">
+  <div class="sidebar_wrap" ref="sidebar_wrap">
     <aside class="ad">
       <ClientOnly>
         <ins 
@@ -17,9 +17,18 @@
 </template>
 
 <script setup lang="ts">
+import { delay } from "@/lib/utils"
+
 defineProps<{
   html: string,
 }>()
+
+const sidebar_wrap = ref()
+
+onMounted(async () => {
+  await delay(1111)
+  sidebar_wrap.value.style.height = "calc(100vh - 13px * 2)"
+})
 </script>
 
 <style lang="scss" scoped>
