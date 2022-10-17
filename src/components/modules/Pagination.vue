@@ -1,10 +1,5 @@
 <template>
   <div v-if="PAGE_ITEMS < count" class="pagination">
-    <Head>
-      <Link rel="prev" v-if="1 < _page" :href="prevlLink" />
-      <Link rel="next" v-if="_page < pageCount" :href="nextLink" />
-    </Head>
-
     <NuxtLink v-if="1 < _page" :to="{ query: { page: _page - 1 } }" class="arrow prev">
       <PartsSvgIcon :icon="'arrow_left'" :color="'#727272'" :dark="'var(--color-text)'" />
     </NuxtLink>
