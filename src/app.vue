@@ -1,31 +1,36 @@
 <template>
   <div id="app">
-    <ClientOnly>
-      <Head>
-        <Script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2873410957106428" crossorigin="anonymous"></Script>
-      </Head>
-    </ClientOnly>
     <ModulesTheHeader />
     <NuxtLoadingIndicator :height="2.9" :duration="1777" :color="'#bb7c1f'" :throttle="199" />
     <NuxtPage id="container" />
     <ModulesTheFooter />
-    <div ref="ad"></div>
+    <div id="script1">
+      <Script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2873410957106428" crossorigin="anonymous"></Script>
+    </div>
+    <div id="script2">
+      <Script>(adsbygoogle = window.adsbygoogle || []).push({});</Script>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-// app.vue acts as the main component of your Nuxt application. Anything you add to it (JS and CSS) will be global and included in every page
-
-// to allow route transitions between pages, a page must have a single route element (HTML comments are also considered elements)
-
-const ad = ref()
-
 onMounted(() => {
-  if (ad.value.innerHTML !== "") return
+  const script1 = document.getElementById("script1") as HTMLDivElement
+  const script2 = document.getElementById("script2") as HTMLDivElement
 
-  const script = document.createElement("script")
-  script.text = "(adsbygoogle = window.adsbygoogle || []).push({});"
-  ad.value.appendChild(script)
+  if (script1.innerHTML === "") {
+    const src1 = document.createElement("script")
+    src1.async = true
+    src1.crossOrigin = "anonymous"
+    src1.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2873410957106428"
+    script1.appendChild(src1)
+  }
+
+  if (script2.innerHTML === "") {
+    const src2 = document.createElement("script")
+    src2.text = "(adsbygoogle = window.adsbygoogle || []).push({});"
+    script2.appendChild(src2)
+  }
 })
 </script>
 

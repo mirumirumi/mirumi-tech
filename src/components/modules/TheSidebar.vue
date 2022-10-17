@@ -3,6 +3,7 @@
     <aside class="ad">
       <ClientOnly>
         <ins 
+          v-once
           class="adsbygoogle"
           style="display: inline-block; width: 300px; height: 250px;"
           data-ad-client="ca-pub-2873410957106428"
