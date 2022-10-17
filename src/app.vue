@@ -12,7 +12,11 @@
 <script setup lang="ts">
 import { delay } from "@/lib/utils"
 
+const router = useRouter()
+
 onMounted(async () => {
+  if (router.currentRoute.value.name !== "slag") return
+
   const script1 = document.getElementById("script1") as HTMLDivElement
   const script2 = document.getElementById("script2") as HTMLDivElement
 
