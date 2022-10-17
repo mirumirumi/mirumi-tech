@@ -23,10 +23,10 @@
 const ad = ref()
 
 onMounted(() => {
-  const script = document.createElement("script")
-  script.type = "text/javascript"
-  script.text = "(adsbygoogle = window.adsbygoogle || []).push({});"
+  if (ad.value.innerHTML !== "") return
 
+  const script = document.createElement("script")
+  script.text = "(adsbygoogle = window.adsbygoogle || []).push({});"
   ad.value.appendChild(script)
 })
 </script>
