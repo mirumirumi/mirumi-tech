@@ -10,7 +10,9 @@
 </template>
 
 <script setup lang="ts">
-onMounted(() => {
+import { delay } from "@/lib/utils"
+
+onMounted(async () => {
   const script1 = document.getElementById("script1") as HTMLDivElement
   const script2 = document.getElementById("script2") as HTMLDivElement
 
@@ -19,6 +21,8 @@ onMounted(() => {
   src1.crossOrigin = "anonymous"
   src1.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2873410957106428"
   script1.appendChild(src1)
+
+  await delay(333)
 
   const src2 = document.createElement("script")
   src2.text = "(adsbygoogle = window.adsbygoogle || []).push({});"
