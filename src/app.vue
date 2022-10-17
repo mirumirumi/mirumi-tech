@@ -6,10 +6,8 @@
       </Head>
     </ClientOnly>
     <ModulesTheHeader />
-    <NuxtLayout>
-      <NuxtLoadingIndicator :height="2.9" :duration="1777" :color="'#bb7c1f'" :throttle="199" />
-      <NuxtPage id="container" />
-    </NuxtLayout>
+    <NuxtLoadingIndicator :height="2.9" :duration="1777" :color="'#bb7c1f'" :throttle="199" />
+    <NuxtPage id="container" />
     <ModulesTheFooter />
     <div ref="ad"></div>
   </div>
