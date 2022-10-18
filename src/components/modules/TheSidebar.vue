@@ -53,7 +53,7 @@ onUnmounted(() => {
   position: sticky;
   top: 6px;
   width: var(--width-sidebar);
-  height: calc(100vh - 13px * 2);
+  height: 100vh;
   padding: 13px 13px;
   .ad {
     height: 250px !important;
