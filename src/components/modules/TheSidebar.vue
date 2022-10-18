@@ -1,5 +1,8 @@
 <template>
   <div class="sidebar_wrap" ref="sidebar_wrap">
+    <Head>
+      <Script crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2873410957106428"></Script>
+    </Head>
     <aside class="ad">
       <ClientOnly>
         <ins 
@@ -28,7 +31,6 @@ const sidebar_wrap = ref()
 const script2 = ref()
 
 onMounted(() => {
-  // const script2 = document.getElementById("script2") as HTMLDivElement
   const src2 = document.createElement("script")
   src2.text = "(adsbygoogle = window.adsbygoogle || []).push({});"
   script2.value.appendChild(src2)
