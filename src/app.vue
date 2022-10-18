@@ -10,8 +10,6 @@
 </template>
 
 <script setup lang="ts">
-import { delay } from "@/lib/utils"
-
 const router = useRouter()
 
 onMounted(async () => {
@@ -21,12 +19,10 @@ onMounted(async () => {
   const script2 = document.getElementById("script2") as HTMLDivElement
 
   const src1 = document.createElement("script")
-  src1.async = true
+  src1.defer = true
   src1.crossOrigin = "anonymous"
   src1.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2873410957106428"
   script1.appendChild(src1)
-
-  await delay(333)
 
   const src2 = document.createElement("script")
   src2.text = "(adsbygoogle = window.adsbygoogle || []).push({});"
