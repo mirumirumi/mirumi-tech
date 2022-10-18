@@ -1,8 +1,5 @@
 <template>
   <div id="app">
-    <Head>
-      <Script defer crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2873410957106428"></Script>
-    </Head>
     <ModulesTheHeader />
     <NuxtLoadingIndicator :height="2.9" :duration="1777" :color="'#bb7c1f'" :throttle="199" />
     <NuxtPage id="container" />
