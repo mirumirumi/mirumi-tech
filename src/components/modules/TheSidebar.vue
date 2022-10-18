@@ -1,11 +1,8 @@
 <template>
   <div class="sidebar_wrap" ref="sidebar_wrap">
-    <Head>
-      <Script crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2873410957106428"></Script>
-    </Head>
-    <aside class="ad">
+    <aside class="ad" ref="insads">
       <ClientOnly>
-        <ins 
+        <ins
           class="adsbygoogle"
           style="display: inline-block; width: 300px; height: 250px;"
           data-ad-client="ca-pub-2873410957106428"
@@ -24,7 +21,11 @@ defineProps<{
   html: string,
 }>()
 
+const insads = ref()
+
 onMounted(() => {
+  while (insads.value.firstChild) { insads.value.removeChild(insads.value.firstChild) }
+    
   // @ts-ignore
   (adsbygoogle = window.adsbygoogle || []).push({});
 })
@@ -35,7 +36,7 @@ onMounted(() => {
   position: sticky;
   top: 6px;
   width: var(--width-sidebar);
-  height: 100vh;
+  height: 100vh;  // use primitive value to prevent AdSense from overriding parent styles
   padding: 13px 13px;
   .ad {
     height: 250px !important;
