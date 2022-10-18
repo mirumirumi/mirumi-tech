@@ -1,6 +1,6 @@
 <template>
   <div class="sidebar_wrap" ref="sidebar_wrap">
-    <aside class="ad" ref="insads">
+    <aside class="ad">
       <ClientOnly>
         <ins
           class="adsbygoogle"
@@ -21,11 +21,7 @@ defineProps<{
   html: string,
 }>()
 
-const insads = ref()
-
 onMounted(() => {
-  while (insads.value.firstChild) { insads.value.removeChild(insads.value.firstChild) }
-    
   // @ts-ignore
   (adsbygoogle = window.adsbygoogle || []).push({});
 })
