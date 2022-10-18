@@ -1,5 +1,8 @@
 <template>
   <div class="sidebar_wrap" ref="sidebar_wrap">
+    <Head>
+      <Script crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2873410957106428"></Script>
+    </Head>
     <aside class="ad">
       <ClientOnly>
         <ins
@@ -9,13 +12,11 @@
           data-ad-slot="8481345159"
           data-ad-format="rectangle"></ins>
       </ClientOnly>
+      <div ref="adspush"></div>
     </aside>
     <aside class="toc">
       <ModulesToc :html="html" />
     </aside>
-    <Teleport to="body">
-      <div ref="adspush"></div>
-    </Teleport>
   </div>
 </template>
 
