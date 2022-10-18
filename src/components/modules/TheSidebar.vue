@@ -11,8 +11,8 @@
           data-ad-client="ca-pub-2873410957106428"
           data-ad-slot="8481345159"
           data-ad-format="rectangle"></ins>
+        <!-- <div ref="script2"></div> -->
       </ClientOnly>
-      <div ref="script2"></div>
     </aside>
     <aside class="toc">
       <ModulesToc :html="html" />
@@ -21,8 +21,6 @@
 </template>
 
 <script setup lang="ts">
-import { delay } from "@/lib/utils"
-
 defineProps<{
   html: string,
 }>()
@@ -31,20 +29,12 @@ const sidebar_wrap = ref()
 const script2 = ref()
 
 onMounted(() => {
-  const src2 = document.createElement("script")
-  src2.id = "src2"
-  src2.text = "(adsbygoogle = window.adsbygoogle || []).push({});"
-  script2.value.appendChild(src2)
-})
+  (adsbygoogle = window.adsbygoogle || []).push({});
 
-onMounted(async () => {
-  await delay(1111)
-  sidebar_wrap.value.style.height = "calc(100vh - 13px * 2)"
-})
-
-onUnmounted(() => {
-  const src2 = document.getElementById("src2") as HTMLScriptElement; if (!src2) return
-  src2.text = "(adsbygoogle = window.adsbygoogle || []).pop();"
+  // const src2 = document.createElement("script")
+  // src2.id = "src2"
+  // src2.text = "(adsbygoogle = window.adsbygoogle || []).push({});"
+  // script2.value.appendChild(src2)
 })
 </script>
 
@@ -53,7 +43,7 @@ onUnmounted(() => {
   position: sticky;
   top: 6px;
   width: var(--width-sidebar);
-  height: calc(100vh - 13px * 2);
+  height: 100vh;
   padding: 13px 13px;
   .ad {
     height: 250px !important;
