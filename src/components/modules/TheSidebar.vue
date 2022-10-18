@@ -9,7 +9,7 @@
           data-ad-slot="8481345159"
           data-ad-format="rectangle"></ins>
       </ClientOnly>
-      <div id="script2"></div>
+      <div ref="script2"></div>
     </aside>
     <aside class="toc">
       <ModulesToc :html="html" />
@@ -25,14 +25,16 @@ defineProps<{
 }>()
 
 const sidebar_wrap = ref()
+const script2 = ref()
 
-onMounted(async () => {
-  const script2 = document.getElementById("script2") as HTMLDivElement
+onMounted(() => {
+  // const script2 = document.getElementById("script2") as HTMLDivElement
   const src2 = document.createElement("script")
   src2.text = "(adsbygoogle = window.adsbygoogle || []).push({});"
-  script2.appendChild(src2)
+  script2.value.appendChild(src2)
+})
 
-
+onMounted(async () => {
   await delay(1111)
   sidebar_wrap.value.style.height = "calc(100vh - 13px * 2)"
 })
