@@ -29,6 +29,13 @@ export default defineNuxtConfig({
       link: [
         { rel: "canonical", href: "https://mirumi.tech" },
         { rel: "icon", href: "https://mirumi.tech/assets/favicon.ico" },
+        { rel: "preconnect dns-prefetch", href: "//www.google-analytics.com" },
+        { rel: "preconnect dns-prefetch", href: "//pagead2.googlesyndication.com" },
+        { rel: "preconnect dns-prefetch", href: "//googleads.g.doubleclick.net" },
+        { rel: "preconnect dns-prefetch", href: "//tpc.googlesyndication.com" },
+        { rel: "preconnect dns-prefetch", href: "//ad.doubleclick.net" },
+        { rel: "preconnect dns-prefetch", href: "//www.gstatic.com" },
+        { rel: "preconnect dns-prefetch", href: "//cse.google.com" },
       ],
       style: [],
       script: [],
