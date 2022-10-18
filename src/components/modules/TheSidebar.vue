@@ -39,7 +39,7 @@ onMounted(() => {
   position: sticky;
   top: 6px;
   width: var(--width-sidebar);
-  height: 100vh;  // use primitive value to prevent AdSense from overriding parent styles
+  height: 263px !important;  // use primitive value to prevent AdSense from overriding parent styles (250px + 13px)
   padding: 13px 13px;
   .ad {
     height: 250px !important;
