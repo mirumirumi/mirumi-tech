@@ -1,7 +1,7 @@
 <template>
   <div class="sidebar_wrap" ref="sidebar_wrap">
     <Head>
-      <Script crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2873410957106428"></Script>
+      <Script async crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2873410957106428"></Script>
     </Head>
     <aside class="ad">
       <ClientOnly>
@@ -32,6 +32,7 @@ const script2 = ref()
 
 onMounted(() => {
   const src2 = document.createElement("script")
+  src2.id = "src2"
   src2.text = "(adsbygoogle = window.adsbygoogle || []).push({});"
   script2.value.appendChild(src2)
 })
@@ -39,6 +40,11 @@ onMounted(() => {
 onMounted(async () => {
   await delay(1111)
   sidebar_wrap.value.style.height = "calc(100vh - 13px * 2)"
+})
+
+onUnmounted(() => {
+  const src2 = document.getElementById("src2") as HTMLScriptElement; if (!src2) return
+  src2.text = "(adsbygoogle = window.adsbygoogle || []).pop();"
 })
 </script>
 
