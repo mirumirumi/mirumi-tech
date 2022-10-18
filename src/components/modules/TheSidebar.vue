@@ -13,6 +13,9 @@
     <aside class="toc">
       <ModulesToc :html="html" />
     </aside>
+    <Teleport to="body">
+      <div ref="adspush"></div>
+    </Teleport>
   </div>
 </template>
 
@@ -21,9 +24,12 @@ defineProps<{
   html: string,
 }>()
 
+const adspush = ref()
+
 onMounted(() => {
-  // @ts-ignore
-  (adsbygoogle = window.adsbygoogle || []).push({});
+  const src = document.createElement("script") as HTMLScriptElement
+  src.text = "(adsbygoogle = window.adsbygoogle || []).push({});"
+  adspush.value.appendChild(src)  
 })
 </script>
 
