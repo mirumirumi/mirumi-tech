@@ -1,7 +1,7 @@
 <template>
   <div class="sidebar_wrap" ref="sidebar_wrap">
     <Head>
-      <Script crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2873410957106428"></Script>
+      <Script defer crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2873410957106428"></Script>
     </Head>
     <aside class="ad" ref="adaside">
       <div ref="adins"></div>
