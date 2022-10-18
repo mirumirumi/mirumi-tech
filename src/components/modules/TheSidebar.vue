@@ -1,7 +1,7 @@
 <template>
   <div class="sidebar_wrap" ref="sidebar_wrap">
     <Head>
-      <Script async crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2873410957106428"></Script>
+      <Script crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2873410957106428"></Script>
     </Head>
     <aside class="ad">
       <ClientOnly>
@@ -11,7 +11,6 @@
           data-ad-client="ca-pub-2873410957106428"
           data-ad-slot="8481345159"
           data-ad-format="rectangle"></ins>
-        <!-- <div ref="script2"></div> -->
       </ClientOnly>
     </aside>
     <aside class="toc">
@@ -25,16 +24,9 @@ defineProps<{
   html: string,
 }>()
 
-const sidebar_wrap = ref()
-const script2 = ref()
-
 onMounted(() => {
+  // @ts-ignore
   (adsbygoogle = window.adsbygoogle || []).push({});
-
-  // const src2 = document.createElement("script")
-  // src2.id = "src2"
-  // src2.text = "(adsbygoogle = window.adsbygoogle || []).push({});"
-  // script2.value.appendChild(src2)
 })
 </script>
 
