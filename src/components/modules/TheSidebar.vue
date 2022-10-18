@@ -4,15 +4,7 @@
       <Script crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2873410957106428"></Script>
     </Head>
     <aside class="ad" ref="adaside">
-      <ClientOnly>
-        <ins
-          class="adsbygoogle"
-          style="display: inline-block; width: 300px; height: 250px;"
-          data-ad-client="ca-pub-2873410957106428"
-          data-ad-slot="8481345159"
-          data-ad-format="rectangle">
-        </ins>
-      </ClientOnly>
+      <div ref="adins"></div>
       <div ref="adspush"></div>
     </aside>
     <aside class="toc">
@@ -27,16 +19,27 @@ defineProps<{
 }>()
 
 const sidebar_wrap = ref()
+const adins = ref()
 const adspush = ref()
 const targetStyle = ref("calc(100vh - 13px * 2)")
 
 onMounted(() => {
+  const ins = document.createElement("ins") as HTMLElement
+  ins.classList.value = "adsbygoogle"
+  ins.style.display = "inline-block"
+  ins.style.width = "300px"
+  ins.style.height = "250px"
+  ins.setAttribute("data-ad-client", "ca-pub-2873410957106428")
+  ins.setAttribute("data-ad-slot", "8481345159")
+  ins.setAttribute("data-ad-format", "rectangle")
+  adins.value.appendChild(ins)
+  
   const src = document.createElement("script") as HTMLScriptElement
   src.text = "(adsbygoogle = window.adsbygoogle || []).push({});"
-  adspush.value.appendChild(src)  
+  adspush.value.appendChild(src)
 
   // https://bit.ly/3MLZyCE
-  const observer = new MutationObserver((mutations, observer) => {
+  const observer = new MutationObserver(() => {
     sidebar_wrap.value.style.height = targetStyle.value
   })
   observer.observe(sidebar_wrap.value, {
