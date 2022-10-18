@@ -5,7 +5,6 @@
     <NuxtPage id="container" />
     <ModulesTheFooter />
     <div id="script1"></div>
-    <div id="script2"></div>
   </div>
 </template>
 
@@ -16,17 +15,12 @@ onMounted(async () => {
   if (router.currentRoute.value.name !== "slag") return
 
   const script1 = document.getElementById("script1") as HTMLDivElement
-  const script2 = document.getElementById("script2") as HTMLDivElement
 
   const src1 = document.createElement("script")
   src1.defer = true
   src1.crossOrigin = "anonymous"
   src1.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2873410957106428"
   script1.appendChild(src1)
-
-  const src2 = document.createElement("script")
-  src2.text = "(adsbygoogle = window.adsbygoogle || []).push({});"
-  script2.appendChild(src2)
 })
 </script>
 
