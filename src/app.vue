@@ -1,27 +1,16 @@
 <template>
   <div id="app">
+    <Head>
+      <Script defer crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2873410957106428"></Script>
+    </Head>
     <ModulesTheHeader />
     <NuxtLoadingIndicator :height="2.9" :duration="1777" :color="'#bb7c1f'" :throttle="199" />
     <NuxtPage id="container" />
     <ModulesTheFooter />
-    <div id="script1"></div>
   </div>
 </template>
 
 <script setup lang="ts">
-const router = useRouter()
-
-onMounted(async () => {
-  if (router.currentRoute.value.name !== "slag") return
-
-  const script1 = document.getElementById("script1") as HTMLDivElement
-
-  const src1 = document.createElement("script")
-  src1.defer = true
-  src1.crossOrigin = "anonymous"
-  src1.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2873410957106428"
-  script1.appendChild(src1)
-})
 </script>
 
 <style lang="scss">
