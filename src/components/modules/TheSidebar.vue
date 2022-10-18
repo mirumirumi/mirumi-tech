@@ -3,17 +3,16 @@
     <Head>
       <Script crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2873410957106428"></Script>
     </Head>
-    <aside class="ad">
-      <ClientOnly>
-        <ins
-          class="adsbygoogle"
-          style="display: inline-block; width: 300px; height: 250px;"
-          data-ad-client="ca-pub-2873410957106428"
-          data-ad-slot="8481345159"
-          data-ad-format="rectangle"></ins>
-      </ClientOnly>
-      <div ref="adspush"></div>
-    </aside>
+    <ClientOnly>
+      <ins
+        class="adsbygoogle"
+        style="display: inline-block; width: 300px; height: 250px;"
+        data-ad-client="ca-pub-2873410957106428"
+        data-ad-slot="8481345159"
+        data-ad-format="rectangle">
+      </ins>
+    </ClientOnly>
+    <div ref="adspush"></div>
     <aside class="toc">
       <ModulesToc :html="html" />
     </aside>
@@ -39,13 +38,10 @@ onMounted(() => {
   position: sticky;
   top: 6px;
   width: var(--width-sidebar);
-  height: 263px !important;  // use primitive value to prevent AdSense from overriding parent styles (250px + 13px)
+  height: calc(100vh - 13px * 2);
   padding: 13px 13px;
-  .ad {
-    height: 250px !important;
-    ins.adsbygoogle[data-ad-status="unfilled"] {
-      display: none !important;
-    }
+  ins.adsbygoogle[data-ad-status="unfilled"] {
+    display: none !important;
   }
   @include tablet {
     padding: 13px 0 13px 26px;
