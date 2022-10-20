@@ -50,7 +50,7 @@ const data = ref<ResIndexesAPI>(await $fetch(`/get-tag-indexes`, {
     Authorization: secret.API_KEY,
   },
   params: {
-    tag: tagName.value,
+    tag: encodeURI(tagName.value),
     page: page.value,
   },
 }))
