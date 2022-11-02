@@ -61,9 +61,9 @@
     </header>
     <Teleport to="body">
       <Transition name="fadedown">
-        <ModulesModalBase :className="'search'" v-if="isOpenSearchModal" @closeModal="isOpenSearchModal = false">
+        <ModulesModalBase :className="'search'" v-if="isOpenSearchModal" @closeModal="isOpenSearchModal = false" ref="modalBaseRef">
           <div class="form">
-            <ModulesSearchBox @closeSearchBox="isOpenSearchModal = false" />
+            <ModulesSearchBox @closeSearchBox="closeSearchBox" />
           </div>
         </ModulesModalBase>
       </Transition>
@@ -86,6 +86,12 @@ const githubUrl = computed(() => {
 })
 
 const isOpenSearchModal = ref(false)
+const modalBaseRef = ref()
+
+const closeSearchBox = () => {
+  modalBaseRef.value.closeModal()
+  isOpenSearchModal.value = false
+}
 
 const isPost = (): boolean => {
   return router.currentRoute.value.name === "slag"

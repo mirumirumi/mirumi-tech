@@ -66,6 +66,8 @@ const closeModal = async () => {
   ; (document.getElementsByTagName("body")[0] as HTMLBodyElement).classList.remove("modal")
 }
 
+defineExpose({ closeModal })
+
 function keydownEscape(e: KeyboardEvent): void {
   if (e.key === "Escape") {
     e.preventDefault()
