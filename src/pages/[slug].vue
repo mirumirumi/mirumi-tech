@@ -38,7 +38,7 @@ import { delay, friendlyDatetime, zeroPadding } from "@/lib/utils"
 import secret from "@/secrets"
 
 const router = useRouter()
-const slag = ref(router.currentRoute.value.params.slag)
+const slug = ref(router.currentRoute.value.params.slug)
 
 const post = ref<PostData>(await $fetch(`/get-post`, {
   baseURL: secret.API_BASE_URL,
@@ -46,7 +46,7 @@ const post = ref<PostData>(await $fetch(`/get-post`, {
     Authorization: secret.API_KEY,
   },  
   params: {
-    slag: slag.value,
+    slag: slug.value,
   },
 }))
 
@@ -80,7 +80,7 @@ useSetMeta({
   title: post.value.title,
   description: generateMetaDescription(post.value.body),
   keywords: post.value.tags.join(","),
-  url: SITE_FULL_PATH + "/" + slag.value,
+  url: SITE_FULL_PATH + "/" + slug.value,
   createdAt: post.value.created_at,
   updatedAt: post.value.updated_at,
 })
