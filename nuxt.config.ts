@@ -40,6 +40,10 @@ export default defineNuxtConfig({
       style: [],
       script: [],
     },
+    // pageTransition: {
+    //   name: "page",
+    //   mode: "out-in",
+    // },
   },
   components: {
     dirs: [
