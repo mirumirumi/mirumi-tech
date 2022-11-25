@@ -34,7 +34,7 @@
 
 <script setup lang="ts">
 import { SITE_FULL_PATH, PostData } from "@/lib/defines"
-import { delay, friendlyDatetime, zeroPadding } from "@/lib/utils"
+import { friendlyDatetime, zeroPadding } from "@/lib/utils"
 import secret from "@/secrets"
 
 const router = useRouter()
@@ -50,12 +50,6 @@ const post = ref<PostData>(await $fetch(`/get-post`, {
   },
 }))
 
-onMounted(async () => {
-  do {
-    await delay(100)
-  } while (!document.getElementById("content"))
-
-  useHead({ script: [{ src: "/assets/prism.js", defer: true },] })
 })
 
 const clickHandle = (e: any) => {
