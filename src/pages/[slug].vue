@@ -34,29 +34,22 @@
 
 <script setup lang="ts">
 import { SITE_FULL_PATH, PostData } from "@/lib/defines"
-import { delay, friendlyDatetime, zeroPadding } from "@/lib/utils"
+import { friendlyDatetime, zeroPadding } from "@/lib/utils"
 import secret from "@/secrets"
 
 const router = useRouter()
-const slag = ref(router.currentRoute.value.params.slag)
+const slug = ref(router.currentRoute.value.params.slug)
 
-const post = ref<PostData>(await $fetch(`/get-post`, {
+const { data } = await useFetch(`/get-post`, {
   baseURL: secret.API_BASE_URL,
   headers: {
     Authorization: secret.API_KEY,
-  },  
-  params: {
-    slag: slag.value,
   },
-}))
-
-onMounted(async () => {
-  do {
-    await delay(100)
-  } while (!document.getElementById("content"))
-
-  useHead({ script: [{ src: "/assets/prism.js", defer: true },] })
+  params: {
+    slag: slug.value,
+  },
 })
+const post = ref(data.value as PostData)
 
 const clickHandle = (e: any) => {
   const link = e.target.closest("a")
@@ -80,7 +73,7 @@ useSetMeta({
   title: post.value.title,
   description: generateMetaDescription(post.value.body),
   keywords: post.value.tags.join(","),
-  url: SITE_FULL_PATH + "/" + slag.value,
+  url: SITE_FULL_PATH + "/" + slug.value,
   createdAt: post.value.created_at,
   updatedAt: post.value.updated_at,
 })

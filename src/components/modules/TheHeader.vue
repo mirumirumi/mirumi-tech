@@ -78,8 +78,8 @@ const router = useRouter()
 
 const githubUrl = computed(() => {
   if (isPost()) {
-    const slag = router.currentRoute.value.path
-    return "https://github.com/mirumirumi/mirumi-tech-content/blob/main/posts" + slag + ".md"
+    const slug = router.currentRoute.value.path
+    return "https://github.com/mirumirumi/mirumi-tech-content/blob/main/posts" + slug + ".md"
   } else {
     return "https://github.com/mirumirumi"
   }
@@ -94,7 +94,7 @@ const closeSearchBox = () => {
 }
 
 const isPost = (): boolean => {
-  return router.currentRoute.value.name === "slag"
+  return router.currentRoute.value.name === "slug"
 }
 
 const isShownTtAe = ref(false)

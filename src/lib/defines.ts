@@ -17,7 +17,8 @@ export interface PageMeta {
 }
 
 export interface PostLink {
-  slag: string,
+  slug: string,
+  slag?: string,
   title: string,
   created_at: string,
   updated_at: string,

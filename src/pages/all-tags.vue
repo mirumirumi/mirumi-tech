@@ -29,12 +29,13 @@ import secret from "@/secrets"
 
 const router = useRouter()
 
-const tags = ref<Tag[]>(await $fetch(`/get-all-tags`, {
+const { data } = await useFetch(`/get-all-tags`, {
   baseURL: secret.API_BASE_URL,
   headers: {
     Authorization: secret.API_KEY,
   },
-}))
+})
+const tags = ref(data.value as Tag[])
 
 useSetMeta({
   title: "すべてのタグ",
