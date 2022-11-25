@@ -59,7 +59,7 @@ const isNoQuery = computed(() => {
   return query.value === ""
 })
 
-const postLinks = ref<PostLink[]>(await $fetch(`/search-post`, {
+const { data } = await useFetch(`/search-post`, {
   baseURL: secret.API_BASE_URL,
   headers: {
     Authorization: secret.API_KEY,
@@ -67,7 +67,8 @@ const postLinks = ref<PostLink[]>(await $fetch(`/search-post`, {
   params: {
     query: query.value,
   },
-}))
+})
+const postLinks = ref(data.value as PostLink[])
 
 /**
  * CSR

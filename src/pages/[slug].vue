@@ -40,17 +40,16 @@ import secret from "@/secrets"
 const router = useRouter()
 const slug = ref(router.currentRoute.value.params.slug)
 
-const post = ref<PostData>(await $fetch(`/get-post`, {
+const { data } = await useFetch(`/get-post`, {
   baseURL: secret.API_BASE_URL,
   headers: {
     Authorization: secret.API_KEY,
-  },  
+  },
   params: {
     slag: slug.value,
   },
-}))
-
 })
+const post = ref(data.value as PostData)
 
 const clickHandle = (e: any) => {
   const link = e.target.closest("a")

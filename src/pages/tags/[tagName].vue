@@ -44,7 +44,7 @@ const router = useRouter()
 const tagName = ref(router.currentRoute.value.params.tagName as string)
 const page = ref(Number(router.currentRoute.value.params.pageNumber ?? 1))
 
-const data = ref<ResIndexesAPI>(await $fetch(`/get-tag-indexes`, {
+const { data } = await useFetch(`/get-tag-indexes`, {
   baseURL: secret.API_BASE_URL,
   headers: {
     Authorization: secret.API_KEY,
@@ -53,10 +53,9 @@ const data = ref<ResIndexesAPI>(await $fetch(`/get-tag-indexes`, {
     tag: tagName.value,
     page: page.value,
   },
-}))
-
-const postLinks = ref(data.value.items)
-const count = ref(data.value.count)
+})
+const postLinks = ref((data.value as ResIndexesAPI).items)
+const count = ref((data.value as ResIndexesAPI).count)
 
 /**
  * CSR

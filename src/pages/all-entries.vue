@@ -29,7 +29,7 @@ import secret from "@/secrets"
 
 const router = useRouter()
 
-const data = ref<ResIndexesAPI>(await $fetch(`/get-top-indexes`, {
+const { data } = await useFetch(`/get-top-indexes`, {
   baseURL: secret.API_BASE_URL,
   headers: {
     Authorization: secret.API_KEY,
@@ -37,9 +37,8 @@ const data = ref<ResIndexesAPI>(await $fetch(`/get-top-indexes`, {
   params: {
     page: "all",
   },
-}))
-
-const postLinks = ref(data.value.items)
+})
+const postLinks = ref((data.value as ResIndexesAPI).items)
 
 useSetMeta({
   title: "すべての記事",
