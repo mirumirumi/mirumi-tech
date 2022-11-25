@@ -313,7 +313,7 @@ main {
 /**
  * vue transition
  */
-.page-enter-from {  // `page` is reserved by nuxt3 for page transitions
+.page-enter-from {  // not used now (disabled by nuxt.config.ts)
   opacity: 0;
   transform: translateY(7px);
 }
