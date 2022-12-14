@@ -5,7 +5,7 @@ export default (pageMeta: PageMeta) => {
     title: "mirumi.tech",
     titleTemplate: (title) => {
       if (pageMeta && title !== pageMeta.title) return `${pageMeta.title} | ${title}`
-      else return title
+      else return `${title}`
     },
     meta: [
       { name: "description", content: pageMeta.description },

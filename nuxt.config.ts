@@ -11,7 +11,7 @@ export default defineNuxtConfig({
         { name: "description", content: "みるみの技術ブログ" },
         { name: "keywords", content: "みるめも,みるみ,blog,technology,programming" },
         { name: "thumbnail", content: "https://mirumi.tech/assets/main-visual.png" },
-        { property: "og:type", content: "website" },
+        { property: "og:type", content: "article" },
         { property: "og:description", content: "みるみの技術ブログ" },
         { property: "og:title", content: "mirumi.tech" },
         { property: "og:url", content: "https://mirumi.tech" },

@@ -9,11 +9,11 @@
           <div class="meta">
             <div class="created_at">
               <PartsSvgIcon :icon="'edit'" :color="'#9e9e9e'" />
-              <time :datetime="datetime(post.created_at)">{{ friendlyDatetime(post.created_at) }}</time>
+              <time :datetime="post.created_at">{{ friendlyDatetime(post.created_at) }}</time>
             </div>
             <div class="updated_at" v-if="post.updated_at">
               <PartsSvgIcon :icon="'update'" :color="'#9e9e9e'" />
-              <time :datetime="datetime(post.updated_at)">{{ friendlyDatetime(post.updated_at) }}</time>
+              <time :datetime="post.updated_at">{{ friendlyDatetime(post.updated_at) }}</time>
             </div>
           </div>
           <div class="tags">
@@ -82,13 +82,6 @@ function isInternalLink(url: string): boolean {
   const fromDomain = window.location.hostname.replace(/^(https?:\/\/)?([^\/]+).*$/gmi, "$2")
   const toDomain = url.replace(/^(https?:\/\/)?([^\/]+).*$/gmi, "$2")
   return fromDomain === toDomain
-}
-
-const datetime = (datetime: string) => {
-  return `${datetime.slice(0, 4)}-
-          ${zeroPadding(Number(datetime.replace(/\d{4}\/(\d\d*)\/.*?$/gmi, "$1")), 2)}-
-          ${zeroPadding((Number(datetime.replace(/\d{4}\/\d\d*\/(.*?)$/gmi, "$1"))), 2)}
-         `
 }
 
 function generateMetaDescription(html: string): string {
