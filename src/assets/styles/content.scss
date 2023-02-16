@@ -190,6 +190,10 @@
     blockquote {
       margin: 1.5em auto;
     }
+    @include mobile {
+      padding-left: 0.7em;
+      padding-right: 0.7em;
+    }
   }
   .box-info {
     background-color: #fffaf0;
