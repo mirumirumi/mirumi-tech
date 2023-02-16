@@ -89,6 +89,9 @@
     &.win11_ss {
       border-radius: 8px !important;
     }
+    &.mac_ss {
+      border-radius: 13px !important;
+    }
     ~ em {
       display: block;
       margin: 3px auto;
@@ -186,6 +189,10 @@
     }
     blockquote {
       margin: 1.5em auto;
+    }
+    @include mobile {
+      padding-left: 0.7em;
+      padding-right: 0.7em;
     }
   }
   .box-info {
