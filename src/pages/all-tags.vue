@@ -36,7 +36,7 @@ const { data } = await useFetch(`/get-all-tags`, {
 })
 const tags = ref(data.value as Tag[])
 
-useSetMeta({
+usePageInfo({
   title: "すべてのタグ",
   description: "mirumi.tech のすべてのタグ一覧です。",
   keywords: "みるめも,みるみ,blog,technology,programming,tags",

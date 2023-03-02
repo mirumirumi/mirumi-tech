@@ -1,8 +1,6 @@
-// constants and typings
-
 export const SITE_FULL_PATH = "https://mirumi.tech"
 export const MAIL_ADDRESS = "mail@mirumi.tech"
-export const SITE_CREATED_AT = "2022/7/1"
+export const SITE_CREATED_AT = "2022-07-01T00:00:00+09:00"
 
 export const DEBOUNCE_MS = 333
 

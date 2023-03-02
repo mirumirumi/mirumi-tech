@@ -86,7 +86,7 @@ watch(router.currentRoute, async (new_, old_) => {
   }
 })
 
-useSetMeta({
+usePageInfo({
   title: tagName.value,
   description: `${tagName.value} のタグがついた記事一覧です。`,
   keywords: "みるめも,みるみ,blog,technology,programming,tag," + tagName.value,

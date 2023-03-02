@@ -94,7 +94,7 @@ watch(router.currentRoute, async (new_, old_) => {
   }
 })
 
-useSetMeta({
+usePageInfo({
   title: query.value as string,
   description: `${query.value} を含む記事一覧です。`,
   keywords: "みるめも,みるみ,blog,technology,programming,search,",

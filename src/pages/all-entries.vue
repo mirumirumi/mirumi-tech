@@ -39,7 +39,7 @@ const { data } = await useFetch(`/get-top-indexes`, {
 })
 const postLinks = ref((data.value as ResIndexesAPI).items)
 
-useSetMeta({
+usePageInfo({
   title: "すべての記事",
   description: "mirumi.tech のすべての記事一覧です。",
   keywords: "みるめも,みるみ,blog,technology,programming,articles",

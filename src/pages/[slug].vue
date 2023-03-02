@@ -68,7 +68,7 @@ const clickHandle = (e: any) => {
 
 useHead({ script: [{ src: "/assets/prism.js", defer: true },] })
 
-useSetMeta({
+usePageInfo({
   title: post.value.title,
   description: generateMetaDescription(post.value.body),
   keywords: post.value.tags.join(","),

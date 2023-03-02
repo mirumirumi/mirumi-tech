@@ -82,7 +82,7 @@ watch(router.currentRoute, async (new_, old_) => {
   }
 })
 
-useSetMeta({
+usePageInfo({
   title: "mirumi.tech",
   description: "みるみの技術ブログ",
   keywords: "みるめも,みるみ,blog,technology,programming",
