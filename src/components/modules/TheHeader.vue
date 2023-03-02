@@ -72,7 +72,7 @@
 </template>
 
 <script setup lang="ts">
-import { DEBOUNCE_MS } from "@/lib/defines"
+import { DEBOUNCE_MS } from "@/utils/defines"
 
 const router = useRouter()
 

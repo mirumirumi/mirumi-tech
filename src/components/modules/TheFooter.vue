@@ -43,8 +43,7 @@
 </template>
 
 <script setup lang="ts">
-import { delay } from "@/lib/utils"
-import { MAIL_ADDRESS } from "@/lib/defines"
+import { MAIL_ADDRESS } from "@/utils/defines"
 
 const isOpenContactModal = ref(false)
 

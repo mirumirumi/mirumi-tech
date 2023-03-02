@@ -46,7 +46,7 @@
 </template>
 
 <script setup lang="ts">
-import { SITE_FULL_PATH, SITE_CREATED_AT } from "@/lib/defines"
+import { SITE_FULL_PATH, SITE_CREATED_AT } from "@/utils/defines"
 
 const router = useRouter()
 

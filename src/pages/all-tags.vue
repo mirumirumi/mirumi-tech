@@ -23,8 +23,7 @@
 </template>
 
 <script setup lang="ts">
-import { SITE_FULL_PATH, SITE_CREATED_AT, Tag } from "@/lib/defines"
-import { today } from "@/lib/utils"
+import { SITE_FULL_PATH, SITE_CREATED_AT, Tag } from "@/utils/defines"
 import secret from "@/secrets"
 
 const router = useRouter()

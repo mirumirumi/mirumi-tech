@@ -48,8 +48,7 @@
 <script setup lang="ts">
 // only one page, no pagination, no more load
 
-import { SITE_FULL_PATH, SITE_CREATED_AT, PostLink } from "@/lib/defines"
-import { friendlyDatetime, today } from "@/lib/utils"
+import { SITE_FULL_PATH, SITE_CREATED_AT, PostLink } from "@/utils/defines"
 import secret from "@/secrets"
 
 const router = useRouter()
