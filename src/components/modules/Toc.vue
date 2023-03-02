@@ -313,12 +313,15 @@ function searchHasLinkHash(linkHash: string): number {
       text-decoration: none;
     }
     li {
+      margin: 0.2em auto;
       padding: 0.01em 0.37em 0.08em;
     }
     ul.h2 {
       li.h2 {
         line-height: 1.8;
         a {
+          display: block;
+          width: 100%;
           color: #525252;
           font-weight: bold;
           transition: 0.1s;
@@ -329,6 +332,8 @@ function searchHasLinkHash(linkHash: string): number {
           li.h3 {
             line-height: 1.55;
             a {
+              display: block;
+              width: 100%;
               color: #9a9a9a;
               font-size: 0.95em;
               font-weight: bold;
@@ -339,6 +344,8 @@ function searchHasLinkHash(linkHash: string): number {
               li.h4 {
                 line-height: 1.4;
                 a {
+                  display: block;
+                  width: 100%;
                   color: #878787;
                   font-size: 0.93em;
                   font-weight: normal;
@@ -355,7 +362,8 @@ function searchHasLinkHash(linkHash: string): number {
         }
       }
     }
-    li.highlight {
+    li.highlight,
+    li:not(:has(ul)):hover {
       background-color: #f1ede7;
       border-radius: 5px;
     }
@@ -388,7 +396,8 @@ function searchHasLinkHash(linkHash: string): number {
           }
         }
       }
-      li.highlight {
+      li.highlight,
+      li:not(:has(ul)):hover {
         background-color: #52514f;
       }
     }
