@@ -46,11 +46,11 @@
 </template>
 
 <script setup lang="ts">
-import { SITE_FULL_PATH, SITE_CREATED_AT } from "@/lib/defines"
+import { SITE_FULL_PATH, SITE_CREATED_AT } from "@/utils/defines"
 
 const router = useRouter()
 
-useSetMeta({
+usePageInfo({
   title: "プライバシーポリシー",
   description: "mirumi.tech のプライバシーポリシーです。",
   keywords: "みるめも,みるみ,blog,technology,programming,privacy,policy",

@@ -5,8 +5,6 @@
 </template>
 
 <script setup lang="ts">
-import { delay } from "@/lib/utils"
-
 const isDark = ref(false)
 const history = useCookie<string>("theme")
 const theme = useState<string>("theme", () => "")

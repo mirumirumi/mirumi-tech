@@ -13,8 +13,6 @@
 </template>
 
 <script setup lang="ts">
-import { delay } from "@/lib/utils"
-
 defineProps<{
   className: string,
 }>()

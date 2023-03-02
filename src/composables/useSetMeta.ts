@@ -1,26 +1,33 @@
-import { PageMeta } from "@/lib/defines"
+import { PageMeta } from "@/utils/defines"
 
-export default (pageMeta: PageMeta) => {
+export default (p: PageMeta) => {
+  const url = new URL(p.url)
+  const pureFullpath = url.origin + url.pathname
+  let urlWithTrailingSlash = pureFullpath
+  if (!pureFullpath.endsWith("/")) {
+    urlWithTrailingSlash += "/"
+  }
+
   useHead({
     title: "mirumi.tech",
     titleTemplate: (title) => {
-      if (pageMeta && title !== pageMeta.title) return `${pageMeta.title} | ${title}`
+      if (p && title !== p.title) return `${p.title} | ${title}`
       else return `${title}`
     },
     meta: [
-      { name: "description", content: pageMeta.description },
-      { name: "keywords", content: pageMeta.keywords },
-      { property: "article:published_time", content: pageMeta.createdAt },
-      { property: "article:modified_time", content: pageMeta.updatedAt },
-      { property: "og:description", content: pageMeta.description },
-      { property: "og:title", content: pageMeta.title },
-      { property: "og:url", content: pageMeta.url },
-      { property: "twitter:title", content: pageMeta.title },
-      { property: "twitter:url", content: pageMeta.url },
-      { property: "twitter:description", content: pageMeta.description },
+      { name: "description", content: p.description },
+      { name: "keywords", content: p.keywords },
+      { property: "article:published_time", content: p.createdAt },
+      { property: "article:modified_time", content: p.updatedAt },
+      { property: "og:description", content: p.description },
+      { property: "og:title", content: p.title },
+      { property: "og:url", content: p.url },
+      { property: "twitter:title", content: p.title },
+      { property: "twitter:url", content: p.url },
+      { property: "twitter:description", content: p.description },
     ],
     link: [
-      { rel: "canonical", href: pageMeta.url },
+      { rel: "canonical", href: urlWithTrailingSlash },
     ],
   })
 }

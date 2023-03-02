@@ -23,8 +23,7 @@
 </template>
 
 <script setup lang="ts">
-import { SITE_FULL_PATH, SITE_CREATED_AT, ResIndexesAPI } from "@/lib/defines"
-import { today } from "@/lib/utils"
+import { SITE_FULL_PATH, SITE_CREATED_AT, ResIndexesAPI } from "@/utils/defines"
 import secret from "@/secrets"
 
 const router = useRouter()
@@ -40,7 +39,7 @@ const { data } = await useFetch(`/get-top-indexes`, {
 })
 const postLinks = ref((data.value as ResIndexesAPI).items)
 
-useSetMeta({
+usePageInfo({
   title: "すべての記事",
   description: "mirumi.tech のすべての記事一覧です。",
   keywords: "みるめも,みるみ,blog,technology,programming,articles",

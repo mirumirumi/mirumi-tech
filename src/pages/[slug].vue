@@ -33,8 +33,7 @@
 </template>
 
 <script setup lang="ts">
-import { SITE_FULL_PATH, PostData } from "@/lib/defines"
-import { friendlyDatetime, zeroPadding } from "@/lib/utils"
+import { SITE_FULL_PATH, PostData } from "@/utils/defines"
 import secret from "@/secrets"
 
 const router = useRouter()
@@ -69,7 +68,7 @@ const clickHandle = (e: any) => {
 
 useHead({ script: [{ src: "/assets/prism.js", defer: true },] })
 
-useSetMeta({
+usePageInfo({
   title: post.value.title,
   description: generateMetaDescription(post.value.body),
   keywords: post.value.tags.join(","),

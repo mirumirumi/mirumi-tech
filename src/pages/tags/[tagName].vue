@@ -36,8 +36,7 @@
 </template>
 
 <script setup lang="ts">
-import { SITE_FULL_PATH, SITE_CREATED_AT, ResIndexesAPI } from "@/lib/defines"
-import { today, friendlyDatetime } from "@/lib/utils"
+import { SITE_FULL_PATH, SITE_CREATED_AT, ResIndexesAPI } from "@/utils/defines"
 import secret from "@/secrets"
 
 const router = useRouter()
@@ -87,7 +86,7 @@ watch(router.currentRoute, async (new_, old_) => {
   }
 })
 
-useSetMeta({
+usePageInfo({
   title: tagName.value,
   description: `${tagName.value} のタグがついた記事一覧です。`,
   keywords: "みるめも,みるみ,blog,technology,programming,tag," + tagName.value,

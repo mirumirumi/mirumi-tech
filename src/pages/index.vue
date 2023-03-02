@@ -35,8 +35,7 @@
 </template>
 
 <script setup lang="ts">
-import { SITE_FULL_PATH, SITE_CREATED_AT, ResIndexesAPI } from "@/lib/defines"
-import { friendlyDatetime, today } from "@/lib/utils"
+import { SITE_FULL_PATH, SITE_CREATED_AT, ResIndexesAPI } from "@/utils/defines"
 import secret from "@/secrets"
 
 const router = useRouter()
@@ -83,7 +82,7 @@ watch(router.currentRoute, async (new_, old_) => {
   }
 })
 
-useSetMeta({
+usePageInfo({
   title: "mirumi.tech",
   description: "みるみの技術ブログ",
   keywords: "みるめも,みるみ,blog,technology,programming",

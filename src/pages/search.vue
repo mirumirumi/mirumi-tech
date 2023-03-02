@@ -48,8 +48,7 @@
 <script setup lang="ts">
 // only one page, no pagination, no more load
 
-import { SITE_FULL_PATH, SITE_CREATED_AT, PostLink } from "@/lib/defines"
-import { friendlyDatetime, today } from "@/lib/utils"
+import { SITE_FULL_PATH, SITE_CREATED_AT, PostLink } from "@/utils/defines"
 import secret from "@/secrets"
 
 const router = useRouter()
@@ -95,7 +94,7 @@ watch(router.currentRoute, async (new_, old_) => {
   }
 })
 
-useSetMeta({
+usePageInfo({
   title: query.value as string,
   description: `${query.value} を含む記事一覧です。`,
   keywords: "みるめも,みるみ,blog,technology,programming,search,",
