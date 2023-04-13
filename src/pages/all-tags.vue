@@ -2,9 +2,7 @@
   <div class="all_tags_view">
     <main class="single_column">
       <header>
-        <h1>
-          すべてのタグ
-        </h1>
+        <h1>すべてのタグ</h1>
       </header>
       <div id="content">
         <ul>
