@@ -41,9 +41,6 @@ const slug = ref(router.currentRoute.value.params.slug)
 
 const { data } = await useFetch(`/get-post`, {
   baseURL: secret.API_BASE_URL,
-  headers: {
-    Authorization: secret.API_KEY,
-  },
   params: {
     slag: slug.value,
   },

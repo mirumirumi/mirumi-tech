@@ -28,9 +28,6 @@ const router = useRouter()
 
 const { data } = await useFetch(`/get-all-tags`, {
   baseURL: secret.API_BASE_URL,
-  headers: {
-    Authorization: secret.API_KEY,
-  },
 })
 const tags = ref(data.value as Tag[])
 
