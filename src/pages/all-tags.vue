@@ -2,9 +2,7 @@
   <div class="all_tags_view">
     <main class="single_column">
       <header>
-        <h1>
-          すべてのタグ
-        </h1>
+        <h1>すべてのタグ</h1>
       </header>
       <div id="content">
         <ul>
@@ -30,9 +28,6 @@ const router = useRouter()
 
 const { data } = await useFetch(`/get-all-tags`, {
   baseURL: secret.API_BASE_URL,
-  headers: {
-    Authorization: secret.API_KEY,
-  },
 })
 const tags = ref(data.value as Tag[])
 

@@ -43,9 +43,6 @@ const page = ref(Number(router.currentRoute.value.query.page ?? 1))
 
 const { data } = await useFetch(`/get-top-indexes`, {
   baseURL: secret.API_BASE_URL,
-  headers: {
-    Authorization: secret.API_KEY,
-  },
   params: {
     page: page.value,
   },
@@ -59,19 +56,13 @@ const count = ref((data.value as ResIndexesAPI).count)
 const isLoading = ref(false)
 
 watch(router.currentRoute, async (new_, old_) => {
-  if (
-    new_.query.page !== old_.query.page 
-    || (!new_.query.page && old_.query.page)
-  ) {
+  if (new_.query.page !== old_.query.page || (!new_.query.page && old_.query.page)) {
     isLoading.value = true
 
     page.value = Number(new_.query.page ?? 1)
 
     const data: ResIndexesAPI = await $fetch(`/get-top-indexes`, {
       baseURL: secret.API_BASE_URL,
-      headers: {
-        Authorization: secret.API_KEY,
-      },
       params: {
         page: page.value,
       },
@@ -92,5 +83,4 @@ usePageInfo({
 })
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

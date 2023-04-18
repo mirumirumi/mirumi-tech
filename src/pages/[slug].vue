@@ -17,7 +17,7 @@
             </div>
           </div>
           <div class="tags">
-            <NuxtLink :to="`/tags/${post.search_tags[i]}`" v-for="tag, i in post.tags" :key="tag">
+            <NuxtLink :to="`/tags/${post.search_tags[i]}`" v-for="(tag, i) in post.tags" :key="tag">
               {{ tag }}
             </NuxtLink>
           </div>
@@ -41,9 +41,6 @@ const slug = ref(router.currentRoute.value.params.slug)
 
 const { data } = await useFetch(`/get-post`, {
   baseURL: secret.API_BASE_URL,
-  headers: {
-    Authorization: secret.API_KEY,
-  },
   params: {
     slag: slug.value,
   },
@@ -52,21 +49,20 @@ const post = ref(data.value as PostData)
 
 const clickHandle = (e: any) => {
   const link = e.target.closest("a")
-  if (!link)
-    return
+  if (!link) return
 
   const to = link.getAttribute("href")
-  if (!to.startsWith("/"))
-    return
+  if (!to.startsWith("/")) return
 
-  if (e.ctrlKey || e.shiftKey || e.altKey || e.metaKey)  // open new tab
+  if (e.ctrlKey || e.shiftKey || e.altKey || e.metaKey)
+    // Open a new tab
     return
 
   e.preventDefault()
   navigateTo(to)
 }
 
-useHead({ script: [{ src: "/assets/prism.js", defer: true },] })
+useHead({ script: [{ src: "/assets/prism.js", defer: true }] })
 
 usePageInfo({
   title: post.value.title,
@@ -78,15 +74,15 @@ usePageInfo({
 })
 
 function isInternalLink(url: string): boolean {
-  const fromDomain = window.location.hostname.replace(/^(https?:\/\/)?([^\/]+).*$/gmi, "$2")
-  const toDomain = url.replace(/^(https?:\/\/)?([^\/]+).*$/gmi, "$2")
+  const fromDomain = window.location.hostname.replace(/^(https?:\/\/)?([^\/]+).*$/gim, "$2")
+  const toDomain = url.replace(/^(https?:\/\/)?([^\/]+).*$/gim, "$2")
   return fromDomain === toDomain
 }
 
 function generateMetaDescription(html: string): string {
-  return html  // https://regex101.com/r/ke1Ymn/1
-    .replace(/(<.*?>|\n|^\n)/gmi, "")
-    .replace(/<h[234].*?>.*?<\/h[234]>/gmi, "")
+  return html // https://regex101.com/r/ke1Ymn/1
+    .replace(/(<.*?>|\n|^\n)/gim, "")
+    .replace(/<h[234].*?>.*?<\/h[234]>/gim, "")
     .slice(0, 100)
 }
 </script>
@@ -114,7 +110,8 @@ function generateMetaDescription(html: string): string {
           color: #9e9e9e;
           font-size: 0.7em;
           font-weight: bold;
-          .created_at, .updated_at {
+          .created_at,
+          .updated_at {
             position: relative;
             svg {
               top: 1.7px;

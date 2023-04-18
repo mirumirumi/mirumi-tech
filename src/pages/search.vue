@@ -60,9 +60,6 @@ const isNoQuery = computed(() => {
 
 const { data } = await useFetch(`/search-post`, {
   baseURL: secret.API_BASE_URL,
-  headers: {
-    Authorization: secret.API_KEY,
-  },
   params: {
     query: query.value,
   },
@@ -79,12 +76,9 @@ watch(router.currentRoute, async (new_, old_) => {
     isLoading.value = true
 
     query.value = new_.query.q as string
-  
+
     postLinks.value = await $fetch(`/search-post`, {
       baseURL: secret.API_BASE_URL,
-      headers: {
-        Authorization: secret.API_KEY,
-      },
       params: {
         query: query.value,
       },

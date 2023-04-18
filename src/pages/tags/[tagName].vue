@@ -27,7 +27,7 @@
             </article>
           </NuxtLink>
         </li>
-      </ul>    
+      </ul>
       <ClientOnly>
         <ModulesPagination :page="page" :count="count" />
       </ClientOnly>
@@ -45,9 +45,6 @@ const page = ref(Number(router.currentRoute.value.params.pageNumber ?? 1))
 
 const { data } = await useFetch(`/get-tag-indexes`, {
   baseURL: secret.API_BASE_URL,
-  headers: {
-    Authorization: secret.API_KEY,
-  },
   params: {
     tag: tagName.value,
     page: page.value,
@@ -62,19 +59,13 @@ const count = ref((data.value as ResIndexesAPI).count)
 const isLoading = ref(false)
 
 watch(router.currentRoute, async (new_, old_) => {
-  if (
-    new_.query.page !== old_.query.page 
-    || (!new_.query.page && old_.query.page)
-  ) {
+  if (new_.query.page !== old_.query.page || (!new_.query.page && old_.query.page)) {
     isLoading.value = true
 
     page.value = Number(new_.query.page ?? 1)
 
     const data: ResIndexesAPI = await $fetch(`/get-tag-indexes`, {
       baseURL: secret.API_BASE_URL,
-      headers: {
-        Authorization: secret.API_KEY,
-      },
       params: {
         tag: tagName.value,
         page: page.value,

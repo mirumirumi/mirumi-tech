@@ -2,9 +2,7 @@
   <div class="all_entries_view">
     <main class="single_column">
       <header>
-        <h1>
-          すべての記事
-        </h1>
+        <h1> すべての記事 </h1>
       </header>
       <div id="content">
         <ul>
@@ -30,9 +28,6 @@ const router = useRouter()
 
 const { data } = await useFetch(`/get-top-indexes`, {
   baseURL: secret.API_BASE_URL,
-  headers: {
-    Authorization: secret.API_KEY,
-  },
   params: {
     page: "all",
   },
