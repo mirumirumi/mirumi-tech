@@ -7,7 +7,7 @@
       <div id="content">
         <ul>
           <li v-for="post in postLinks" :key="post.slag">
-            <NuxtLink :to="`/${post.slag}`">
+            <NuxtLink :to="`/${post.slag}/`">
               {{ post.title }}
             </NuxtLink>
           </li>

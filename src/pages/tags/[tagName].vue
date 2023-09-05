@@ -9,7 +9,7 @@
       </header>
       <ul class="posts">
         <li class="post" v-for="post in postLinks" :key="post.slag">
-          <NuxtLink :to="`/${post.slag}`">
+          <NuxtLink :to="`/${post.slag}/`">
             <article>
               <h2>
                 {{ post.title }}

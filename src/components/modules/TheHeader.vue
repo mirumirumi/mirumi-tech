@@ -3,29 +3,25 @@
     <header>
       <div class="site_logo">
         <NuxtLink :to="{ path: '/', force: true, replace: true }">
-          <img src="/assets/site-icon.png" alt="site-icon">
+          <img src="/assets/site-icon.png" alt="site-icon" />
         </NuxtLink>
       </div>
       <nav aria-label="global-menu">
         <ul class="menu">
           <li>
-            <NuxtLink to="/all-entries" data-tooltip="all_entries" @mouseenter="hover" @mouseleave="hoverInterrupt">
+            <NuxtLink to="/all-entries/" data-tooltip="all_entries" @mouseenter="hover" @mouseleave="hoverInterrupt">
               <PartsSvgIcon :icon="'entries'" :color="'#bbbbba'" />
             </NuxtLink>
             <Transition name="tooltip">
-              <PartsTooltip :position="'below'" :shift="'34px'" v-if="isShownTtAe">
-                すべての記事
-              </PartsTooltip>
+              <PartsTooltip :position="'below'" :shift="'34px'" v-if="isShownTtAe">すべての記事</PartsTooltip>
             </Transition>
           </li>
           <li>
-            <NuxtLink to="/all-tags" data-tooltip="all_tags" @mouseenter="hover" @mouseleave="hoverInterrupt">
+            <NuxtLink to="/all-tags/" data-tooltip="all_tags" @mouseenter="hover" @mouseleave="hoverInterrupt">
               <PartsSvgIcon :icon="'tags'" :color="'#bbbbba'" />
             </NuxtLink>
             <Transition name="tooltip">
-              <PartsTooltip :position="'below'" :shift="'34px'" v-if="isShownTtAt">
-                すべてのタグ
-              </PartsTooltip>
+              <PartsTooltip :position="'below'" :shift="'34px'" v-if="isShownTtAt">すべてのタグ</PartsTooltip>
             </Transition>
           </li>
           <li>
@@ -34,23 +30,23 @@
             </a>
             <Transition name="tooltip">
               <PartsTooltip :position="'below'" :shift="'34px'" v-if="isShownTtGh">
-                <template v-if="isPost()">
-                  GitHubで修正をリクエストする
-                </template>
-                <template v-else>
-                  GitHubプロフィール
-                </template>
+                <template v-if="isPost()">GitHubで修正をリクエストする</template>
+                <template v-else>GitHubプロフィール</template>
               </PartsTooltip>
             </Transition>
           </li>
           <li>
-            <div class="search_wrap" data-tooltip="search_wrap" @click="isOpenSearchModal = true" @mouseenter="hover" @mouseleave="hoverInterrupt">
+            <div
+              class="search_wrap"
+              data-tooltip="search_wrap"
+              @click="isOpenSearchModal = true"
+              @mouseenter="hover"
+              @mouseleave="hoverInterrupt"
+            >
               <PartsSvgIcon :icon="'search'" :color="'#bbbbba'" />
             </div>
             <Transition name="tooltip">
-              <PartsTooltip :position="'below'" :shift="'34px'" v-if="isShownTtSr">
-                記事を検索
-              </PartsTooltip>
+              <PartsTooltip :position="'below'" :shift="'34px'" v-if="isShownTtSr">記事を検索</PartsTooltip>
             </Transition>
           </li>
           <li class="theme">
@@ -61,7 +57,12 @@
     </header>
     <Teleport to="body">
       <Transition name="fadedown">
-        <ModulesModalBase :className="'search'" v-if="isOpenSearchModal" @closeModal="isOpenSearchModal = false" ref="modalBaseRef">
+        <ModulesModalBase
+          :className="'search'"
+          v-if="isOpenSearchModal"
+          @closeModal="isOpenSearchModal = false"
+          ref="modalBaseRef"
+        >
           <div class="form">
             <ModulesSearchBox @closeSearchBox="closeSearchBox" />
           </div>
@@ -121,7 +122,7 @@ const hover = (e: Event): void => {
         isShownTtSr.value = true
         break
     }
-  }, DEBOUNCE_MS);
+  }, DEBOUNCE_MS)
 }
 
 const hoverInterrupt = () => {
@@ -135,7 +136,7 @@ const hoverInterrupt = () => {
 </script>
 
 <style lang="scss" scoped>
-.header_wrap{
+.header_wrap {
   header {
     display: flex;
     justify-content: space-between;
@@ -169,7 +170,9 @@ const hoverInterrupt = () => {
         align-items: center;
         width: 60px;
         height: 100%;
-        a, .contact_wrap, .search_wrap {
+        a,
+        .contact_wrap,
+        .search_wrap {
           position: relative;
           display: flex;
           justify-content: center;
@@ -181,7 +184,8 @@ const hoverInterrupt = () => {
             right: 0;
           }
         }
-        .contact_wrap, .search_wrap {
+        .contact_wrap,
+        .search_wrap {
           cursor: pointer;
         }
         @include mobile {

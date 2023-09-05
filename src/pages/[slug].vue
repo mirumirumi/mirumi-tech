@@ -17,7 +17,7 @@
             </div>
           </div>
           <div class="tags">
-            <NuxtLink :to="`/tags/${post.search_tags[i]}`" v-for="(tag, i) in post.tags" :key="tag">
+            <NuxtLink :to="`/tags/${post.search_tags[i]}/`" v-for="(tag, i) in post.tags" :key="tag">
               {{ tag }}
             </NuxtLink>
           </div>

@@ -3,26 +3,27 @@
     <footer>
       <ul class="links">
         <li>
-          <NuxtLink to="/privacy">プライバシーポリシー</NuxtLink>
+          <NuxtLink to="/privacy/">プライバシーポリシー</NuxtLink>
         </li>
-        <li class="contact" @click="isOpenContactModal = true">
-          お問い合わせ
-        </li>
+        <li class="contact" @click="isOpenContactModal = true">お問い合わせ</li>
         <li>
-          <NuxtLink to="/this">このサイトのつくり</NuxtLink>
+          <NuxtLink to="/this/">このサイトのつくり</NuxtLink>
         </li>
       </ul>
-      <div class="copyright">
-        © {{ new Date().getFullYear() }} mirumi.tech
-      </div>
+      <div class="copyright"> © {{ new Date().getFullYear() }}mirumi.tech</div>
     </footer>
     <Transition name="fadedown">
       <ModulesModalBase :className="'contact'" v-if="isOpenContactModal" @closeModal="closeContactModal">
-        <div class="title">
-          お問い合わせ
-        </div>
+        <div class="title">お問い合わせ</div>
         <div class="form">
-          <input type="text" class="input" :class="{ center: isShown }" placeholder="Press the button below to show our email address..." v-model="address" disabled>
+          <input
+            type="text"
+            class="input"
+            :class="{ center: isShown }"
+            placeholder="Press the button below to show our email address..."
+            v-model="address"
+            disabled
+          />
         </div>
         <div class="button">
           <PartsBaseButton type="fill" @click="showAddressOrCopy" v-html="buttonText" />
@@ -34,8 +35,12 @@
           </Transition>
         </div>
         <div class="desc">
-          <span>・お問い合わせをご希望される方は、上のボタンを押して表示されるメールアドレス宛てにご連絡ください。頂いた内容は基本的にはすべて確認していますが、必ず返信をお約束するものではありません。</span>
-          <span>・なんでこんな仕組みにしているの：メールアドレスは初期レンダリング時に一切描画されないため、「スパムを回避しつつ最低限の実装コストでお問い合わせシステムが実現できる…！」と思ってこうしています。「ユーザビリティ悪くない？」という考えに対しては「サイトのユーザー層がある程度限定されているなら実用的な運用である」と思うことにしています（一般ブログではお問い合わせ専用ページをちゃんと作る）。</span>
+          <span>
+            ・お問い合わせをご希望される方は、上のボタンを押して表示されるメールアドレス宛てにご連絡ください。頂いた内容は基本的にはすべて確認していますが、必ず返信をお約束するものではありません。
+          </span>
+          <span>
+            ・なんでこんな仕組みにしているの：メールアドレスは初期レンダリング時に一切描画されないため、「スパムを回避しつつ最低限の実装コストでお問い合わせシステムが実現できる…！」と思ってこうしています。「ユーザビリティ悪くない？」という考えに対しては「サイトのユーザー層がある程度限定されているなら実用的な運用である」と思うことにしています（一般ブログではお問い合わせ専用ページをちゃんと作る）。
+          </span>
         </div>
       </ModulesModalBase>
     </Transition>
